@@ -25,7 +25,7 @@ export class ChangeBannerComponent implements OnInit {
       (res: BannerResponse[]) => {
         console.group('banner response');
         console.log(res);
-        this.bannerUrl = res[0].foto;
+        this.bannerUrl = res[0] ? res[0].foto : '';
         console.groupEnd();
       },
       (err: any) => {

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { CarComplaintComponent } from './components/dashboard/admin/car-complaint/car-complaint.component';
 import { CarSaleRegistrationComponent } from './components/dashboard/admin/car-sale-registration/car-sale-registration.component';
 import { CarSponsorComponent } from './components/dashboard/admin/car-sponsor/car-sponsor.component';
@@ -21,7 +19,6 @@ import { ReportIncidenceComponent } from './components/dashboard/report-incidenc
 import { AutoNuevoComponent } from './components/details/auto-nuevo/auto-nuevo.component';
 import { AutoSemiNuevoComponent } from './components/details/auto-semi-nuevo/auto-semi-nuevo.component';
 import { HomeComponent } from './components/home/home.component';
-import { Home2Component } from './components/home2/home2.component';
 import { InventoryListingsComponent } from './components/inventory-listings/inventory-listings.component';
 import { LoginComponent } from './components/login/login.component';
 import { ParticularComponent } from './components/register/particular/particular.component';
@@ -42,11 +39,8 @@ export const routes: Routes = [
     path: 'inventory-listings',
     component: InventoryListingsComponent,
   },
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'terminos-y-condiciones', component: TermsComponent },
   { path: 'politicas-de-privacidad', component: PrivacyComponent },
-  { path: 'home2', component: Home2Component },
   { path: 'vehicle-details', component: VehicleDetailsComponent },
   {
     path: 'dashboard',
@@ -165,13 +159,6 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
-
-/*   { path: 'blog-grid', component: BlogGridComponent },
-  { path: 'blog-main', component: BlogMainComponent },
-  { path: 'blog-post', component: BlogPostComponent },
-    { path: 'reservation-grid', component: ReservationGridComponent },
-  { path: 'booking-system', component: BookingSystemComponent },
-    { path: 'inventory-grid', component: InventoryGridComponent },*/
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

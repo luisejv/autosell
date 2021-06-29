@@ -11,7 +11,7 @@
       [src]="
         autoCasteado?.fotoPrincipal !== ''
           ? autoCasteado?.fotoPrincipal
-          : 'assets/media/content/b-special/263x200/1.jpg'
+          : 'src/assets/media/content/b-special/263x200/1.jpg'
       "
       alt="Foto del Auto"
     />
@@ -43,12 +43,15 @@
         </div>
       </div>
     </div>
-    <!-- TODO: *ngIf's -->
     <!-- NOTE: estos tags son para el admin, car-published -->
-    <div class="row" *ngIf="includesDashboard()">
+    <div class="row no-gutters" *ngIf="includesDashboard()">
       <!-- NOTE: POR VALIDAR -->
       <div *ngIf="!autoCasteado.validado" class="col-auto pr-3">
-        <div class="full-height por-validar row b-goods__price text-primary">
+        <div
+          [ngClass]="{ 'grid-tag-clicker': !mode }"
+          letter="V"
+          class="por-validar row b-goods__price text-primary"
+        >
           <span class="b-goods__price-title">POR<br />VALIDAR</span>
         </div>
       </div>
@@ -57,7 +60,11 @@
         *ngIf="autoCasteado.validado && !autoCasteado.comprado"
         class="col-auto pr-3"
       >
-        <div class="full-height por-vender row b-goods__price text-primary">
+        <div
+          [ngClass]="{ 'grid-tag-clicker': !mode }"
+          letter="V"
+          class="por-vender row b-goods__price text-primary"
+        >
           <span class="b-goods__price-title">POR<br />VENDER</span>
         </div>
       </div>
@@ -66,13 +73,21 @@
         *ngIf="autoCasteado.validado && autoCasteado.comprado"
         class="col-auto pr-3"
       >
-        <div class="full-height vendido row b-goods__price text-primary">
+        <div
+          [ngClass]="{ 'grid-tag-clicker': !mode }"
+          letter="V"
+          class="vendido row b-goods__price text-primary"
+        >
           <span class="b-goods__price-title">VENDIDO</span>
         </div>
       </div>
       <!-- NOTE: VENDIDO -->
       <div *ngIf="!autoCasteado.enabled" class="col-auto pr-3">
-        <div class="full-height eliminado row b-goods__price text-primary">
+        <div
+          [ngClass]="{ 'grid-tag-clicker': !mode }"
+          letter="V"
+          class="eliminado row b-goods__price text-primary"
+        >
           <span class="b-goods__price-title">ELIMINADO</span>
         </div>
       </div>

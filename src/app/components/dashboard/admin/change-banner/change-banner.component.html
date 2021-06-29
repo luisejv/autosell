@@ -16,7 +16,15 @@
   </div>
   <div class="banner-container">
     <div class="banner-grid-item-1">
-      <img class="banner-img" [src]="bannerUrl" alt="Banner Foto" />
+      <img
+        class="banner-img"
+        [src]="bannerUrl"
+        [alt]="
+          bannerUrl === ''
+            ? 'No se cuenta con un banner por el momento.'
+            : 'Banner'
+        "
+      />
     </div>
     <div class="banner-grid-item-2">
       <h2>Cambiar Banner</h2>

@@ -13,6 +13,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MAT_RIPPLE_GLOBAL_OPTIONS,
+  RippleGlobalOptions,
+} from '@angular/material/core';
 
 const AngularMaterial = [
   MatButtonModule,
@@ -28,6 +32,14 @@ const AngularMaterial = [
   MatProgressSpinnerModule,
 ];
 
+const globalRippleConfig: RippleGlobalOptions = {
+  disabled: true,
+  animation: {
+    enterDuration: 0,
+    exitDuration: 0,
+  },
+};
+
 @NgModule({
   imports: [AngularMaterial],
   exports: [AngularMaterial],
@@ -36,6 +48,7 @@ const AngularMaterial = [
       provide: MAT_RADIO_DEFAULT_OPTIONS,
       useValue: { color: 'primary' },
     },
+    { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
   ],
 })
 export class MaterialModule {}

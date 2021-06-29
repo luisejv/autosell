@@ -15,10 +15,10 @@ export class InventoryListingsComponent implements OnInit {
     this.route.queryParams.subscribe(
       (params: CarSearchFilter) => {
         // siempre mandará todos los parámetros así que normal hacer esto
-        console.group('Route Params pasados a Inventory Listings:');
         this.filters = params;
-        console.log(this.filters);
-        console.groupEnd();
+        // console.group('Route Params pasados a Inventory Listings:');
+        // console.log(this.filters);
+        // console.groupEnd();
       },
       (error: any) => {
         console.error(
@@ -29,6 +29,5 @@ export class InventoryListingsComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

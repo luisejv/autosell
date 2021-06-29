@@ -1,25 +1,38 @@
-.published-car-container {
-  /* border: 2px solid black; */
+.grid-tag-clicker {
+  height: 23px;
+  width: 23px;
+  border-radius: 999px;
+  margin-left: 10px;
+  margin-top: 10px;
+  position: relative;
+  filter: brightness(0.9);
 }
 
-.full-height {
-  height: 100%;
+.grid-tag-clicker::after {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  content: attr(letter);
+  color: #f0fff0;
+  right: 0px;
+  left: 5px;
+  top: 2px;
 }
 
 .por-validar {
-  background-color: orange;
+  background-color: #8b5160;
 }
 
 .por-vender {
-  background-color: rgb(156, 156, 32);
+  background-color: #ea9b67;
 }
 
 .vendido {
-  background-color: royalblue;
+  background-color: #19c8a6;
 }
 
 .eliminado {
-  background-color: red;
+  background-color: #ff3333;
 }
 
 ::ng-deep .mat-form-field-underline {
