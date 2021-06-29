@@ -37,7 +37,7 @@ export class AutoSemiNuevoComponent implements OnInit {
   contactFormGroup: FormGroup;
 
   slideConfig = {
-    arrows: false,
+    arrows: true,
     fade: true,
     asNavFor: '.js-slider-for',
   };

@@ -8,6 +8,7 @@ import {
   animate,
   transition,
 } from '@angular/animations';
+import { CommonService } from 'src/app/core/services/common.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -40,7 +41,7 @@ export class SidebarComponent implements OnInit {
   public scrolled: boolean = false;
   public state: string = 'in';
 
-  constructor() {}
+  constructor(public commonService: CommonService) {}
 
   ngOnInit(): void {}
 
