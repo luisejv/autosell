@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RolesEnum } from 'src/app/core/enums/roles.enum';
 import { AutoNuevo } from 'src/app/core/interfaces/auto-nuevo';
@@ -35,11 +35,11 @@ export class AutoNuevoComponent implements OnInit {
       this.storageService.getRoleLocalStorage() == RolesEnum.ADMIN ||
       this.storageService.getRoleLocalStorage() == RolesEnum.SUPERADMIN;
     this.contactFormGroup = this.fb.group({
-      dni: '',
-      nombres: '',
-      apellidos: '',
-      telefono: '',
-      correo: '',
+      dni: ['', [Validators.required, Validators.pattern('[0-9]{8,8}')]],
+      nombres: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
+      telefono: ['', [Validators.required, Validators.pattern('9[0-9]{8,8}')]],
+      correo: ['', [Validators.required, Validators.email]],
       descripcion: '',
     });
   }
@@ -87,15 +87,25 @@ export class AutoNuevoComponent implements OnInit {
 
   submitForm(): void {
     this.sendingContactForm = true;
-    const bodyForm = new HttpParams()
+    let bodyForm = new HttpParams()
       .set('DNI', this.contactFormGroup.value.dni)
       .set('First_Name', this.contactFormGroup.value.nombres)
       .set('Last_Name', this.contactFormGroup.value.apellidos)
       .set('Phone_Number', this.contactFormGroup.value.telefono)
       .set('Email', this.contactFormGroup.value.correo)
-      .set('Carroceria_Vehiculo', this.contactFormGroup.value.tipoCarroceria)
+      .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
       .set('Nuevo', 'true')
-      .set('ID_Auto', this.auto.id);
+      .set('ID_Auto', this.auto.id)
+      .set(
+        'DatosSemiNuevo',
+        this.contactFormGroup.value.descripcion.length > 0
+          ? this.contactFormGroup.value.descripcion
+          : ''
+      );
+
+    console.log(bodyForm);
+    return;
+
     this.clientService.postPilot(bodyForm).subscribe(
       (response) => {
         Swal.fire({
@@ -122,7 +132,7 @@ export class AutoNuevoComponent implements OnInit {
 
   contact(): void {
     this.sendingContactForm = true;
-    const bodyForm = new HttpParams()
+    let bodyForm = new HttpParams()
       .set('DNI', this.storageService.getDniLocalStorage()!)
       .set('First_Name', this.storageService.getNombreLocalStorage()!)
       .set('Last_Name', this.storageService.getApellidosLocalStorage()!)
@@ -130,7 +140,17 @@ export class AutoNuevoComponent implements OnInit {
       .set('Email', this.storageService.getEmailLocalStorage()!)
       .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
       .set('Nuevo', 'true')
-      .set('ID_Auto', this.auto.id);
+      .set('ID_Auto', this.auto.id)
+      .set(
+        'DatosSemiNuevo',
+        this.contactFormGroup.value.descripcion.length > 0
+          ? this.contactFormGroup.value.descripcion
+          : ''
+      );
+
+    console.log(bodyForm);
+    return;
+
     this.clientService.postPilot(bodyForm).subscribe(
       (response) => {
         Swal.fire({

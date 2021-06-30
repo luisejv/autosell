@@ -154,7 +154,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         if (this.carroceria !== '') {
           if (this.marca !== '') {
             // carrocería y marca
-            console.log('a');
+            // console.log('a');
             this.filteredModels = this.carFilters
               .filter(
                 (elem: Filter) =>
@@ -164,7 +164,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
               .map((fil: Filter) => fil.modelo);
           } else {
             // carrocería
-            console.log('b');
+            // console.log('b');
             this.filteredModels = this.carFilters
               .filter((elem: Filter) => elem.tipoCarroceria === this.carroceria)
               .map((fil: Filter) => fil.modelo);
@@ -172,13 +172,13 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         } else {
           if (this.marca !== '') {
             // marca
-            console.log('c');
+            // console.log('c');
             this.filteredModels = this.carFilters
               .filter((elem: Filter) => elem.marca === this.marca)
               .map((fil: Filter) => fil.modelo);
           } else {
             // ni marca ni carrocería
-            console.log('d');
+            // console.log('d');
             this.filteredModels = [];
           }
         }
@@ -186,9 +186,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         console.group('Modelos');
         console.log(this.filteredModels);
         console.groupEnd();
-
-        console.log('filtered models');
-        console.log(this.filteredModels);
       },
       (error) => {
         console.group('In getting filters');
@@ -262,9 +259,9 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
             console.dir(this.carros);
             console.groupEnd();
 
-            console.group('Carrocerías');
-            console.log(this.carros.map((carro) => carro.tipoCarroceria));
-            console.groupEnd();
+            // console.group('Carrocerías');
+            // console.log(this.carros.map((carro) => carro.tipoCarroceria));
+            // console.groupEnd();
 
             this.filteredCarros = response;
 
@@ -417,17 +414,17 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
       type.forEach((tipo: Filters) => {
         if (this.appliedFilters.indexOf(tipo) === -1) {
           this.appliedFilters.push(tipo);
-          console.log('adding filter...: ', tipo);
+          // console.log('adding filter...: ', tipo);
         }
       });
     } else if (typeof type === 'number') {
       if (this.appliedFilters.indexOf(type) === -1) {
         this.appliedFilters.push(type);
-        console.log('adding filter...: ', type);
+        // console.log('adding filter...: ', type);
       }
     }
 
-    console.log('Aplying filters: ', this.appliedFilters);
+    // console.log('Aplying filters: ', this.appliedFilters);
     // TODO: quizas mostrar un loader mientras filtra
 
     let aux: AutoSemiNuevo[] = this.carros;
@@ -438,14 +435,14 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
           aux = aux.filter((auto: AutoSemiNuevo) =>
             auto.marca.includes(this.carBrand?.value)
           );
-          console.log('brand: ', aux);
+          // console.log('brand: ', aux);
           break;
         }
         case Filters.CarModel: {
           aux = aux.filter((auto: AutoSemiNuevo) =>
             auto.modelo.includes(this.carModel?.value)
           );
-          console.log('model: ', aux);
+          // console.log('model: ', aux);
           break;
         }
         case Filters.CarType: {
@@ -454,7 +451,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
               .transform(auto.tipoCarroceria)
               .includes(this.carType?.value)
           );
-          console.log('carroceria: ', aux);
+          // console.log('carroceria: ', aux);
           break;
         }
         case Filters.CarYearFrom: {
@@ -463,7 +460,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
               ? auto.anoFabricacion >= this.carMinYear?.value
               : true
           );
-          console.log('año desde: ', aux);
+          // console.log('año desde: ', aux);
           break;
         }
         case Filters.CarTransmission: {
@@ -511,7 +508,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
                 auto.kilometraje <= this.maxKilometraje
               : true
           );
-          console.log('slider kilometraje: ', aux);
+          // console.log('slider kilometraje: ', aux);
           break;
         }
         case Filters.SliderPrice: {
@@ -520,13 +517,13 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
               auto.precioVenta >= this.minPrice &&
               auto.precioVenta <= this.maxPrice
           );
-          console.log(
-            'maxPrice: ',
-            this.maxPrice,
-            'this.minPrice: ',
-            this.minPrice
-          );
-          console.log('slider price: ', aux);
+          // console.log(
+          //   'maxPrice: ',
+          //   this.maxPrice,
+          //   'this.minPrice: ',
+          //   this.minPrice
+          // );
+          // console.log('slider price: ', aux);
           break;
         }
         case Filters.SliderYear: {
@@ -536,7 +533,7 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
                 auto.anoFabricacion <= this.maxYear
               : true
           );
-          console.log('slider year: ', aux);
+          // console.log('slider year: ', aux);
           break;
         }
       }

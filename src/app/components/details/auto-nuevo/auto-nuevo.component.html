@@ -362,7 +362,10 @@
             </div>
 
             <div class="widget-2 section-sidebar bg-gray">
-              <h3 class="widget-title-2 pb-3">
+              <h3
+                class="widget-title-2"
+                [ngClass]="{ 'pb-3': !logged, 'pt-4': logged }"
+              >
                 <img
                   class="ic pr-2 pl-4"
                   src="assets/media/general/Favicon192x192.svg"
@@ -385,7 +388,7 @@
                 </ng-template>
               </h3>
               <div class="widget-content">
-                <div class="widget-inner">
+                <div class="widget-inner" [ngClass]="{ 'pt-0': !logged }">
                   <div *ngIf="!logged; else enviar">
                     <form [formGroup]="contactFormGroup">
                       <div class="form-group">
@@ -485,7 +488,7 @@
                         <textarea
                           class="form-control"
                           formControlName="descripcion"
-                          placeholder="Consulta"
+                          placeholder="Comentario"
                           rows="5"
                         ></textarea>
                       </div>

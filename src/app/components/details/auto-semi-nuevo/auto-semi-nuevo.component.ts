@@ -71,7 +71,7 @@ export class AutoSemiNuevoComponent implements OnInit {
       apellidos: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern('9[0-9]{8,8}')]],
       correo: ['', [Validators.required, Validators.email]],
-      descripcion: ['', [Validators.required]],
+      descripcion: '',
     });
   }
 
@@ -121,19 +121,30 @@ export class AutoSemiNuevoComponent implements OnInit {
 
   submitForm() {
     this.sendingContactForm = true;
-    const bodyForm = new HttpParams()
+    let bodyForm = new HttpParams()
       .set('DNI', this.contactFormGroup.value.dni)
       .set('First_Name', this.contactFormGroup.value.nombres)
       .set('Last_Name', this.contactFormGroup.value.apellidos)
       .set('Phone_Number', this.contactFormGroup.value.telefono)
       .set('Email', this.contactFormGroup.value.correo)
-      .set('Carroceria_Vehiculo', this.contactFormGroup.value.tipoCarroceria)
+      .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
       .set('Nuevo', 'false')
+      .set('ID_Auto', '424')
       .set(
         'DatosSemiNuevo',
-        this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
-      )
-      .set('ID_Auto', '424');
+        this.contactFormGroup.value.descripcion.length > 0
+          ? this.auto.marca +
+              '-' +
+              this.auto.modelo +
+              '-' +
+              this.auto.placa +
+              '-' +
+              this.contactFormGroup.value.descripcion
+          : this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
+      );
+
+    console.log(bodyForm);
+    return;
 
     const body2 = {
       autoSemiNuevo: {
@@ -144,7 +155,6 @@ export class AutoSemiNuevoComponent implements OnInit {
       apellidos: this.contactFormGroup.value.apellidos,
       correo: this.contactFormGroup.value.correo,
       numTelefono: this.contactFormGroup.value.telefono,
-      descripcion: this.contactFormGroup.value.descripcion,
     };
 
     this.clientService.postPilot(bodyForm).subscribe(
@@ -190,11 +200,21 @@ export class AutoSemiNuevoComponent implements OnInit {
       .set('Email', this.storageService.getEmailLocalStorage()!)
       .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
       .set('Nuevo', 'false')
+      .set('ID_Auto', '424')
       .set(
         'DatosSemiNuevo',
-        this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
-      )
-      .set('ID_Auto', '424');
+        this.contactFormGroup.value.descripcion.length > 0
+          ? this.auto.marca +
+              '-' +
+              this.auto.modelo +
+              '-' +
+              this.contactFormGroup.value.descripcion
+          : this.auto.marca + '-' + this.auto.modelo
+      );
+
+    console.log(bodyForm);
+    return;
+
     const body2 = {
       autoSemiNuevo: {
         id: this.auto.id,
@@ -205,6 +225,7 @@ export class AutoSemiNuevoComponent implements OnInit {
       correo: this.storageService.getEmailLocalStorage()!,
       numTelefono: this.storageService.getPhoneLocalStorage()!,
     };
+
     this.clientService.postPilot(bodyForm).subscribe(
       (response) => {
         console.log(response);
