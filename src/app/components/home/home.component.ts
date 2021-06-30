@@ -157,7 +157,7 @@ export class HomeComponent implements OnInit {
             NormalizePipe.prototype.transform(elem.tipoCarroceria)
           )
           .filter((v, i, a) => a.indexOf(v) == i);
-        this.carrocerias.push('OTRO');
+        // this.carrocerias.push('OTRO');
         console.log('Marcas: ', this.filteredBrands);
         console.log('Carrocerias: ', this.carrocerias);
         setTimeout(() => {
