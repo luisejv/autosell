@@ -403,6 +403,7 @@ export class CarCuComponent implements OnInit {
           this.formGroup.controls['serie'].patchValue(response.data.serie);
           this.formGroup.controls['marca'].patchValue(response.data.marca);
           this.formGroup.controls['modelo'].patchValue(response.data.modelo);
+          this.formGroup.controls['color'].patchValue(response.data.color);
           this.fetchingPlaca = false;
           this.validatedPlaca = true;
           console.log(this.formGroup);
@@ -459,6 +460,7 @@ export class CarCuComponent implements OnInit {
         .getDNIDetails(this.formGroup.controls['dniDueno'].value)
         .subscribe(
           (response) => {
+            console.log(response);
             this.fetchingDNI = false;
             this.formGroup.controls['nombreDueno'].patchValue(
               response.nombres +

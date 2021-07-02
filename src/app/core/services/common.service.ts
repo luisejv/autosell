@@ -9,7 +9,7 @@ import { StorageService } from './storage.service';
 export class CommonService {
   private baseUrl: string = environment.baseUrl;
   private consultaDNIUrl: string = 'https://ws-consultas.herokuapp.com/api';
-  private consultaPlacaUrl: string = 'https://api.ws-consultas.xyz/api';
+  private consultaPlacaUrl: string = 'https://api.ws-consultas.xyz/v2';
   changeLayoutEvent = new EventEmitter<void>();
 
   screenHeight: number = 0;
