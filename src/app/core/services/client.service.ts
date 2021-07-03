@@ -55,4 +55,7 @@ export class ClientService {
   public resendEmail(id: number): Observable<any> {
     return this.http.get(this.commonService.revalidateEmailUrl + `/${id}`);
   }
+  public addToNewsletter(body: any): Observable<any> {
+    return this.http.post(this.commonService.newsletterUrl, body);
+  }
 }

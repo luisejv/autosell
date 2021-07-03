@@ -8,9 +8,10 @@ import { CarSearchFilter } from 'src/app/core/interfaces/car-search-filter';
 import { ClientService } from 'src/app/core/services/client.service';
 import { StorageService } from 'src/app/core/services/storage.service';
 import { Filter } from 'src/app/core/interfaces/client';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoaderService } from 'src/app/core/services/loader.service';
 import { NormalizePipe } from 'src/app/core/pipes/normalize.pipe';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 

@@ -71,6 +71,7 @@ export class CarCuComponent implements OnInit {
   imgFile!: string;
   dniTries: number = 0;
   placaTries: number = 0;
+  vin: string = '';
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.fotos, event.previousIndex, event.currentIndex);
@@ -231,6 +232,7 @@ export class CarCuComponent implements OnInit {
                 privacy: '',
                 descripcion: [''],
               });
+              this.formGroup.controls['placa'].disable();
               if (res.fotoPrincipal) {
                 this.fotoPrincipal = res.fotoPrincipal;
                 // @ts-ignore
@@ -388,28 +390,52 @@ export class CarCuComponent implements OnInit {
   }
 
   checkPlaca(): void {
-    this.fetchingPlaca = true;
-    let body = {
-      placa: this.formGroup.controls['placa'].value.split('-').join(''),
-      token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
-    };
-    this.userService.getPlacaDetails(body).subscribe(
-      (response: any) => {
-        console.log(response);
-        if (
-          response.success &&
-          (response.encontrado === undefined || response.encontrado)
-        ) {
-          this.formGroup.controls['serie'].patchValue(response.data.serie);
-          this.formGroup.controls['marca'].patchValue(response.data.marca);
-          this.formGroup.controls['modelo'].patchValue(response.data.modelo);
-          this.formGroup.controls['color'].patchValue(response.data.color);
-          this.fetchingPlaca = false;
-          this.validatedPlaca = true;
-          console.log(this.formGroup);
-        } else {
+    if (this.create) {
+      this.fetchingPlaca = true;
+      let body = {
+        placa: this.formGroup.controls['placa'].value.split('-').join(''),
+        token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
+      };
+      this.userService.getPlacaDetails(body).subscribe(
+        (response: any) => {
+          console.log(response);
+          if (
+            response.success &&
+            (response.encontrado === undefined || response.encontrado)
+          ) {
+            this.formGroup.controls['serie'].patchValue(response.data.serie);
+            this.formGroup.controls['marca'].patchValue(response.data.marca);
+            this.formGroup.controls['modelo'].patchValue(response.data.modelo);
+            this.formGroup.controls['color'].patchValue(response.data.color);
+            this.vin = response.data.vin;
+            this.fetchingPlaca = false;
+            this.validatedPlaca = true;
+            console.log(this.formGroup);
+          } else {
+            this.fetchingPlaca = false;
+            this.placaTries = this.placaTries + 1;
+            Swal.fire({
+              titleText: 'Oops!',
+              html: `No se encontró el auto con esa placa. ${
+                this.placaTries == 2
+                  ? 'Registre sus datos en las casillas correspondientes.'
+                  : 'Por favor, revise que sea correcto.'
+              } `,
+              allowOutsideClick: true,
+              icon: 'error',
+              showConfirmButton: true,
+            });
+            if (this.placaTries == 2) {
+              this.formGroup.controls['serie'].enable();
+              this.formGroup.controls['marca'].enable();
+              this.formGroup.controls['modelo'].enable();
+            }
+          }
+        },
+        (error: any) => {
           this.fetchingPlaca = false;
           this.placaTries = this.placaTries + 1;
+          console.log(error);
           Swal.fire({
             titleText: 'Oops!',
             html: `No se encontró el auto con esa placa. ${
@@ -421,36 +447,15 @@ export class CarCuComponent implements OnInit {
             icon: 'error',
             showConfirmButton: true,
           });
+          console.error(error);
           if (this.placaTries == 2) {
             this.formGroup.controls['serie'].enable();
             this.formGroup.controls['marca'].enable();
             this.formGroup.controls['modelo'].enable();
           }
         }
-      },
-      (error: any) => {
-        this.fetchingPlaca = false;
-        this.placaTries = this.placaTries + 1;
-        console.log(error);
-        Swal.fire({
-          titleText: 'Oops!',
-          html: `No se encontró el auto con esa placa. ${
-            this.placaTries == 2
-              ? 'Registre sus datos en las casillas correspondientes.'
-              : 'Por favor, revise que sea correcto.'
-          } `,
-          allowOutsideClick: true,
-          icon: 'error',
-          showConfirmButton: true,
-        });
-        console.error(error);
-        if (this.placaTries == 2) {
-          this.formGroup.controls['serie'].enable();
-          this.formGroup.controls['marca'].enable();
-          this.formGroup.controls['modelo'].enable();
-        }
-      }
-    );
+      );
+    }
   }
 
   checkDNI() {
@@ -518,7 +523,7 @@ export class CarCuComponent implements OnInit {
     console.log(typeof this.fotoPrincipal);
     console.log(this.fotoPrincipal);
     console.groupEnd();
-    const body: AutoSemiNuevo = {
+    let body: AutoSemiNuevo = {
       id: this.formGroup.value.id,
       usuario: {
         correo: this.storageService.getEmailLocalStorage()!,
@@ -558,6 +563,7 @@ export class CarCuComponent implements OnInit {
       locacion: 'Lima',
     };
     if (this.create) {
+      body['vin'] = this.vin;
       delete body.id;
     }
     console.group('Auto Semi Nuevo');

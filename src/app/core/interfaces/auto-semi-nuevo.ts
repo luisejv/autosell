@@ -43,6 +43,7 @@ export interface AutoSemiNuevo {
   version?: string;
   mantenimiento?: string;
   unicoDueno?: boolean;
+  vin?: string;
 
   // ? De Auto Nuevo:
   concesionarios?: string;

@@ -84,13 +84,17 @@
           <h3 class="footer-section__title footer-section__title_sm">
             Sucríbete al boletín mensual
           </h3>
-          <form class="footer-form">
+          <form class="footer-form" [formGroup]="newsletterFormGroup">
             <div class="form-group">
               <input
                 class="footer-form__input form-control"
                 type="email"
                 placeholder="Tu correo"
-              /><i class="ic far fa-envelope-open"></i>
+                formControlName="correo"
+              /><i
+                class="ic far fa-envelope-open"
+                (click)="addToNewsletter()"
+              ></i>
             </div>
           </form>
         </section>

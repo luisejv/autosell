@@ -21,7 +21,7 @@ export class CommonService {
   registerUrl: string = this.baseUrl + '/auth/register';
   validateEmailUrl: string = this.baseUrl + '/user/validate';
 
-  // * Car Registrarion
+  // * Car Registration
   autoSemiNuevoUrl: string = this.baseUrl + '/post';
 
   // * Admin
@@ -94,6 +94,9 @@ export class CommonService {
 
   // * Revalidate email
   revalidateEmailUrl: string = this.userUrl + '/revalidate';
+
+  // * Newsletter
+  newsletterUrl: string = this.baseUrl + '/newsletter';
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?: any) {
