@@ -77,7 +77,8 @@ export class CommonService {
   postIncidenceUrl: string = this.baseUrl + '/incidencias';
 
   // * Servicios Externos
-  getPlacaDetailsUrl: string = this.consultaPlacaUrl + '/placa';
+  // getPlacaDetailsUrl: string = this.consultaPlacaUrl + '/placa';
+  getPlacaDetailsUrl: string = this.consultaDNIUrl + '/placa';
   getDNIDetailsUrl: string = this.consultaDNIUrl + '/dni';
 
   // * Balance & Retiros

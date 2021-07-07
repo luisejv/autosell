@@ -1,5 +1,8 @@
 <!-- Section-1 Buscador & filtros por carrocería, marca, modelo, precio y año -->
-<section class="b-main-filter find-your-dream-car">
+<section
+  class="b-main-filter find-your-dream-car"
+  [ngStyle]="{ 'padding-bottom': sponsoredCars.length == 0 ? '150px' : '0px' }"
+>
   <!-- <div class="ui-decor ui-decor_mirror bg-primary"></div> -->
   <div class="container">
     <div class="b-main-filter__wrap text-center">

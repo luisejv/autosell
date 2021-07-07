@@ -68,6 +68,7 @@ export class DataService {
     'GLP',
     'GNV',
     'Eléctrico',
+    'Híbrido',
   ];
 
   tiposCarroceria: string[] = [
