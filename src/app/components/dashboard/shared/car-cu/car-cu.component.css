@@ -4,12 +4,18 @@ li {
   list-style: none;
 }
 
-.continuar {
-    background-color: var(--primary) !important;
-    color: white !important;
+ol li {
+  list-style: inherit;
 }
 
-.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+.continuar {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
   background-color: var(--primary) !important;
 }
 
