@@ -2,9 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RolesEnum } from 'src/app/core/enums/roles.enum';
 import { User } from 'src/app/core/interfaces/user';
-import { StorageService } from 'src/app/core/services/storage.service';
 import { UserService } from 'src/app/core/services/user.service';
 import Swal from 'sweetalert2';
 
@@ -19,8 +17,7 @@ export class ParticularComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
-    private storageService: StorageService
+    private router: Router
   ) {
     this.formGroup = this.fb.group({
       correo: null,
@@ -49,8 +46,7 @@ export class ParticularComponent implements OnInit {
       (response: User) => {
         Swal.fire({
           titleText: '¡Registrado!',
-          html:
-            'El registro fue exitoso. Por favor verifique su cuenta a través del email que le hemos enviado a su bandeja de entrada. <b>No olvide revisar SPAM</b>',
+          html: 'El registro fue exitoso. Por favor verifique su cuenta a través del email que le hemos enviado a su bandeja de entrada. <b>No olvide revisar SPAM.</b>',
           allowOutsideClick: true,
           icon: 'success',
           showConfirmButton: true,
@@ -63,8 +59,7 @@ export class ParticularComponent implements OnInit {
         if (error.status === 400) {
           Swal.fire({
             titleText: 'Oops!',
-            html:
-              'Ya existe un usuario con ese correo. Intentalo con otro, por favor.',
+            html: 'Ya existe un usuario con ese correo. Intentalo con otro, por favor.',
             allowOutsideClick: true,
             icon: 'error',
             showConfirmButton: true,

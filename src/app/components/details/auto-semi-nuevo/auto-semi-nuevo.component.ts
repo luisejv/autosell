@@ -143,16 +143,15 @@ export class AutoSemiNuevoComponent implements OnInit {
           : this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
       );
 
-    console.log(bodyForm);
-    return;
-
     const body2 = {
       autoSemiNuevo: {
         id: this.auto.id,
       },
       dni: this.contactFormGroup.value.dni,
-      nombres: this.contactFormGroup.value.nombres,
-      apellidos: this.contactFormGroup.value.apellidos,
+      nombres:
+        this.contactFormGroup.value.nombres +
+        ' ' +
+        this.contactFormGroup.value.apellidos,
       correo: this.contactFormGroup.value.correo,
       numTelefono: this.contactFormGroup.value.telefono,
     };
@@ -213,7 +212,6 @@ export class AutoSemiNuevoComponent implements OnInit {
       );
 
     console.log(bodyForm);
-    return;
 
     const body2 = {
       autoSemiNuevo: {

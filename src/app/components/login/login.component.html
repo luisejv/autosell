@@ -630,6 +630,24 @@
                         >
                         </mat-spinner>
                       </button>
+                      <mat-error
+                        class="text-white"
+                        *ngIf="
+                          registerParticularForm.get('dni')?.touched &&
+                          registerParticularForm.get('dni')?.errors?.required
+                        "
+                      >
+                        Este campo es obligatorio.
+                      </mat-error>
+                      <mat-error
+                        class="text-white"
+                        *ngIf="
+                          registerParticularForm.get('dni')?.touched &&
+                          registerParticularForm.get('dni')?.errors?.pattern
+                        "
+                      >
+                        Debe ingresar un DNI válido.
+                      </mat-error>
                     </div>
                     <!-- <small
                       class="text-white"
@@ -640,15 +658,33 @@
                     <input
                       type="text"
                       class="inputClicker"
-                      placeholder="Nombre/s"
+                      placeholder="Nombre(s)"
                       formControlName="nombres"
                     />
+                    <mat-error
+                      class="text-white"
+                      *ngIf="
+                        registerParticularForm.get('nombres')?.touched &&
+                        registerParticularForm.get('nombres')?.errors?.required
+                      "
+                    >
+                      Este campo es obligatorio.
+                    </mat-error>
                     <input
                       type="password"
                       class="inputClicker"
                       placeholder="Contraseña"
                       formControlName="password"
                     />
+                    <mat-error
+                      class="text-white"
+                      *ngIf="
+                        registerParticularForm.get('password')?.touched &&
+                        registerParticularForm.get('password')?.errors?.required
+                      "
+                    >
+                      Este campo es obligatorio.
+                    </mat-error>
                   </div>
                   <div class="col-6 text-center">
                     <input
@@ -657,12 +693,40 @@
                       placeholder="Correo electrónico"
                       formControlName="correo"
                     />
+                    <mat-error
+                      class="text-white"
+                      *ngIf="
+                        registerParticularForm.get('correo')?.touched &&
+                        registerParticularForm.get('correo')?.errors?.required
+                      "
+                    >
+                      Este campo es obligatorio.
+                    </mat-error>
+                    <mat-error
+                      class="text-white"
+                      *ngIf="
+                        registerParticularForm.get('correo')?.touched &&
+                        registerParticularForm.get('correo')?.errors?.email
+                      "
+                    >
+                      Debe ingresar un correo válido.
+                    </mat-error>
                     <input
                       type="text"
                       class="inputClicker"
-                      placeholder="Apellido/s"
+                      placeholder="Apellido(s)"
                       formControlName="apellidos"
                     />
+                    <mat-error
+                      class="text-white"
+                      *ngIf="
+                        registerParticularForm.get('apellidos')?.touched &&
+                        registerParticularForm.get('apellidos')?.errors
+                          ?.required
+                      "
+                    >
+                      Este campo es obligatorio.
+                    </mat-error>
                   </div>
                 </div>
                 <div class="row justify-content-center mt-2">

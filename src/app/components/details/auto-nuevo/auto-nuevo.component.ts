@@ -103,9 +103,6 @@ export class AutoNuevoComponent implements OnInit {
           : ''
       );
 
-    console.log(bodyForm);
-    return;
-
     this.clientService.postPilot(bodyForm).subscribe(
       (response) => {
         Swal.fire({
@@ -149,7 +146,6 @@ export class AutoNuevoComponent implements OnInit {
       );
 
     console.log(bodyForm);
-    return;
 
     this.clientService.postPilot(bodyForm).subscribe(
       (response) => {

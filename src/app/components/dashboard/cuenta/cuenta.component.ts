@@ -23,6 +23,7 @@ export class CuentaComponent implements OnInit {
     this.profileFormGroup = this.fb.group({
       dni: ['', [Validators.required, Validators.pattern('[0-9]')]],
       nombre: ['', [Validators.required]],
+      apellidos: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern('[0-9]')]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(3)]],
@@ -32,6 +33,9 @@ export class CuentaComponent implements OnInit {
       .subscribe((response: User) => {
         this.profileFormGroup.controls['dni'].setValue(response.numDocumento);
         this.profileFormGroup.controls['nombre'].setValue(response.nombre);
+        this.profileFormGroup.controls['apellidos'].setValue(
+          response.apellidos
+        );
         this.profileFormGroup.controls['telefono'].setValue(
           response.numTelefono
         );
@@ -40,6 +44,7 @@ export class CuentaComponent implements OnInit {
       });
     this.profileFormGroup.controls['dni'].disable();
     this.profileFormGroup.controls['nombre'].disable();
+    this.profileFormGroup.controls['apellidos'].disable();
   }
 
   saveChanges(): void {
@@ -64,8 +69,7 @@ export class CuentaComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'Oops!',
-          text:
-            'Hubo un error actualizando su información, por favor inténtelo más tarde.',
+          text: 'Hubo un error actualizando su información, por favor inténtelo más tarde.',
           showConfirmButton: true,
         });
       }

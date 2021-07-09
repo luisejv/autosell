@@ -57,10 +57,8 @@ export class LoginComponent implements OnInit {
     this.registerParticularForm.controls['apellidos'].enable();
     return {
       numDocumento: this.registerParticularForm.value.dni,
-      nombre:
-        this.registerParticularForm.value.nombres +
-        ' ' +
-        this.registerParticularForm.value.apellidos,
+      nombre: this.registerParticularForm.value.nombres,
+      apellidos: this.registerParticularForm.value.apellidos,
       correo: this.registerParticularForm.value.correo,
       password: this.registerParticularForm.value.password,
       rol: 'PARTICULAR',
@@ -96,7 +94,7 @@ export class LoginComponent implements OnInit {
             console.log(`[ERROR]: Check DNI, ${error}`);
             Swal.fire({
               titleText: 'DNI incorrecto, por favor intente de nuevo.',
-              html: 'Try again please.',
+              html: 'Al segundo intento fallido, podrá ingresar sus datos de manera manual.',
               allowOutsideClick: true,
               icon: 'error',
               showConfirmButton: true,
@@ -130,12 +128,11 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(): void {
-    //TODO: añadir spinner
     const body: User = {
       correo: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
-    console.log(`BODY: ${body}`);
+    console.log('BODY:', { body });
     this.userService.login(body).subscribe(
       (response: any) => {
         console.log('response login: ', response);
@@ -158,7 +155,7 @@ export class LoginComponent implements OnInit {
         this.storageService.setEmailLocalStorage(this.loginForm.value.email);
         this.storageService.setDniLocalStorage(response.numDocumento);
         this.storageService.setNombreLocalStorage(response.nombre);
-        this.storageService.setApellidosLocalStorage(response.apellidos); //NOTE: no hay apellidos
+        this.storageService.setApellidosLocalStorage(response.apellidos);
         this.storageService.setPhoneLocalStorage(response.numTelefono);
 
         Swal.fire({
@@ -185,15 +182,22 @@ export class LoginComponent implements OnInit {
   }
 
   registerParticular(): void {
-    //TODO: añadir spinner
     if (this.registerParticularForm.value.terms === true) {
+      if (this.registerParticularForm.invalid) {
+        Swal.fire({
+          titleText: '¡Revisa los campos!',
+          html: 'Asegúrate de haber llenado los campos requeridos.',
+          icon: 'error',
+        });
+        return;
+      }
       const body: User = this.toJSON();
       console.log(body);
       this.userService.register(body).subscribe(
         (response: User) => {
           Swal.fire({
             titleText: '¡Registrado!',
-            html: 'El registro fue exitoso. Por favor verifique su cuenta a través del email que le hemos enviado a su bandeja de entrada. <b>No olvide revisar SPAM</b>',
+            html: 'El registro fue exitoso. Por favor verifique su cuenta a través del email que le hemos enviado a su bandeja de entrada. <b>No olvide revisar SPAM.</b>',
             allowOutsideClick: true,
             icon: 'success',
             showConfirmButton: true,
@@ -207,7 +211,7 @@ export class LoginComponent implements OnInit {
             titleText: 'Oops!',
             html: `${
               error.status == 302
-                ? '¡Ya existe un usuario con esa cuenta!'
+                ? '¡Ya existe un usuario con ese DNI!'
                 : 'Hubo un error. Intenta nuevamente, por favor.'
             }`,
             allowOutsideClick: true,

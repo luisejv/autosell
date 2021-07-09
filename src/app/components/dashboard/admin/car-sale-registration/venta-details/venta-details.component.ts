@@ -48,6 +48,10 @@ export class VentaDetailsComponent implements OnInit {
     console.groupEnd();
     this.interesadosCompra = this.data.interesadosCompra;
     this.interesadosReventa = this.data.interesadosReventa;
+    console.log('interesadosCompra: ', {
+      interesadosCompra: this.interesadosCompra,
+    });
+    // console.log('interesadosCompra: ', { interesadosCompra: this.interesadosReventa });
   }
 
   ngOnInit(): void {
@@ -107,8 +111,9 @@ export class VentaDetailsComponent implements OnInit {
 
   public showInteresadoReventa = (interesado?: InteresadoReventa) => {
     if (interesado) {
-      if (interesado!.usuario.nombre) {
-        return `${interesado?.usuario.nombre}`;
+      // NOTE: ni nombre ni apellidos deberia ser null
+      if (interesado!.usuario.nombre && interesado!.usuario.apellidos) {
+        return `${interesado?.usuario.nombre} ${interesado!.usuario.apellidos}`;
       } else {
         return `${interesado?.usuario.correo}`;
       }
@@ -119,9 +124,11 @@ export class VentaDetailsComponent implements OnInit {
 
   disableInputs(): void {
     if (this.interesadosCompra.length === 0) {
+      this.formGroup.controls['comprador'].setValue('No hay compradores');
       this.formGroup.controls['comprador'].disable();
     }
     if (this.interesadosReventa.length === 0) {
+      this.formGroup.controls['vendedor'].setValue('No hay revendedores');
       this.formGroup.controls['vendedor'].disable();
     }
   }
@@ -185,7 +192,7 @@ export class VentaDetailsComponent implements OnInit {
         (interesado: InteresadoCompra) => {
           return (
             this._normalizeValue(interesado.nombres).includes(queryFilter) ||
-            this._normalizeValue(interesado.apellidos).includes(queryFilter) ||
+            // this._normalizeValue(interesado.apellidos).includes(queryFilter) ||
             this._normalizeValue(interesado.dni).includes(queryFilter) ||
             this._normalizeValue(interesado.correo).includes(queryFilter)
           );
@@ -199,8 +206,12 @@ export class VentaDetailsComponent implements OnInit {
     }
   }
 
-  private _normalizeValue(value: string): string {
-    return value.toLowerCase().replace(/\s/g, '');
+  private _normalizeValue(value?: string): string {
+    if (value) {
+      return value.toLowerCase().replace(/\s/g, '');
+    } else {
+      return '';
+    }
   }
 
   addPhoto(e: any): void {
