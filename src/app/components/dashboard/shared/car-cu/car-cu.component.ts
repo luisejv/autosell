@@ -230,7 +230,7 @@ export class CarCuComponent implements OnInit {
                 accesorios: [],
                 terms: '',
                 privacy: '',
-                descripcion: [''],
+                descripcion: res.descripcion,
               });
               this.formGroup.controls['placa'].disable();
               if (res.fotoPrincipal) {
