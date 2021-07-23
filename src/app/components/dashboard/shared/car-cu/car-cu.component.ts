@@ -407,7 +407,12 @@ export class CarCuComponent implements OnInit {
             this.formGroup.controls['marca'].patchValue(response.data.marca);
             this.formGroup.controls['modelo'].patchValue(response.data.modelo);
             this.formGroup.controls['color'].patchValue(response.data.color);
-            this.vin = response.data.vin;
+            if ('año' in response.data) {
+              this.formGroup.controls['anoFabricacion'].patchValue(
+                response.data.año
+              );
+            }
+            // this.vin = response.data.vin;
             this.fetchingPlaca = false;
             this.validatedPlaca = true;
             console.log(this.formGroup);
@@ -470,9 +475,9 @@ export class CarCuComponent implements OnInit {
             this.formGroup.controls['nombreDueno'].patchValue(
               response.nombres +
                 ' ' +
-                response.apellido_p +
+                response.apellido_paterno +
                 ' ' +
-                response.apellido_m
+                response.apellido_materno
             );
           },
           (error) => {
@@ -563,7 +568,7 @@ export class CarCuComponent implements OnInit {
       locacion: 'Lima',
     };
     if (this.create) {
-      body['vin'] = this.vin;
+      // body['vin'] = this.vin;
       delete body.id;
     }
     console.group('Auto Semi Nuevo');

@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
               response.nombres
             );
             this.registerParticularForm.controls['apellidos'].patchValue(
-              response.apellido_p + ' ' + response.apellido_m
+              response.apellido_paterno + ' ' + response.apellido_materno
             );
             this.registerParticularForm.controls['correo'].patchValue('');
             this.registerParticularForm.controls['password'].patchValue('');
