@@ -392,7 +392,7 @@ export class CarCuComponent implements OnInit {
   checkPlaca(): void {
     if (this.create) {
       this.fetchingPlaca = true;
-      let body = {
+      const body = {
         placa: this.formGroup.controls['placa'].value.split('-').join(''),
         token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
       };

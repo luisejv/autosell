@@ -74,39 +74,41 @@ export class LoginComponent implements OnInit {
 
   checkDNI() {
     if (this.registerParticularForm.value.dni.length == 8) {
+      const body = {
+        placa: this.registerParticularForm.controls['dni'].value,
+        token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
+      };
       this.fetchingDNI = true;
-      this.clientService
-        .getDNIDetails(this.registerParticularForm.value.dni)
-        .subscribe(
-          (response) => {
-            this.fetchingDNI = false;
-            this.registerParticularForm.controls['nombres'].patchValue(
-              response.nombres
-            );
-            this.registerParticularForm.controls['apellidos'].patchValue(
-              response.apellido_paterno + ' ' + response.apellido_materno
-            );
-            this.registerParticularForm.controls['correo'].patchValue('');
-            this.registerParticularForm.controls['password'].patchValue('');
-            this.registerParticularForm.controls['terms'].patchValue(false);
-          },
-          (error) => {
-            console.log(`[ERROR]: Check DNI, ${error}`);
-            Swal.fire({
-              titleText: 'DNI incorrecto, por favor intente de nuevo.',
-              html: 'Al segundo intento fallido, podrá ingresar sus datos de manera manual.',
-              allowOutsideClick: true,
-              icon: 'error',
-              showConfirmButton: true,
-            });
-            this.fetchingDNI = false;
-            this.dniTries = this.dniTries + 1;
-            if (this.dniTries == 2) {
-              this.registerParticularForm.controls['nombres'].enable();
-              this.registerParticularForm.controls['apellidos'].enable();
-            }
+      this.clientService.getDNIDetails(body).subscribe(
+        (response) => {
+          this.fetchingDNI = false;
+          this.registerParticularForm.controls['nombres'].patchValue(
+            response.nombres
+          );
+          this.registerParticularForm.controls['apellidos'].patchValue(
+            response.apellido_paterno + ' ' + response.apellido_materno
+          );
+          this.registerParticularForm.controls['correo'].patchValue('');
+          this.registerParticularForm.controls['password'].patchValue('');
+          this.registerParticularForm.controls['terms'].patchValue(false);
+        },
+        (error) => {
+          console.log(`[ERROR]: Check DNI, ${error}`);
+          Swal.fire({
+            titleText: 'DNI incorrecto, por favor intente de nuevo.',
+            html: 'Al segundo intento fallido, podrá ingresar sus datos de manera manual.',
+            allowOutsideClick: true,
+            icon: 'error',
+            showConfirmButton: true,
+          });
+          this.fetchingDNI = false;
+          this.dniTries = this.dniTries + 1;
+          if (this.dniTries == 2) {
+            this.registerParticularForm.controls['nombres'].enable();
+            this.registerParticularForm.controls['apellidos'].enable();
           }
-        );
+        }
+      );
     } else {
       Swal.fire({
         titleText: 'Error!',
