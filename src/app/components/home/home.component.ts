@@ -385,4 +385,9 @@ export class HomeComponent implements OnInit {
       }
     }
   }
+
+  round(kilometraje: number) {
+    const kiloToShow = kilometraje / 1000;
+    return Math.round(kiloToShow * 10) / 10;
+  }
 }
