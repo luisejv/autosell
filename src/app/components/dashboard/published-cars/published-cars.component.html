@@ -24,6 +24,7 @@
         <mat-form-field appearance="fill" class="w-100 pr-2">
           <mat-label>Buscar auto...</mat-label>
           <input matInput type="text" (keyup)="filterByName($event)" />
+          <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
       </div>
     </div>
@@ -76,11 +77,11 @@
                           (selectionChange)="changeBrand($event)"
                         >
                           <mat-option
-                          *ngFor="let brand of filteredBrands"
-                          [value]="brand"
-                        >
-                          {{ brand | normalize }}
-                        </mat-option>
+                            *ngFor="let brand of filteredBrands"
+                            [value]="brand"
+                          >
+                            {{ brand | normalize }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -91,15 +92,19 @@
                           formControlName="carModel"
                           (selectionChange)="changeModel($event)"
                         >
-                        <mat-option value="" *ngIf="carBrand?.value == ''" disabled>
-                          Debe seleccionar una marca
-                        </mat-option>
-                        <mat-option
-                          *ngFor="let model of filteredModels"
-                          [value]="model"
-                        >
-                          {{ model }}
-                        </mat-option>
+                          <mat-option
+                            value=""
+                            *ngIf="carBrand?.value == ''"
+                            disabled
+                          >
+                            Debe seleccionar una marca
+                          </mat-option>
+                          <mat-option
+                            *ngFor="let model of filteredModels"
+                            [value]="model"
+                          >
+                            {{ model }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -110,12 +115,12 @@
                           formControlName="carType"
                           (selectionChange)="changeCarroceria($event)"
                         >
-                        <mat-option
-                          [value]="carroceria"
-                          *ngFor="let carroceria of carrocerias"
-                        >
-                          {{ carroceria }}
-                        </mat-option>
+                          <mat-option
+                            [value]="carroceria"
+                            *ngFor="let carroceria of carrocerias"
+                          >
+                            {{ carroceria }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -123,16 +128,19 @@
                       <div class="b-filter__row row">
                         <div class="b-filter__item col-xl-12 col-md-6">
                           <mat-form-field appearance="fill" class="w-100">
-                        <mat-label>Desde</mat-label>
-                        <mat-select
-                          formControlName="carMinYear"
-                          (selectionChange)="changeAnoFrom($event)"
-                        >
-                        <mat-option [value]="ano" *ngFor="let ano of anos">
-                              {{ ano }}
-                            </mat-option>
-                        </mat-select>
-                      </mat-form-field>
+                            <mat-label>Desde</mat-label>
+                            <mat-select
+                              formControlName="carMinYear"
+                              (selectionChange)="changeAnoFrom($event)"
+                            >
+                              <mat-option
+                                [value]="ano"
+                                *ngFor="let ano of anos"
+                              >
+                                {{ ano }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                         </div>
                       </div>
                     </div>
@@ -143,12 +151,12 @@
                           formControlName="carTransmission"
                           (selectionChange)="changeTransmision($event)"
                         >
-                        <mat-option
-                          [value]="transmision"
-                          *ngFor="let transmision of tiposTransmision"
-                        >
-                          {{ transmision }}
-                        </mat-option>
+                          <mat-option
+                            [value]="transmision"
+                            *ngFor="let transmision of tiposTransmision"
+                          >
+                            {{ transmision }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -159,12 +167,12 @@
                           formControlName="carFuelType"
                           (selectionChange)="changeCombustible($event)"
                         >
-                        <mat-option
-                          [value]="combustible"
-                          *ngFor="let combustible of tiposCombustible"
-                        >
-                          {{ combustible }}
-                        </mat-option>
+                          <mat-option
+                            [value]="combustible"
+                            *ngFor="let combustible of tiposCombustible"
+                          >
+                            {{ combustible }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -175,12 +183,12 @@
                           formControlName="carTraction"
                           (selectionChange)="changeTraccion($event)"
                         >
-                        <mat-option
-                          [value]="traccion"
-                          *ngFor="let traccion of tiposTracciones"
-                        >
-                          {{ traccion }}
-                        </mat-option>
+                          <mat-option
+                            [value]="traccion"
+                            *ngFor="let traccion of tiposTracciones"
+                          >
+                            {{ traccion }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>
@@ -192,12 +200,12 @@
                           (selectionChange)="changeDepartamentos($event)"
                           multiple
                         >
-                        <mat-option
-                          [value]="departamento"
-                          *ngFor="let departamento of departamentos"
-                        >
-                          {{ departamento }}
-                        </mat-option>
+                          <mat-option
+                            [value]="departamento"
+                            *ngFor="let departamento of departamentos"
+                          >
+                            {{ departamento }}
+                          </mat-option>
                         </mat-select>
                       </mat-form-field>
                     </div>

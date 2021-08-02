@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
   checkDNI() {
     if (this.registerParticularForm.value.dni.length == 8) {
       const body = {
-        placa: this.registerParticularForm.controls['dni'].value,
+        dni: this.registerParticularForm.controls['dni'].value,
         token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
       };
       this.fetchingDNI = true;

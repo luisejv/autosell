@@ -20,7 +20,8 @@
     <div class="row no-gutters">
       <div class="col">
         <a class="b-goods__title" *ngIf="!mode">
-          {{ autoCasteado?.marca + " " + autoCasteado?.modelo }} <br />
+          {{ autoCasteado?.marca }} <br />
+          {{ autoCasteado?.modelo }} <br />
           {{ autoCasteado?.anoFabricacion }}</a
         >
         <a class="b-goods__title" *ngIf="mode">
