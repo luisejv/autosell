@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit {
           this.registerParticularForm.controls['terms'].patchValue(false);
         },
         (error) => {
-          console.log(`[ERROR]: Check DNI, ${error}`);
+          console.log(`[ERROR]: Check DNI, ${JSON.stringify(error)}`);
           Swal.fire({
             titleText: 'DNI incorrecto, por favor intente de nuevo.',
             html: 'Al segundo intento fallido, podrá ingresar sus datos de manera manual.',

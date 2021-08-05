@@ -50,7 +50,11 @@ export class ClientService {
     return this.http.get(this.commonService.getAllCarsUrl);
   }
   public getDNIDetails(body: any): Observable<any> {
-    return this.http.post(this.commonService.getDNIDetailsUrl, body);
+    return this.http.post(this.commonService.getDNIDetailsUrl, body, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    });
   }
   public resendEmail(id: number): Observable<any> {
     return this.http.get(this.commonService.revalidateEmailUrl + `/${id}`);
