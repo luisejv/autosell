@@ -105,6 +105,24 @@ export class PublishedCarComponent implements OnInit, OnChanges {
     }
   }
 
+  calculateBrandLength(marca: string, modelo: string): string {
+    const words = modelo.split(' ');
+    let totalLength = 0;
+    const result = [];
+    let i = 0;
+    let finished = false;
+    while (i < words.length && !finished) {
+      if (totalLength + words[i].length <= 30 - marca.length) {
+        result.push(words[i]);
+        totalLength += words[i].length;
+        i += 1;
+      } else {
+        finished = true;
+      }
+    }
+    return result.join(' ');
+  }
+
   goToVehicleDetails(): void {
     console.log('clicked on new car');
     if (!this.validationView) {

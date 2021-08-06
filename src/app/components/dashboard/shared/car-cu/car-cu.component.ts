@@ -406,19 +406,12 @@ export class CarCuComponent implements OnInit {
             this.formGroup.controls['serie'].patchValue(response.data.serie);
             this.formGroup.controls['marca'].patchValue(response.data.marca);
             this.formGroup.controls['modelo'].patchValue(response.data.modelo);
-            console.log(
-              this.calculateBrandLength(
-                response.data.marca,
-                response.data.modelo
-              )
-            );
             this.formGroup.controls['color'].patchValue(response.data.color);
             if ('año' in response.data) {
               this.formGroup.controls['anoFabricacion'].patchValue(
                 response.data.año
               );
             }
-            // this.vin = response.data.vin;
             this.fetchingPlaca = false;
             this.validatedPlaca = true;
             console.log(this.formGroup);
