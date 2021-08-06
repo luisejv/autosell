@@ -406,6 +406,12 @@ export class CarCuComponent implements OnInit {
             this.formGroup.controls['serie'].patchValue(response.data.serie);
             this.formGroup.controls['marca'].patchValue(response.data.marca);
             this.formGroup.controls['modelo'].patchValue(response.data.modelo);
+            console.log(
+              this.calculateBrandLength(
+                response.data.marca,
+                response.data.modelo
+              )
+            );
             this.formGroup.controls['color'].patchValue(response.data.color);
             if ('año' in response.data) {
               this.formGroup.controls['anoFabricacion'].patchValue(
@@ -503,6 +509,24 @@ export class CarCuComponent implements OnInit {
     }
   }
 
+  calculateBrandLength(marca: string, modelo: string): string {
+    const words = modelo.split(' ');
+    let totalLength = 0;
+    const result = [];
+    let i = 0;
+    let finished = false;
+    while (i < words.length && !finished) {
+      if (totalLength + words[i].length <= 30 - marca.length) {
+        result.push(words[i]);
+        totalLength += words[i].length;
+        i += 1;
+      } else {
+        finished = true;
+      }
+    }
+    return result.join(' ');
+  }
+
   toJSON(): AutoSemiNuevo {
     this.formGroup.controls['serie'].enable();
     this.formGroup.controls['marca'].enable();
@@ -539,7 +563,10 @@ export class CarCuComponent implements OnInit {
       nombreDueno: this.formGroup.value.nombreDueno,
       telefonoDueno: this.formGroup.value.telefonoDueno,
       marca: this.formGroup.value.marca,
-      modelo: this.formGroup.value.modelo,
+      modelo: this.calculateBrandLength(
+        this.formGroup.value.marca,
+        this.formGroup.value.modelo
+      ),
       anoFabricacion: this.formGroup.value.anoFabricacion,
       tipoCambios: this.formGroup.value.tipoCambios,
       tipoCombustible: this.formGroup.value.tipoCombustible,

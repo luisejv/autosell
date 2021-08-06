@@ -15,3 +15,8 @@ body {
 .mat-spinner {
   cursor: progress;
 }
+
+.slick-prev:before,
+.slick-next:before {
+  color: #29abe2 !important;
+}

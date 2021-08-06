@@ -43,6 +43,7 @@ export class AutoSemiNuevoComponent implements OnInit {
   };
 
   slideConfig2 = {
+    arrows: true,
     slidesToShow: 5,
     slidesToScroll: 1,
     asNavFor: '.js-slider-nav',
