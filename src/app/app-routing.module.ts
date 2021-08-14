@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CarAllComponent } from './components/dashboard/admin/car-all/car-all.component';
 import { CarComplaintComponent } from './components/dashboard/admin/car-complaint/car-complaint.component';
 import { CarSaleRegistrationComponent } from './components/dashboard/admin/car-sale-registration/car-sale-registration.component';
 import { CarSponsorComponent } from './components/dashboard/admin/car-sponsor/car-sponsor.component';
@@ -46,6 +47,11 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
+      {
+        path: 'todos-los-autos',
+        component: CarAllComponent,
+        canActivate: [AdminGuard],
+      },
       {
         path: 'cuenta',
         component: CuentaComponent,

@@ -39,6 +39,7 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   @Input() normalView: boolean = false;
   @Input() particularPublishedView: boolean = false;
   @Input() newCarView: boolean = false;
+  @Input() adminView: boolean = false;
 
   @Output() validated = new EventEmitter<number>();
 
@@ -77,7 +78,7 @@ export class PublishedCarComponent implements OnInit, OnChanges {
     console.dir(changes);
     console.groupEnd();
 
-    if (this.normalView || this.particularPublishedView) {
+    if (this.normalView || this.particularPublishedView || this.adminView) {
       this.autoCasteado = this.auto as AutoSemiNuevo;
     } else if (this.sponsorView) {
       this.autoCasteado = (this.auto as SponsoredCar).autoSemiNuevo;
@@ -125,19 +126,37 @@ export class PublishedCarComponent implements OnInit, OnChanges {
 
   goToVehicleDetails(): void {
     console.log('clicked on new car');
-    if (!this.validationView) {
-      if (this.newCarView) {
+    if (this.adminView) {
+      if ('documentacion' in this.auto) {
+        // carro nuevo
         this.router.navigate(['/auto-nuevo'], {
           queryParams: {
             id: +(this.auto as AutoNuevo).id,
           },
         });
       } else {
+        // carro semi nuevo
         this.router.navigate(['/auto-semi-nuevo'], {
           queryParams: {
             id: this.autoCasteado.id,
           },
         });
+      }
+    } else {
+      if (!this.validationView) {
+        if (this.newCarView) {
+          this.router.navigate(['/auto-nuevo'], {
+            queryParams: {
+              id: +(this.auto as AutoNuevo).id,
+            },
+          });
+        } else {
+          this.router.navigate(['/auto-semi-nuevo'], {
+            queryParams: {
+              id: this.autoCasteado.id,
+            },
+          });
+        }
       }
     }
   }
@@ -159,7 +178,17 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   }
 
   emitRemoveEvent(): void {
-    this.removed.emit(+this.autoCasteado.id!);
+    if (this.adminView) {
+      if ('documentacion' in this.auto) {
+        // auto nuevo
+        this.removed.emit(+this.auto.id!);
+      } else {
+        // auto semi nuevo
+        this.removed.emit((this.auto as AutoSemiNuevo).id!);
+      }
+    } else {
+      this.removed.emit(+this.autoCasteado.id!);
+    }
   }
 
   emitSaleEvent(): void {

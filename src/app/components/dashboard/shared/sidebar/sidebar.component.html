@@ -124,6 +124,20 @@
           justify-content-between
           sidebar-item
         "
+        routerLink="todos-los-autos"
+      >
+        <mat-icon>directions_car</mat-icon>
+        <a>Todos los Autos</a>
+      </li>
+      <li
+        *ngIf="isAdmin"
+        class="
+          d-flex
+          flex-column
+          align-items-center
+          justify-content-between
+          sidebar-item
+        "
         routerLink="autos-por-validar"
       >
         <mat-icon>car_repair</mat-icon>

@@ -216,6 +216,15 @@
       <li class="nav-item" *ngIf="isAdmin">
         <a
           class="nav-link d-flex align-items-center"
+          [routerLink]="['/dashboard/todos-los-autos']"
+          (click)="toggle()"
+          ><mat-icon class="mr-2">directions_car</mat-icon>Todos los Autos</a
+        >
+      </li>
+
+      <li class="nav-item" *ngIf="isAdmin">
+        <a
+          class="nav-link d-flex align-items-center"
           [routerLink]="['/dashboard/autos-por-validar']"
           (click)="toggle()"
           ><mat-icon class="mr-2">car_repair</mat-icon>Autos por Validar</a

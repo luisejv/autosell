@@ -35,6 +35,10 @@
   background-color: #ff3333;
 }
 
+.rounded-corners {
+  border-radius: 999px;
+}
+
 ::ng-deep .mat-form-field-underline {
   display: none;
 }

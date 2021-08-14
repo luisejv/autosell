@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { SortType } from 'src/app/core/enums/sort-type.enum';
 import { AutoInteresado } from 'src/app/core/interfaces/auto-interesado';
+import { AutoNuevo } from 'src/app/core/interfaces/auto-nuevo';
 import { AutoReportado } from 'src/app/core/interfaces/auto-reportado';
 import {
   AutoSemiNuevo,
@@ -33,14 +34,16 @@ export class AdminCarsComponent
   @Input() reportedView: boolean = false;
   @Input() interestingView: boolean = false;
   @Input() sponsorView: boolean = false;
+  @Input() adminView: boolean = false;
 
   @Input() notValidatedCars: AutoSemiNuevo[] = [];
   @Input() reportedCars: AutoReportado[] = [];
   @Input() interestingCars: AutoInteresado[] = [];
   @Input() sponsoredCars: SponsoredCar[] = [];
+  @Input() allCars: (AutoNuevo | AutoSemiNuevo)[] = [];
 
   @Output() validate = new EventEmitter<number>();
-  @Output() remove = new EventEmitter<number>();
+  @Output() remove = new EventEmitter<number>(); //admin
   @Output() reportedIsValid = new EventEmitter<number>();
   @Output() mostrarReportadores = new EventEmitter<AutoReportado>();
   @Output() mostrarVentaDetails = new EventEmitter<AutoInteresado>();
@@ -58,6 +61,8 @@ export class AdminCarsComponent
   interestingFilteredCarros: AutoInteresado[] = [];
 
   sponsoredFilteredCarros: SponsoredCar[] = [];
+
+  allFilteredCars: (AutoNuevo | AutoSemiNuevo)[] = [];
 
   constructor(
     private loaderService: LoaderService,
@@ -92,6 +97,9 @@ export class AdminCarsComponent
     } else if (changes.sponsoredCars && this.sponsoredCars.length > 0) {
       this.sponsoredFilteredCarros = this.sponsoredCars;
       this.len = this.sponsoredFilteredCarros.length;
+    } else if (changes.allCars && this.allCars.length > 0) {
+      this.allFilteredCars = this.allCars;
+      this.len = this.allCars.length;
     }
     super.updatePagination(this.len);
   }
@@ -180,6 +188,17 @@ export class AdminCarsComponent
         }
       );
       this.len = this.sponsoredFilteredCarros.length;
+    } else if (this.adminView) {
+      this.allFilteredCars = this.allCars.filter(
+        (carro: AutoNuevo | AutoSemiNuevo) => {
+          //TODO: añadir más propiedades? (año, kilometraje, etc)
+          return (
+            this._normalizeValue(carro.modelo).includes(normalizedQuery) ||
+            this._normalizeValue(carro.marca).includes(normalizedQuery)
+          );
+        }
+      );
+      this.len = this.allFilteredCars.length;
     }
     super.updatePagination(this.len);
   }
@@ -189,7 +208,7 @@ export class AdminCarsComponent
   }
 
   filterSimpleCars(
-    cars: AutoSemiNuevo[] | AutoReportado[],
+    cars: AutoSemiNuevo[] | AutoReportado[] | AutoNuevo[],
     byPrice: boolean,
     ascending: boolean
   ) {
@@ -197,8 +216,8 @@ export class AdminCarsComponent
       if (ascending) {
         cars.sort(
           (
-            a: AutoSemiNuevo | AutoReportado,
-            b: AutoSemiNuevo | AutoReportado
+            a: AutoSemiNuevo | AutoReportado | AutoNuevo,
+            b: AutoSemiNuevo | AutoReportado | AutoNuevo
           ) => {
             return a.precioVenta - b.precioVenta;
           }
@@ -206,8 +225,8 @@ export class AdminCarsComponent
       } else {
         cars.sort(
           (
-            a: AutoSemiNuevo | AutoReportado,
-            b: AutoSemiNuevo | AutoReportado
+            a: AutoSemiNuevo | AutoReportado | AutoNuevo,
+            b: AutoSemiNuevo | AutoReportado | AutoNuevo
           ) => {
             return b.precioVenta - a.precioVenta;
           }
@@ -217,19 +236,19 @@ export class AdminCarsComponent
       if (ascending) {
         cars.sort(
           (
-            a: AutoSemiNuevo | AutoReportado,
-            b: AutoSemiNuevo | AutoReportado
+            a: AutoSemiNuevo | AutoReportado | AutoNuevo,
+            b: AutoSemiNuevo | AutoReportado | AutoNuevo
           ) => {
-            return a.anoFabricacion - b.anoFabricacion;
+            return (a.anoFabricacion as number) - (b.anoFabricacion as number);
           }
         );
       } else {
         cars.sort(
           (
-            a: AutoSemiNuevo | AutoReportado,
-            b: AutoSemiNuevo | AutoReportado
+            a: AutoSemiNuevo | AutoReportado | AutoNuevo,
+            b: AutoSemiNuevo | AutoReportado | AutoNuevo
           ) => {
-            return b.anoFabricacion - a.anoFabricacion;
+            return (b.anoFabricacion as number) - (a.anoFabricacion as number);
           }
         );
       }
@@ -297,6 +316,12 @@ export class AdminCarsComponent
       this.filterSponsorCars(byPrice, ascending);
     } else if (this.interestingView) {
       this.filterInterestedCars(byPrice, ascending);
+    } else if (this.adminView) {
+      this.filterSimpleCars(
+        this.allCars as AutoNuevo[] | AutoSemiNuevo[] | AutoReportado[],
+        byPrice,
+        ascending
+      );
     } else {
       console.warn('unknown view (admin-cars.component.ts');
     }

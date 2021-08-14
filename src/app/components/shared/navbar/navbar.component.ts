@@ -85,5 +85,6 @@ export class NavbarComponent implements OnInit {
     this.storageService.removeDniLocalStorage();
     this.storageService.removeNombreLocalStorage();
     this.storageService.removeApellidosLocalStorage();
+    this.storageService.removePhoneLocalStorage();
   }
 }

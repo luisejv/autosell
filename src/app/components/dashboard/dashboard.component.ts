@@ -30,10 +30,9 @@ export class DashboardComponent implements OnInit {
     private cd: ChangeDetectorRef
   ) {
     this.rol = this.storageService.getRoleLocalStorage()!;
-    this.isAdmin = this.storageService.getRoleLocalStorage() == RolesEnum.ADMIN;
-    this.isRemax = this.storageService.getRoleLocalStorage() == RolesEnum.REMAX;
-    this.isUser =
-      this.storageService.getRoleLocalStorage() == RolesEnum.PARTICULAR;
+    this.isAdmin = this.rol == RolesEnum.ADMIN;
+    this.isRemax = this.rol == RolesEnum.REMAX;
+    this.isUser = this.rol == RolesEnum.PARTICULAR;
     this.userService
       .getUser(this.storageService.getEmailLocalStorage()!)
       .subscribe(

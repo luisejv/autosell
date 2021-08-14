@@ -48,6 +48,11 @@
                 de {{ len }} en total
               </div>
             </div>
+            <!-- [ngClass]="{
+                'col-md-auto': !adminView,
+                'col-12 col-md-6 d-flex justify-content-center align-items-center':
+                  adminView
+              }" -->
             <div class="col-md-auto">
               <div class="b-filter-goods__wrap">
                 <div class="b-filter-goods__select">
@@ -69,32 +74,30 @@
                   </select>
                 </div>
               </div>
-              <div class="btns-switch">
-                <i
-                  (click)="changeGridView('list')"
-                  [ngClass]="{
-                    active: list,
-                    'btns-switch__item': true,
-                    'js-view-list': true,
-                    ic: true,
-                    fas: true,
-                    'fa-list': true
-                  }"
-                ></i>
-                <!-- class="btns-switch__item js-view-list ic fas fa-list" -->
-                <i
-                  (click)="changeGridView('grid')"
-                  [ngClass]="{
-                    active: !list,
-                    'btns-switch__item': true,
-                    'js-view-th': true,
-                    ic: true,
-                    fas: true,
-                    'fa-th-large': true
-                  }"
-                ></i>
-                <!--  class="btns-switch__item js-view-th ic fas fa-th-large" -->
-              </div>
+            </div>
+            <div class="btns-switch">
+              <i
+                (click)="changeGridView('list')"
+                [ngClass]="{
+                  active: list,
+                  'btns-switch__item': true,
+                  'js-view-list': true,
+                  ic: true,
+                  fas: true,
+                  'fa-list': true
+                }"
+              ></i>
+              <i
+                (click)="changeGridView('grid')"
+                [ngClass]="{
+                  active: !list,
+                  'btns-switch__item': true,
+                  'js-view-th': true,
+                  ic: true,
+                  fas: true,
+                  'fa-th-large': true
+                }"
+              ></i>
             </div>
           </div>
         </div>
@@ -174,6 +177,24 @@
               [mode]="list"
               [interestingView]="true"
               (sell)="sellCar($event)"
+            >
+            </app-published-car>
+          </div>
+        </div>
+        <!-- NOTE: Todos los carros -->
+        <div *ngIf="adminView" class="b-goods-group row">
+          <div
+            *ngFor="
+              let carro of allFilteredCars
+                | slice: currPage * 10:currPage * 10 + 10
+            "
+            [ngClass]="{ 'col-lg-4': !list, 'col-md-6': !list, 'col-12': list }"
+          >
+            <app-published-car
+              [auto]="carro"
+              [mode]="list"
+              [adminView]="true"
+              (removed)="removeCar($event)"
             >
             </app-published-car>
           </div>

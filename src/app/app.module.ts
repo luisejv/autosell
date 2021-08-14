@@ -64,6 +64,7 @@ import { TermsComponent } from './components/shared/terms/terms.component';
 import { PrivacyComponent } from './components/shared/privacy/privacy.component';
 import { ChangeBannerComponent } from './components/dashboard/admin/change-banner/change-banner.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { CarAllComponent } from './components/dashboard/admin/car-all/car-all.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 
@@ -114,6 +115,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
     TermsComponent,
     PrivacyComponent,
     ChangeBannerComponent,
+    CarAllComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<app-admin-cars
+  *ngIf="hasLoaded"
+  [name]="'Autos Semi Nuevos'"
+  [adminView]="true"
+  [allCars]="autos"
+  (remove)="removeCar($event)"
+>
+</app-admin-cars>

@@ -47,11 +47,11 @@
     <!-- NOTE: estos tags son para el admin, car-published -->
     <div class="row no-gutters" *ngIf="includesDashboard()">
       <!-- NOTE: POR VALIDAR -->
-      <div *ngIf="!autoCasteado.validado" class="col-auto pr-3">
+      <div *ngIf="!autoCasteado.validado" class="col-auto pr-3 mx-2">
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
           letter="V"
-          class="por-validar row b-goods__price text-primary"
+          class="por-validar row b-goods__price text-primary rounded-corners"
         >
           <span class="b-goods__price-title">POR<br />VALIDAR</span>
         </div>
@@ -59,12 +59,12 @@
       <!-- NOTE: POR VENDER -->
       <div
         *ngIf="autoCasteado.validado && !autoCasteado.comprado"
-        class="col-auto pr-3"
+        class="col-auto pr-3 mx-2"
       >
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
           letter="V"
-          class="por-vender row b-goods__price text-primary"
+          class="por-vender row b-goods__price text-primary rounded-corners"
         >
           <span class="b-goods__price-title">POR<br />VENDER</span>
         </div>
@@ -72,22 +72,22 @@
       <!-- NOTE: VENDIDO -->
       <div
         *ngIf="autoCasteado.validado && autoCasteado.comprado"
-        class="col-auto pr-3"
+        class="col-auto pr-3 mx-2"
       >
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
           letter="V"
-          class="vendido row b-goods__price text-primary"
+          class="vendido row b-goods__price text-primary rounded-corners"
         >
           <span class="b-goods__price-title">VENDIDO</span>
         </div>
       </div>
       <!-- NOTE: VENDIDO -->
-      <div *ngIf="!autoCasteado.enabled" class="col-auto pr-3">
+      <div *ngIf="!autoCasteado.enabled" class="col-auto pr-3 mx-2">
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
           letter="V"
-          class="eliminado row b-goods__price text-primary"
+          class="eliminado row b-goods__price text-primary rounded-corners"
         >
           <span class="b-goods__price-title">ELIMINADO</span>
         </div>
@@ -179,7 +179,8 @@
         interestingView ||
         interesadoView ||
         sponsorView ||
-        particularPublishedView
+        particularPublishedView ||
+        adminView
       "
       class="mt-3 row justify-content-center justify-content-xl-start"
     >
@@ -196,7 +197,9 @@
       <button
         class="m-2"
         *ngIf="
-          autoCasteado.enabled && (validationView || particularPublishedView)
+          autoCasteado.enabled &&
+          (validationView || particularPublishedView || adminView) &&
+          !auto.hasOwnProperty('documentacion')
         "
         mat-raised-button
         color="primary"
@@ -224,7 +227,7 @@
       </button>
       <button
         class="m-2"
-        *ngIf="reportedView"
+        *ngIf="reportedView || adminView"
         mat-raised-button
         color="warn"
         (click)="emitRemoveEvent()"
