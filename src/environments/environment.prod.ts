@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://backend.clicker.pe',
+  baseUrl: 'http://143.198.108.245:8081/noteitservice',
+  // baseUrl: 'https://backend.clicker.pe',
 };
