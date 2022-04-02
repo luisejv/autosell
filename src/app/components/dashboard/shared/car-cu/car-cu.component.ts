@@ -15,7 +15,6 @@ import { UploadService } from 'src/app/core/services/upload.service';
 import { UserService } from 'src/app/core/services/user.service';
 import Swal from 'sweetalert2';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ClientService } from 'src/app/core/services/client.service';
 import { Accesorio } from 'src/app/core/interfaces/accesorio';
 import { CommonService } from 'src/app/core/services/common.service';
 
@@ -67,7 +66,6 @@ export class CarCuComponent implements OnInit {
   step3: boolean = false;
   step4: boolean = false;
   step5: boolean = false;
-  step6: boolean = false;
   imgFile!: string;
   dniTries: number = 0;
   placaTries: number = 0;
@@ -86,15 +84,11 @@ export class CarCuComponent implements OnInit {
     private loaderService: LoaderService,
     public dataService: DataService,
     public uploadService: UploadService,
-    private clientService: ClientService,
     public commonService: CommonService
   ) {
     this.date = new Date();
     this.role = this.storageService.getRoleLocalStorage();
     this.correo = this.storageService.getEmailLocalStorage();
-    // TODO: validator cuando entra a editar, ningun campo que ya esté, debe cambiar a vacío, o sí puede?
-    // F3W642
-    // BJX356
     this.formGroup = this.fb.group({
       id: '',
       dniDueno: ['', [Validators.required, Validators.pattern(/[0-9]{8}/)]],
@@ -134,50 +128,21 @@ export class CarCuComponent implements OnInit {
       ],
       precioVenta: ['', Validators.required],
       descripcion: [''],
-      terms: '',
-      privacy: '',
+      tag: [''],
     });
-    this.formGroup.controls['nombreDueno'].disable();
-    this.formGroup.controls['serie'].disable();
-    this.formGroup.controls['marca'].disable();
-    this.formGroup.controls['modelo'].disable();
   }
 
   unique(value: string, idx: number, self: any) {
     return self.indexOf(value) === idx;
   }
 
-  resetDNI(): void {
-    this.formGroup.controls['nombreDueno'].patchValue('');
-  }
-
-  resetPlaca(): void {
-    this.formGroup.controls['marca'].patchValue('');
-    this.formGroup.controls['modelo'].patchValue('');
-    this.formGroup.controls['serie'].patchValue('');
-  }
-
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
-    if (this.update || this.role === RolesEnum.ADMIN) {
+    if (this.update) {
       this.route.params.subscribe((params) => {
         if (params['id']) {
           this.userService.getAutoSemiNuevoById(params['id']).subscribe(
             (res: AutoSemiNuevo) => {
-              if (
-                this.role !== RolesEnum.ADMIN &&
-                this.role !== RolesEnum.SUPERADMIN &&
-                res.usuario.correo !== this.correo
-              ) {
-                // el sapaso (que no es admin ni superadmin) esta tratando de editar un carro que no es suyo
-                // this.router.navigate(['/sapos-al-agua']);
-                console.log(
-                  'sapaso, ese no es tu carro, porq lo quieres editar?'
-                );
-                this.router.navigate(['/home']);
-                return;
-              }
-
               console.group('autoseminuevo por id');
               console.log(res);
               console.groupEnd();
@@ -185,13 +150,12 @@ export class CarCuComponent implements OnInit {
               this.formGroup = this.fb.group({
                 id: res.id,
                 dniDueno: [
-                  res.usuario.numDocumento,
+                  123456789,
                   [Validators.required, Validators.pattern(/[0-9]{8}/)],
                 ],
                 correoDueno: [res.correoDueno, [Validators.email]],
                 nombreDueno: res.nombreDueno,
                 telefonoDueno: res.telefonoDueno,
-                // TODO: añadir el regex de una placa peruana
                 placa: [
                   res.placa,
                   [Validators.minLength(6), Validators.maxLength(6)],
@@ -231,11 +195,10 @@ export class CarCuComponent implements OnInit {
                 terms: '',
                 privacy: '',
                 descripcion: res.descripcion,
+                tag: res.tag,
               });
-              this.formGroup.controls['placa'].disable();
               if (res.fotoPrincipal) {
                 this.fotoPrincipal = res.fotoPrincipal;
-                // @ts-ignore
                 this.aux = this.fotoPrincipal as string;
                 this.fotos.push({ src: res.fotoPrincipal });
               }
@@ -308,16 +271,16 @@ export class CarCuComponent implements OnInit {
       });
     } else {
       this.fotos.push({});
-      this.userService
-        .getUser(this.storageService.getEmailLocalStorage()!)
-        .subscribe((response) => {
-          this.formGroup.controls['dniDueno'].patchValue(response.numDocumento);
-          this.formGroup.controls['correoDueno'].patchValue(response.correo);
-          this.formGroup.controls['nombreDueno'].patchValue(response.nombre);
-          this.formGroup.controls['telefonoDueno'].patchValue(
-            response.numTelefono
-          );
-        });
+      // this.userService
+      //   .getUser(this.storageService.getEmailLocalStorage()!)
+      //   .subscribe((response) => {
+      //     this.formGroup.controls['dniDueno'].patchValue(response.numDocumento);
+      //     this.formGroup.controls['correoDueno'].patchValue(response.correo);
+      //     this.formGroup.controls['nombreDueno'].patchValue(response.nombre);
+      //     this.formGroup.controls['telefonoDueno'].patchValue(
+      //       response.numTelefono
+      //     );
+      //   });
       this.userService.getAccesorios().subscribe(
         (accesorios: Accesorio[][]) => {
           console.group('Accesorios');
@@ -386,120 +349,6 @@ export class CarCuComponent implements OnInit {
     this.step3 = id === 3;
     this.step4 = id === 4;
     this.step5 = id === 5;
-    this.step6 = id === 6;
-  }
-
-  checkPlaca(): void {
-    if (this.create) {
-      this.fetchingPlaca = true;
-      const body = {
-        placa: this.formGroup.controls['placa'].value.split('-').join(''),
-        token: 'fe6ae5a7928cd90ea30f7c3767c9c25bb2a4d0ea',
-      };
-      this.userService.getPlacaDetails(body).subscribe(
-        (response: any) => {
-          console.log(response);
-          if (
-            response.success &&
-            (response.encontrado === undefined || response.encontrado)
-          ) {
-            this.formGroup.controls['serie'].patchValue(response.data.serie);
-            this.formGroup.controls['marca'].patchValue(response.data.marca);
-            this.formGroup.controls['modelo'].patchValue(response.data.modelo);
-            this.formGroup.controls['color'].patchValue(response.data.color);
-            if ('año' in response.data) {
-              this.formGroup.controls['anoFabricacion'].patchValue(
-                response.data.año
-              );
-            }
-            this.fetchingPlaca = false;
-            this.validatedPlaca = true;
-            console.log(this.formGroup);
-          } else {
-            this.fetchingPlaca = false;
-            this.placaTries = this.placaTries + 1;
-            Swal.fire({
-              titleText: 'Oops!',
-              html: `No se encontró el auto con esa placa. ${
-                this.placaTries == 2
-                  ? 'Registre sus datos en las casillas correspondientes.'
-                  : 'Por favor, revise que sea correcto.'
-              } `,
-              allowOutsideClick: true,
-              icon: 'error',
-              showConfirmButton: true,
-            });
-            if (this.placaTries == 2) {
-              this.formGroup.controls['serie'].enable();
-              this.formGroup.controls['marca'].enable();
-              this.formGroup.controls['modelo'].enable();
-            }
-          }
-        },
-        (error: any) => {
-          this.fetchingPlaca = false;
-          this.placaTries = this.placaTries + 1;
-          console.log(error);
-          Swal.fire({
-            titleText: 'Oops!',
-            html: `No se encontró el auto con esa placa. ${
-              this.placaTries == 2
-                ? 'Registre sus datos en las casillas correspondientes.'
-                : 'Por favor, revise que sea correcto.'
-            } `,
-            allowOutsideClick: true,
-            icon: 'error',
-            showConfirmButton: true,
-          });
-          console.error(error);
-          if (this.placaTries == 2) {
-            this.formGroup.controls['serie'].enable();
-            this.formGroup.controls['marca'].enable();
-            this.formGroup.controls['modelo'].enable();
-          }
-        }
-      );
-    }
-  }
-
-  checkDNI() {
-    if (this.formGroup.controls['dniDueno'].value) {
-      this.fetchingDNI = true;
-      this.clientService
-        .getDNIDetails(this.formGroup.controls['dniDueno'].value)
-        .subscribe(
-          (response) => {
-            console.log(response);
-            this.fetchingDNI = false;
-            this.formGroup.controls['nombreDueno'].patchValue(
-              response.nombres +
-                ' ' +
-                response.apellido_paterno +
-                ' ' +
-                response.apellido_materno
-            );
-          },
-          (error) => {
-            this.fetchingDNI = false;
-            console.log(`[ERROR]: Check DNI, ${error}`);
-            this.dniTries = this.dniTries + 1;
-            Swal.fire({
-              titleText: `DNI no encontrado`,
-              html: `${
-                this.dniTries == 2
-                  ? 'digite sus datos a continuación'
-                  : 'por favor intente de nuevo'
-              }.`,
-              allowOutsideClick: true,
-              icon: 'error',
-              showConfirmButton: true,
-            });
-            if (this.dniTries == 2) {
-              this.formGroup.controls['nombreDueno'].enable();
-            }
-          }
-        );
-    }
   }
 
   calculateBrandLength(marca: string, modelo: string): string {
@@ -521,14 +370,9 @@ export class CarCuComponent implements OnInit {
   }
 
   toJSON(): AutoSemiNuevo {
-    this.formGroup.controls['serie'].enable();
-    this.formGroup.controls['marca'].enable();
-    this.formGroup.controls['modelo'].enable();
-    this.formGroup.controls['nombreDueno'].enable();
-
     // las fotos que sobran (sin la primera que es la principal)
     // tmb las que tengan solo 'src' serán los strings de DO
-    let carFotos: string[] = this.fotos
+    const carFotos: string[] = this.fotos
       .slice(1)
       .filter((foto: Fotos) => foto.src && foto.foto === undefined)
       .map((foto: Fotos) => foto.src) as string[];
@@ -547,9 +391,6 @@ export class CarCuComponent implements OnInit {
     console.groupEnd();
     let body: AutoSemiNuevo = {
       id: this.formGroup.value.id,
-      usuario: {
-        correo: this.storageService.getEmailLocalStorage()!,
-      },
       placa: this.formGroup.value.placa,
       serie: this.formGroup.value.serie,
       correoDueno: this.formGroup.value.correoDueno,
@@ -586,9 +427,13 @@ export class CarCuComponent implements OnInit {
           };
         }),
       locacion: 'Lima',
+      validado: true,
+      tag: this.formGroup.value.tag,
+      registrador: {
+        id: this.storageService.getIdLocalStorage(),
+      },
     };
     if (this.create) {
-      // body['vin'] = this.vin;
       delete body.id;
     }
     console.group('Auto Semi Nuevo');
@@ -604,11 +449,6 @@ export class CarCuComponent implements OnInit {
   }
 
   submitActionWrapper(): void {
-    this.formGroup.controls['nombreDueno'].enable();
-    this.formGroup.controls['serie'].enable();
-    this.formGroup.controls['marca'].enable();
-    this.formGroup.controls['modelo'].enable();
-
     console.log(this.fotos);
 
     if (this.formGroup.invalid || this.fotos.length === 0) {
@@ -671,19 +511,20 @@ export class CarCuComponent implements OnInit {
   }
 
   createActionWrapper(): void {
-    if (
-      this.formGroup.value.terms === true &&
-      this.formGroup.value.privacy === true
-    ) {
-      this.createAction(this.toJSON(), this.fotos, this.uploadedPhotos);
-    } else {
-      Swal.fire({
-        titleText: 'Oops!',
-        html: 'Si no aceptas los términos y condiciones y la política de privacidad no podrás subir tu auto a la aplicación.',
-        allowOutsideClick: true,
-        icon: 'warning',
-        showConfirmButton: true,
-      });
-    }
+    this.createAction(this.toJSON(), this.fotos, this.uploadedPhotos);
+    // if (
+    //   this.formGroup.value.terms === true &&
+    //   this.formGroup.value.privacy === true
+    // ) {
+    //   this.createAction(this.toJSON(), this.fotos, this.uploadedPhotos);
+    // } else {
+    //   Swal.fire({
+    //     titleText: 'Oops!',
+    //     html: 'Si no aceptas los términos y condiciones y la política de privacidad no podrás subir tu auto a la aplicación.',
+    //     allowOutsideClick: true,
+    //     icon: 'warning',
+    //     showConfirmButton: true,
+    //   });
+    // }
   }
 }

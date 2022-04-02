@@ -143,11 +143,10 @@
             [value]="option"
           >
             <span class="pl-2">
-              {{
-                option.usuario.nombre && option.usuario.apellidos
+              {{ option.usuario.nombre + " " + option.usuario.apellidos }}
+              <!-- option.usuario.nombre && option.usuario.apellidos
                   ? option.usuario.nombre + " " + option.usuario.apellidos
-                  : option.usuario.correo
-              }}
+                  : option.usuario.correo -->
             </span>
           </mat-option>
         </mat-autocomplete>

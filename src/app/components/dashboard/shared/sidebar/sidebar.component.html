@@ -8,18 +8,12 @@
   <ul
     class="m-auto sideops-container"
     [ngStyle]="{
-      height: scrolled ? 'calc(100vh - 70px)' : 'calc(100vh - 150px)'
+      height: scrolled ? 'calc(100vh - 150px)' : 'calc(100vh - 210px)'
     }"
     *ngIf="isRemax || isUser; else admin"
   >
     <li
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="cuenta"
     >
       <mat-icon class="mt-xs-1">account_circle</mat-icon>
@@ -27,13 +21,7 @@
     </li>
     <li
       *ngIf="isRemax"
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="balance"
     >
       <mat-icon>account_balance</mat-icon>
@@ -41,65 +29,35 @@
     </li>
     <li
       *ngIf="isRemax"
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="autoss-interesantes"
     >
       <mat-icon>stars</mat-icon>
       <a>Autos Interesantes</a>
     </li>
     <li
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="registrar-auto"
     >
       <mat-icon>directions_car</mat-icon>
       <a>Ingresar Auto</a>
     </li>
     <li
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="publicados-autos"
     >
       <mat-icon>car_rental</mat-icon>
       <a>Mis Autos Publicados</a>
     </li>
     <li
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="reportar-incidencia"
     >
       <mat-icon>warning</mat-icon>
       <a>Reportar Incidencia</a>
     </li>
     <li
-      class="
-        d-flex
-        flex-column
-        align-items-center
-        justify-content-between
-        sidebar-item
-      "
+      class="d-flex flex-column align-items-center justify-content-between sidebar-item"
       routerLink="home"
     >
       <mat-icon>exit_to_app</mat-icon>
@@ -111,128 +69,111 @@
     <ul
       class="py-5 sideops-container"
       [ngStyle]="{
-        height: scrolled ? 'calc(100vh - 70px)' : 'calc(100vh - 150px)'
+        height: scrolled ? 'calc(100vh - 150px)' : 'calc(100vh - 180px)'
       }"
     >
       <!-- [@fold]="state" -->
       <li
+        class="d-flex align-items-center sidebar-item"
+        routerLink="registrar-auto"
+      >
+        <mat-icon>car_rental</mat-icon>
+        <a class="ml-3">Ingresar Auto</a>
+      </li>
+      <li
+        routerLinkActive="active"
         *ngIf="isAdmin"
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="todos-los-autos"
+        class="d-flex align-items-center sidebar-item"
       >
         <mat-icon>directions_car</mat-icon>
-        <a>Todos los Autos</a>
+        <a [routerLink]="['autos-vendidos']" class="ml-3">Autos Vendidos</a>
       </li>
       <li
-        *ngIf="isAdmin"
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="autos-por-validar"
-      >
-        <mat-icon>car_repair</mat-icon>
-        <a>Autos por Validar</a>
-      </li>
-      <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="solicitudes-franquicia"
-      >
-        <mat-icon>how_to_reg</mat-icon>
-        <a>Solicitudes Franquicia</a>
-      </li>
-      <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="autos-reportados"
-      >
-        <mat-icon>local_car_wash</mat-icon>
-        <a>Autos Reportados</a>
-      </li>
-      <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="registrar-venta"
-      >
-        <mat-icon>attach_money</mat-icon>
-        <a>Registrar una Venta</a>
-      </li>
-      <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="solicitudes-de-pago"
-      >
-        <mat-icon>request_quote</mat-icon>
-        <a>Solicitudes de Pago</a>
-      </li>
-      <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="autos-patrocinados"
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
       >
         <mat-icon>electric_car</mat-icon>
-        <a>Autos Patrocinados</a>
+        <a [routerLink]="['autos-disponibles']" class="ml-3"
+          >Autos Disponibles</a
+        >
       </li>
       <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="cambiar-banner"
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>electric_car</mat-icon>
+        <a [routerLink]="['autos-no-disponibles']" class="ml-3"
+          >Autos No Disponibles</a
+        >
+      </li>
+      <li
+        routerLinkActive="active"
+        *ngIf="isAdmin"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>car_repair</mat-icon>
+        <a [routerLink]="['autos-por-validar']" class="ml-3"
+          >Autos por Validar</a
+        >
+      </li>
+
+      <!-- 
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>attach_money</mat-icon>
+        <a [routerLink]="['registrar-venta']" class="ml-3"
+          >Registrar una Venta</a
+        >
+      </li>
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>how_to_reg</mat-icon>
+        <a [routerLink]="['solicitudes-franquicia']" class="ml-3"
+          >Solicitudes Franquicia</a
+        >
+      </li>
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>local_car_wash</mat-icon>
+        <a [routerLink]="['autos-reportados']" class="ml-3">Autos Reportados</a>
+      </li> 
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>request_quote</mat-icon>
+        <a [routerLink]="['solicitudes-de-pago']" class="ml-3"
+          >Solicitudes de Pago</a
+        >
+      </li>
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
+      >
+        <mat-icon>electric_car</mat-icon>
+        <a [routerLink]="['autos-patrocinados']" class="ml-3"
+          >Autos Patrocinados</a
+        >
+      </li>
+      <li
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
       >
         <mat-icon>collections</mat-icon>
-        <a>Imagen Banner</a>
-      </li>
+        <a [routerLink]="['cambiar-banner']" class="ml-3">Imagen Banner</a>
+      </li> -->
       <li
-        class="
-          d-flex
-          flex-column
-          align-items-center
-          justify-content-between
-          sidebar-item
-        "
-        routerLink="home"
+        routerLinkActive="active"
+        class="d-flex align-items-center sidebar-item"
       >
         <mat-icon>exit_to_app</mat-icon>
-        <a>Regresar</a>
+        <a [routerLink]="['home']" class="ml-3">Regresar</a>
       </li>
     </ul>
   </ng-template>

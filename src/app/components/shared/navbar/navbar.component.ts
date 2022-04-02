@@ -71,7 +71,7 @@ export class NavbarComponent implements OnInit {
       });
   }
 
-  isLoggedIn(): boolean {
+  get isLoggedIn(): boolean {
     return this.storageService.isLoggedIn();
   }
 

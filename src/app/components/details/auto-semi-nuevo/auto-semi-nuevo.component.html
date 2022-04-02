@@ -100,13 +100,7 @@
                   Año de Fabricación
                 </dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   <div>
                     {{ auto.anoFabricacion }}
@@ -114,13 +108,7 @@
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Marca / Modelo</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.marca }} / {{ auto.modelo }}
                 </dd>
@@ -128,37 +116,19 @@
                   Tipo de Carrocería
                 </dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.tipoCarroceria | titlecase }}
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Color</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.color | titlecase }}
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Combustible</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.tipoCombustible }}
                 </dd>
@@ -166,13 +136,7 @@
                 <!-- ? poner rpm -->
                 <dt class="b-goods-f__descr-title col-md-5">Motor</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.cilindrada }}
                 </dd>
@@ -184,25 +148,13 @@
                   <dd class="b-goods-f__descr-info col-md-7">New</dd> -->
                 <dt class="b-goods-f__descr-title col-md-5">Kilometraje</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.kilometraje | number }} km
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Transmisión</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.tipoCambios }}
                 </dd>
@@ -212,13 +164,7 @@
                 <!-- <dd class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center">8-Speed A/T</dd> -->
                 <dt class="b-goods-f__descr-title col-md-5">Tracción</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.tipoTraccion }}
                 </dd>
@@ -226,37 +172,19 @@
                   Cilindros / Cilindrada
                 </dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.numeroCilindros }} / {{ auto.cilindrada }} cc
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Puertas</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.numeroPuertas }}
                 </dd>
                 <dt class="b-goods-f__descr-title col-md-5">Disponible en</dt>
                 <dd
-                  class="
-                    b-goods-f__descr-info
-                    col-md-7
-                    d-flex
-                    flex-column
-                    justify-content-center
-                  "
+                  class="b-goods-f__descr-info col-md-7 d-flex flex-column justify-content-center"
                 >
                   {{ auto.locacion }}
                 </dd>
@@ -358,11 +286,7 @@
                     <ul>
                       <li *ngFor="let accesorio of getAccesoriosOfTipo(tipo)">
                         <div
-                          class="
-                            d-flex
-                            justify-content-start
-                            align-items-center
-                          "
+                          class="d-flex justify-content-start align-items-center"
                         >
                           <mat-icon class="my-1 mr-2 check-icon"
                             >check_circle</mat-icon
@@ -507,7 +431,7 @@
                         />
                         <mat-error
                           *ngIf="
-                            contactFormGroup.touched &&
+                            contactFormGroup.controls['dni'].touched &&
                             contactFormGroup.get('dni')?.errors?.required
                           "
                           >Este campo es obligatorio.</mat-error
@@ -527,7 +451,7 @@
                         />
                         <mat-error
                           *ngIf="
-                            contactFormGroup.touched &&
+                            contactFormGroup.controls['nombres'].touched &&
                             contactFormGroup.get('nombres')?.errors?.required
                           "
                           >Este campo es obligatorio.</mat-error
@@ -542,7 +466,7 @@
                         />
                         <mat-error
                           *ngIf="
-                            contactFormGroup.touched &&
+                            contactFormGroup.controls['apellidos'].touched &&
                             contactFormGroup.get('apellidos')?.errors?.required
                           "
                           >Este campo es obligatorio.</mat-error
@@ -557,7 +481,7 @@
                         />
                         <mat-error
                           *ngIf="
-                            contactFormGroup.touched &&
+                            contactFormGroup.controls['telefono'].touched &&
                             contactFormGroup.get('telefono')?.errors?.required
                           "
                           >Este campo es obligatorio.</mat-error
@@ -579,7 +503,7 @@
                         />
                         <mat-error
                           *ngIf="
-                            contactFormGroup.touched &&
+                            contactFormGroup.controls['correo'].touched &&
                             contactFormGroup.get('correo')?.errors?.required
                           "
                           >Este campo es obligatorio.</mat-error
@@ -597,14 +521,6 @@
                           placeholder="Comentario"
                           rows="5"
                         ></textarea>
-                        <!-- <mat-error
-                          *ngIf="
-                            contactFormGroup.touched &&
-                            contactFormGroup.get('descripcion')?.errors
-                              ?.required
-                          "
-                          >Este campo es obligatorio.</mat-error
-                        > -->
                       </div>
                       <button
                         class="btn btn-secondary w-100"
@@ -614,11 +530,7 @@
                         <span *ngIf="!sendingContactForm">Contactar</span>
                         <div
                           *ngIf="sendingContactForm"
-                          class="
-                            d-flex
-                            justify-content-center
-                            align-items-center
-                          "
+                          class="d-flex justify-content-center align-items-center"
                         >
                           <mat-spinner diameter="22"></mat-spinner>
                         </div>

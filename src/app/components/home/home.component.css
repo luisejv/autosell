@@ -2,8 +2,10 @@
 
 .find-your-dream-car {
   /* background-image: url("https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?cs=srgb&dl=pexels-albin-berlin-919073.jpg&fm=jpg"); */
-  background-image: url("/assets/media/content/b-main-filter/banner.png");
-  background-position: 100% 40%;
+  /* background-image: url("/assets/media/content/b-main-filter/banner.png"); */
+  /* background-position: 100% 40%; */
+  background-image: url("/assets/media/content/b-main-filter/banner2.jpg");
+  background-position: 100% 70%;
   background-size: cover;
   position: relative;
   width: 100%;
@@ -36,7 +38,7 @@
 .searchBtn,
 .showMoreBtn {
   border-radius: 50px;
-  background-color: #29abe2;
+  background-color: var(--primary);
   color: white !important;
   border: none;
   outline: none;

@@ -8,10 +8,15 @@
 
 ::ng-deep .ngx-slider .ngx-slider-pointer {
   outline: none !important;
+  background-color: var(--primary) !important;
 }
 
 ::ng-deep .ngx-slider .ngx-slider-pointer.ngx-slider-active:after {
   background-color: white !important;
+}
+
+::ng-deep .ngx-slider .ngx-slider-selection {
+  background: var(--primary) !important;
 }
 
 .mat-spinner::ng-deep circle {

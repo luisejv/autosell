@@ -47,7 +47,7 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   @Output() reportedIsValid = new EventEmitter<number>();
   @Output() showReporters = new EventEmitter<AutoReportado>();
 
-  @Output() sell = new EventEmitter<AutoInteresado>();
+  @Output() sell = new EventEmitter<AutoSemiNuevo>();
 
   @Output() removeInterested = new EventEmitter<number>();
 
@@ -179,20 +179,14 @@ export class PublishedCarComponent implements OnInit, OnChanges {
 
   emitRemoveEvent(): void {
     if (this.adminView) {
-      if ('documentacion' in this.auto) {
-        // auto nuevo
-        this.removed.emit(+this.auto.id!);
-      } else {
-        // auto semi nuevo
-        this.removed.emit((this.auto as AutoSemiNuevo).id!);
-      }
+      this.removed.emit((this.auto as AutoSemiNuevo).id!);
     } else {
       this.removed.emit(+this.autoCasteado.id!);
     }
   }
 
   emitSaleEvent(): void {
-    this.sell.emit(this.auto as AutoInteresado);
+    this.sell.emit(this.auto as AutoSemiNuevo);
   }
 
   quitarInteresado(): void {
@@ -206,5 +200,19 @@ export class PublishedCarComponent implements OnInit, OnChanges {
 
   quitarSponsor(): void {
     this.removeSponsor.emit((this.auto as SponsoredCar).id);
+  }
+
+  getClass(): object {
+    const words = this.autoCasteado.tag?.split(' ').length;
+    switch (words) {
+      case 1:
+        return { 'por-validar': true };
+      case 2:
+        return { 'por-vender': true };
+      case 3:
+        return { vendido: true };
+      default:
+        return { eliminado: true };
+    }
   }
 }

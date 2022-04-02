@@ -50,8 +50,9 @@
               />
               <!-- <i class="ic fas fa-car-side"></i> -->
               <span class="b-booking-nav__title">Datos del propietario</span>
-            </div></a
-          ><a
+            </div>
+          </a>
+          <a
             class="b-booking-nav__item"
             (click)="changeStep(2)"
             [ngClass]="{ active: step2 }"
@@ -67,8 +68,9 @@
               />
               <!-- <i class="ic fas fa-cubes"></i> -->
               <span class="b-booking-nav__title">Datos Generales</span>
-            </div></a
-          ><a
+            </div>
+          </a>
+          <a
             class="b-booking-nav__item"
             (click)="changeStep(3)"
             [ngClass]="{ active: step3 }"
@@ -84,8 +86,9 @@
               />
               <!-- <i class="ic fas fa-cog"></i> -->
               <span class="b-booking-nav__title">Datos Técnicos</span>
-            </div></a
-          ><a
+            </div>
+          </a>
+          <a
             class="b-booking-nav__item"
             (click)="changeStep(4)"
             [ngClass]="{ active: step4 }"
@@ -101,8 +104,9 @@
               />
               <!-- <i class="ic far fa-calendar"></i> -->
               <span class="b-booking-nav__title">Accesorios</span>
-            </div></a
-          ><a
+            </div>
+          </a>
+          <a
             class="b-booking-nav__item"
             (click)="changeStep(5)"
             [ngClass]="{ active: step5 }"
@@ -118,25 +122,8 @@
               />
               <!-- <i class="ic far fa-calendar"></i> -->
               <span class="b-booking-nav__title">Cargar Imágenes</span>
-            </div></a
-          ><a
-            class="b-booking-nav__item"
-            (click)="changeStep(6)"
-            [ngClass]="{ active: step6 }"
-          >
-            <div class="b-booking-nav__header">Paso 6</div>
-            <div class="b-booking-nav__main">
-              <img
-                src="assets/media/general/register/tyc.svg"
-                height="40"
-                width="40"
-                alt=""
-                class="ic"
-              />
-              <!-- <i class="ic fas fa-edit"></i> -->
-              <span class="b-booking-nav__title">Términos y Condiciones</span>
-            </div></a
-          >
+            </div>
+          </a>
         </div>
       </div>
       <div
@@ -176,25 +163,8 @@
                     matInput
                     type="text"
                     formControlName="dniDueno"
-                    (keyup.enter)="checkDNI()"
-                    (change)="resetDNI()"
+                    mask="00000000"
                   />
-                  <button
-                    mat-icon-button
-                    matSuffix
-                    title="Buscar DNI"
-                    type="button"
-                  >
-                    <mat-icon (click)="checkDNI()" *ngIf="!fetchingDNI">
-                      search
-                    </mat-icon>
-                    <mat-spinner
-                      style="cursor: progress"
-                      *ngIf="fetchingDNI"
-                      diameter="24"
-                    >
-                    </mat-spinner>
-                  </button>
                   <mat-error
                     *ngIf="formGroup.get('dniDueno')?.errors?.required"
                   >
@@ -215,7 +185,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Correo Dueño</mat-label>
-                  <input matInput type="text" formControlName="correoDueno" />
+                  <input matInput type="email" formControlName="correoDueno" />
                   <mat-error
                     *ngIf="formGroup.get('correoDueno')?.errors?.required"
                   >
@@ -268,25 +238,7 @@
                     type="text"
                     formControlName="placa"
                     mask="AAA-AAA"
-                    (keyup.enter)="checkPlaca()"
-                    (change)="resetPlaca()"
                   />
-                  <button
-                    mat-icon-button
-                    matSuffix
-                    title="Buscar Placa"
-                    type="button"
-                  >
-                    <mat-icon (click)="checkPlaca()" *ngIf="!fetchingPlaca">
-                      search
-                    </mat-icon>
-                    <mat-spinner
-                      style="cursor: progress"
-                      *ngIf="fetchingPlaca"
-                      diameter="24"
-                    >
-                    </mat-spinner>
-                  </button>
                   <mat-error *ngIf="formGroup.get('placa')?.errors?.required">
                     Este campo es obligatorio.
                   </mat-error>
@@ -300,25 +252,16 @@
                   </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
-                  <mat-label>Serie</mat-label>
+                  <mat-label>VIN</mat-label>
                   <input matInput type="text" formControlName="serie" />
-                  <mat-error *ngIf="formGroup.get('serie')?.errors?.required">
-                    Primero, debes buscar la placa ingresada.
-                  </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Marca</mat-label>
                   <input matInput type="text" formControlName="marca" />
-                  <mat-error *ngIf="formGroup.get('marca')?.errors?.required">
-                    Primero, debes buscar la placa ingresada.
-                  </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Modelo</mat-label>
                   <input matInput type="text" formControlName="modelo" />
-                  <mat-error *ngIf="formGroup.get('modelo')?.errors?.required">
-                    Primero, debes buscar la placa ingresada.
-                  </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Año Fabricación</mat-label>
@@ -642,79 +585,11 @@
                     <textarea matInput formControlName="descripcion"></textarea>
                   </mat-form-field>
                 </div>
-                <div class="row mt-3 justify-content-around">
-                  <button mat-raised-button color="none" matStepperPrevious>
-                    Anterior
-                  </button>
-                  <button
-                    mat-raised-button
-                    color="primary"
-                    class="continuar"
-                    matStepperNext
-                  >
-                    Continuar
-                  </button>
-                </div>
-              </mat-step>
-              <mat-step>
-                <div class="container">
-                  <div class="row">
-                    <h2>Términos y Condiciones del servicio</h2>
-                  </div>
-                  <div class="row">
-                    <ol style="padding-left: 0" type="1">
-                      <li>
-                        El servicio de venta de Clicker incluye un fee de éxito.
-                        Es decir, cuando la venta se haya concretado.
-                      </li>
-                      <li>
-                        Clicker se encargará de promocionar tu auto así como de
-                        asesorarte y ayudarte en todo el proceso de venta para
-                        que sea rápido, seguro y transparente.
-                      </li>
-                      <li>
-                        Al hacerle click en "Registrar", tu auto entrará en un
-                        proceso de validación.
-                      </li>
-                      <li>
-                        Un asesor especializado se pondrá en contacto contigo
-                        para indicarte los pasos a seguir.
-                      </li>
-                    </ol>
-                  </div>
-                  <div class="row">
-                    <h6><b>¿Estás de acuerdo con estas condiciones?</b></h6>
-                  </div>
-                  <div class="row">
-                    <mat-radio-group
-                      aria-labelledby="example-radio-group-label"
-                      class="d-flex flex-column"
-                      formControlName="terms"
-                    >
-                      <mat-radio-button class="m-1" [value]="true">
-                        Sí, estoy de acuerdo.
-                      </mat-radio-button>
-                      <mat-radio-button class="m-1" [value]="false">
-                        No, no estoy de acuerdo de momento.
-                      </mat-radio-button>
-                    </mat-radio-group>
-                  </div>
-                  <div class="row">
-                    <div class="col">
-                      <hr />
-                      <div class="row justify-content-center">
-                        <mat-checkbox formControlName="privacy" color="primary"
-                          >Acepto las
-                          <a
-                            routerLink="/politicas-de-privacidad"
-                            target="_blank"
-                            class="text-blue"
-                            >políticas de privacidad</a
-                          ></mat-checkbox
-                        >
-                      </div>
-                    </div>
-                  </div>
+                <div class="row">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Etiqueta para venta</mat-label>
+                    <textarea matInput formControlName="tag"></textarea>
+                  </mat-form-field>
                 </div>
                 <div class="row mt-3 justify-content-around">
                   <button mat-raised-button color="none" matStepperPrevious>
@@ -743,25 +618,8 @@
                   matInput
                   type="text"
                   formControlName="dniDueno"
-                  (keyup.enter)="checkDNI()"
-                  (change)="resetDNI()"
+                  mask="00000000"
                 />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  title="Buscar DNI"
-                  type="button"
-                >
-                  <mat-icon (click)="checkDNI()" *ngIf="!fetchingDNI">
-                    search
-                  </mat-icon>
-                  <mat-spinner
-                    style="cursor: progress"
-                    *ngIf="fetchingDNI"
-                    diameter="24"
-                  >
-                  </mat-spinner>
-                </button>
                 <mat-error *ngIf="formGroup.get('dniDueno')?.errors?.required">
                   Este campo es obligatorio.
                 </mat-error>
@@ -769,18 +627,15 @@
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Nombres Dueño</mat-label>
                 <input matInput type="text" formControlName="nombreDueno" />
-                <!-- <mat-error *ngIf="formGroup.get('nombreDueno')?.errors?.required">
-                  Este campo es obligatorio.
-                </mat-error> -->
                 <mat-error
                   *ngIf="formGroup.get('nombreDueno')?.errors?.required"
                 >
-                  Primero, debes buscar el dni.
+                  Este campo es obligatorio.
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Correo Dueño</mat-label>
-                <input matInput type="text" formControlName="correoDueno" />
+                <input matInput type="email" formControlName="correoDueno" />
                 <mat-error
                   *ngIf="formGroup.get('correoDueno')?.errors?.required"
                 >
@@ -841,25 +696,7 @@
                   type="text"
                   formControlName="placa"
                   mask="AAA-AAA"
-                  (keyup.enter)="checkPlaca()"
-                  (change)="resetPlaca()"
                 />
-                <button
-                  mat-icon-button
-                  matSuffix
-                  title="Buscar Placa"
-                  type="button"
-                >
-                  <mat-icon (click)="checkPlaca()" *ngIf="!fetchingPlaca">
-                    search
-                  </mat-icon>
-                  <mat-spinner
-                    style="cursor: progress"
-                    *ngIf="fetchingPlaca"
-                    diameter="24"
-                  >
-                  </mat-spinner>
-                </button>
                 <mat-error *ngIf="formGroup.get('placa')?.errors?.required">
                   Este campo es obligatorio.
                 </mat-error>
@@ -873,25 +710,16 @@
                 </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Serie</mat-label>
+                <mat-label>VIN</mat-label>
                 <input matInput type="text" formControlName="serie" />
-                <mat-error *ngIf="formGroup.get('serie')?.errors?.required">
-                  Primero, debes buscar la placa ingresada.
-                </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Marca</mat-label>
                 <input matInput type="text" formControlName="marca" />
-                <mat-error *ngIf="formGroup.get('marca')?.errors?.required">
-                  Primero, debes buscar la placa ingresada.
-                </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Modelo</mat-label>
                 <input matInput type="text" formControlName="modelo" />
-                <mat-error *ngIf="formGroup.get('modelo')?.errors?.required">
-                  Primero, debes buscar la placa ingresada.
-                </mat-error>
               </mat-form-field>
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Año Fabricación</mat-label>
@@ -1227,6 +1055,12 @@
                   <textarea matInput formControlName="descripcion"></textarea>
                 </mat-form-field>
               </div>
+              <div class="row">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Etiqueta para venta</mat-label>
+                  <textarea matInput formControlName="tag"></textarea>
+                </mat-form-field>
+              </div>
               <div class="container mt-2 py-3">
                 <div class="row justify-content-around">
                   <button
@@ -1237,81 +1071,6 @@
                   >
                     Anterior
                   </button>
-                  <button
-                    mat-raised-button
-                    color="primary"
-                    type="button"
-                    class="continuar"
-                    (click)="changeStep(6)"
-                  >
-                    Continuar
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div [hidden]="!step6">
-              <div class="container mt-2 py-3">
-                <div class="row">
-                  <h2>Términos y Condiciones del servicio</h2>
-                </div>
-                <div class="row">
-                  <ol type="1">
-                    <li>
-                      El servicio de venta de Clicker incluye un fee de éxito.
-                      Es decir, cuando la venta se haya concretado.
-                    </li>
-                    <li>
-                      Clicker se encargará de promocionar tu auto así como de
-                      asesorarte y ayudarte en todo el proceso de venta para que
-                      sea rápido, seguro y transparente.
-                    </li>
-                    <li>
-                      Al hacerle click en "Registrar", tu auto entrará en un
-                      proceso de validación.
-                    </li>
-                    <li>
-                      Un asesor especializado se pondrá en contacto contigo para
-                      indicarte los pasos a seguir.
-                    </li>
-                  </ol>
-                </div>
-                <div class="row">
-                  <h6><b>¿Estás de acuerdo con estas condiciones?</b></h6>
-                </div>
-                <div class="row">
-                  <mat-radio-group
-                    aria-labelledby="example-radio-group-label"
-                    class="d-flex flex-column"
-                    formControlName="terms"
-                  >
-                    <mat-radio-button class="m-1" [value]="true">
-                      Sí, estoy de acuerdo.
-                    </mat-radio-button>
-                    <mat-radio-button class="m-1" [value]="false">
-                      No, no estoy de acuerdo de momento.
-                    </mat-radio-button>
-                  </mat-radio-group>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <hr />
-                    <div class="row justify-content-center">
-                      <mat-checkbox formControlName="privacy" color="primary"
-                        >Acepto las
-                        <a
-                          routerLink="/politicas-de-privacidad"
-                          target="_blank"
-                          class="text-blue"
-                          >políticas de privacidad</a
-                        >.</mat-checkbox
-                      >
-                    </div>
-                  </div>
-                </div>
-                <!-- <pre>
-                  {{ formGroup.value | json }}
-                </pre> -->
-                <div class="row justify-content-around">
                   <button
                     mat-raised-button
                     color="primary"

@@ -1,0 +1,177 @@
+<div class="container">
+  <h1 class="pl-0 h2 row justify-content-center">Registrar Venta</h1>
+  <hr />
+  <div class="row" mat-dialog-content>
+    <form [formGroup]="formGroup">
+      <mat-radio-group
+        aria-label="Selecciona una opción"
+        formControlName="dniOrRuc"
+        class="container justify-content-lg-center"
+      >
+        <mat-label class="row h4 justify-content-lg-center"
+          >RUC o Persona Natural</mat-label
+        >
+        <div class="row my-2 justify-content-lg-center">
+          <mat-radio-button
+            class="mr-3"
+            (change)="resetPersonalInfo($event)"
+            [value]="true"
+            >DNI</mat-radio-button
+          >
+          <mat-radio-button
+            class="ml-3"
+            (change)="resetPersonalInfo($event)"
+            [value]="false"
+            >RUC</mat-radio-button
+          >
+        </div>
+      </mat-radio-group>
+      <div class="container">
+        <ng-container *ngIf="formGroup.value.dniOrRuc; else ruc">
+          <mat-form-field appearance="fill" class="container align-self-center">
+            <mat-label>Nombre del comprador</mat-label>
+            <input
+              matInput
+              type="text"
+              class="row mx-auto"
+              formControlName="nombreComprador"
+            />
+            <mat-error
+              class="row pl-2"
+              *ngIf="formGroup.get('nombreComprador')?.errors?.required"
+            >
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="container align-self-center">
+            <mat-label>DNI del comprador</mat-label>
+            <input
+              matInput
+              type="text"
+              class="row mx-auto"
+              formControlName="documento"
+              mask="00000000"
+            />
+            <mat-error
+              class="row pl-2"
+              *ngIf="formGroup.get('documento')?.errors?.required"
+            >
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #ruc>
+          <mat-form-field appearance="fill" class="container align-self-center">
+            <mat-label>Razón Social</mat-label>
+            <input
+              matInput
+              type="text"
+              class="row mx-auto"
+              formControlName="nombreComprador"
+            />
+            <mat-error
+              class="row pl-2"
+              *ngIf="formGroup.get('nombreComprador')?.errors?.required"
+            >
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="container align-self-center">
+            <mat-label>RUC</mat-label>
+            <input
+              matInput
+              type="text"
+              class="row mx-auto"
+              formControlName="ruc"
+              mask="00000000000"
+            />
+            <mat-error
+              class="row pl-2"
+              *ngIf="formGroup.get('ruc')?.errors?.required"
+            >
+              Este campo es obligatorio.
+            </mat-error>
+          </mat-form-field>
+        </ng-template>
+        <mat-form-field appearance="fill" class="container align-self-center">
+          <mat-label>Canal de Venta</mat-label>
+          <input
+            matInput
+            type="text"
+            class="row mx-auto"
+            formControlName="canalVenta"
+          />
+          <mat-error
+            class="row pl-2"
+            *ngIf="formGroup.get('canalVenta')?.errors?.required"
+          >
+            Este campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="container align-self-center">
+          <mat-label>Detalle Venta</mat-label>
+          <input
+            matInput
+            type="text"
+            class="row mx-auto"
+            formControlName="detalleVenta"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="container align-self-center">
+          <mat-label>Comisión General:</mat-label>
+          <input
+            matInput
+            suffix="%"
+            mask="separator.2"
+            class="row mx-auto"
+            formControlName="comision"
+          />
+          <mat-error
+            class="row pl-2"
+            *ngIf="formGroup.get('comision')?.errors?.required"
+          >
+            Este campo es obligatorio.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="container align-self-center">
+          <mat-label>Precio Final de la Venta</mat-label>
+          <input
+            matInput
+            type="text"
+            class="row mx-auto"
+            formControlName="precioFinalVenta"
+            mask="separator"
+            suffix="$"
+            [OnlyNumber]="true"
+          />
+          <mat-error
+            class="row pl-2"
+            *ngIf="formGroup.get('precioFinalVenta')?.errors?.required"
+          >
+            Este campo es obligatorio.
+          </mat-error>
+          <mat-error
+            class="row pl-2"
+            *ngIf="formGroup.get('precioFinalVenta')?.errors?.min"
+          >
+            El precio final de venta debe ser mínimo S/ 0.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+  <div class="row justify-content-center" mat-dialog-actions>
+    <button class="mr-3" mat-raised-button color="warn" (click)="closeDialog()">
+      Cerrar
+    </button>
+    <button
+      [disabled]="formGroup.invalid"
+      class="ml-3"
+      mat-raised-button
+      color="primary"
+      (click)="registrarVenta()"
+    >
+      Registrar
+    </button>
+  </div>
+</div>

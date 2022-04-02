@@ -39,7 +39,7 @@ export class CuentaComponent implements OnInit {
         this.profileFormGroup.controls['telefono'].setValue(
           response.numTelefono
         );
-        this.profileFormGroup.controls['email'].setValue(response.correo);
+        this.profileFormGroup.controls['email'].setValue(response.email);
         this.profileFormGroup.controls['password'].setValue(response.password);
       });
     this.profileFormGroup.controls['dni'].disable();
@@ -50,7 +50,7 @@ export class CuentaComponent implements OnInit {
   saveChanges(): void {
     const body: User = {
       id: this.localStorage.getIdLocalStorage()!,
-      correo: this.profileFormGroup.value.email,
+      email: this.profileFormGroup.value.email,
       numTelefono: this.profileFormGroup.value.telefono,
       password: this.profileFormGroup.value.password,
     };

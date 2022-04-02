@@ -114,12 +114,11 @@ export class VentaDetailsComponent implements OnInit {
       // NOTE: ni nombre ni apellidos deberia ser null
       if (interesado!.usuario.nombre && interesado!.usuario.apellidos) {
         return `${interesado?.usuario.nombre} ${interesado!.usuario.apellidos}`;
-      } else {
-        return `${interesado?.usuario.correo}`;
-      }
-    } else {
-      return '';
+      } // else {
+      //   return `${interesado?.usuario.correo}`;
+      // }
     }
+    return '';
   };
 
   disableInputs(): void {
@@ -171,14 +170,12 @@ export class VentaDetailsComponent implements OnInit {
       // interesadosReventa
       this.filteredInteresadosReventa = this.interesadosReventa.filter(
         (interesado: InteresadoReventa) => {
-          return (
-            this._normalizeValue(interesado.usuario.nombre!).includes(
-              queryFilter
-            ) ||
+          return this._normalizeValue(interesado.usuario.nombre!).includes(
+            queryFilter
+          ) /* ||
             this._normalizeValue(interesado.usuario.correo).includes(
               queryFilter
-            )
-          );
+            ) */;
         }
       );
       console.log(

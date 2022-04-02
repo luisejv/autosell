@@ -3,7 +3,6 @@
   [ngClass]="{ 'b-goods_list': mode }"
   [ngStyle]="{ cursor: !validationView ? 'pointer' : 'default' }"
 >
-  <!-- <a class="b-goods__img" (click)="goToVehicleDetails()"> -->
   <a class="b-goods__img" (click)="goToVehicleDetails()">
     <!-- style="max-width: 100%; height: auto;" -->
     <img
@@ -36,11 +35,17 @@
         <!-- <div class="b-goods__info">Stock#: 45098ES - 4 door, White, 2.5L, FWD, Automatic 6-Speed, 2.5L 5 cyls, Florida CA</div> -->
       </div>
       <div class="col-auto pr-3 pt-1">
-        <div class="row b-goods__price text-primary">
-          <span class="b-goods__price-title">PRECIO<br />VENDEDOR</span
-          ><span class="b-goods__price-number"
+        <div class="row b-goods__price text-primary justify-content-end">
+          <span class="b-goods__price-title">PRECIO<br />VENDEDOR</span>
+          <span class="b-goods__price-number"
             >${{ autoCasteado?.precioVenta | number }}</span
           >
+        </div>
+        <div
+          [ngClass]="getClass()"
+          class="row px-2 mt-1 text-white rounded-corners justify-content-center"
+        >
+          <span>{{ autoCasteado.tag }}</span>
         </div>
       </div>
     </div>
@@ -58,15 +63,19 @@
       </div>
       <!-- NOTE: POR VENDER -->
       <div
-        *ngIf="autoCasteado.validado && !autoCasteado.comprado"
+        *ngIf="
+          autoCasteado.enabled &&
+          !autoCasteado.comprado &&
+          autoCasteado.validado
+        "
         class="col-auto pr-3 mx-2"
       >
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
-          letter="V"
+          letter="D"
           class="por-vender row b-goods__price text-primary rounded-corners"
         >
-          <span class="b-goods__price-title">POR<br />VENDER</span>
+          <span class="b-goods__price-title">DISPONIBLE</span>
         </div>
       </div>
       <!-- NOTE: VENDIDO -->
@@ -83,13 +92,16 @@
         </div>
       </div>
       <!-- NOTE: VENDIDO -->
-      <div *ngIf="!autoCasteado.enabled" class="col-auto pr-3 mx-2">
+      <div
+        *ngIf="!autoCasteado.enabled && !autoCasteado.comprado"
+        class="col-auto pr-3 mx-2"
+      >
         <div
           [ngClass]="{ 'grid-tag-clicker': !mode }"
-          letter="V"
+          letter="ND"
           class="eliminado row b-goods__price text-primary rounded-corners"
         >
-          <span class="b-goods__price-title">ELIMINADO</span>
+          <span class="b-goods__price-title">NO DISPONIBLE</span>
         </div>
       </div>
     </div>
@@ -227,18 +239,18 @@
       </button>
       <button
         class="m-2"
-        *ngIf="reportedView || adminView"
+        *ngIf="adminView && !autoCasteado.comprado"
         mat-raised-button
         color="warn"
         (click)="emitRemoveEvent()"
       >
-        Remover
+        Cambiar Disponibilidad
       </button>
       <button
         class="m-2"
-        *ngIf="interestingView"
+        *ngIf="adminView && autoCasteado.enabled"
         mat-raised-button
-        color="basic"
+        color="accent"
         (click)="emitSaleEvent()"
       >
         Vender
@@ -271,11 +283,32 @@
         Quitar Sponsor
       </button>
     </div>
-    <!-- <div class="b-goods__footer">
-        <div class="row no-gutters justify-content-between">
-        <div class="col-auto"><span class="b-goods__tag">test drive</span><span class="b-goods__tag">compare</span><span class="b-goods__tag">share this</span></div>
-        <div class="col-auto"><img class="b-goods__bnr" src="assets/media/content/b-goods/check.jpg" alt="photo"/><img class="b-goods__bnr" src="assets/media/content/b-goods/check-2.jpg" alt="photo"/></div>
+    <div class="b-goods__footer">
+      <div class="row no-gutters justify-content-between">
+        <!-- <div class="col-auto">
+          <span class="b-goods__tag">test drive</span
+          ><span class="b-goods__tag">compare</span
+          ><span class="b-goods__tag">share this</span>
+        </div> -->
+        <div class="col-auto offset-10">
+          <div
+            *ngIf="!mode"
+            letter="V"
+            class="por-validar row b-goods__price text-primary rounded-corners grid-tag-clicker"
+          >
+            <span class="b-goods__price-title">{{ autoCasteado.tag }}</span>
+          </div>
+          <!-- <img
+            class="b-goods__bnr"
+            src="assets/media/content/b-goods/check.jpg"
+            alt="photo"
+          /><img
+            class="b-goods__bnr"
+            src="assets/media/content/b-goods/check-2.jpg"
+            alt="photo"
+          /> -->
         </div>
-    </div> -->
+      </div>
+    </div>
   </div>
 </div>

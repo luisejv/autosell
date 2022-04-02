@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CarAllComponent } from './components/dashboard/admin/car-all/car-all.component';
+import { CarAvailableComponent } from './components/dashboard/admin/car-available/car-available.component';
 import { CarComplaintComponent } from './components/dashboard/admin/car-complaint/car-complaint.component';
 import { CarSaleRegistrationComponent } from './components/dashboard/admin/car-sale-registration/car-sale-registration.component';
 import { CarSponsorComponent } from './components/dashboard/admin/car-sponsor/car-sponsor.component';
@@ -27,6 +28,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { RemaxComponent } from './components/register/remax/remax.component';
 import { PrivacyComponent } from './components/shared/privacy/privacy.component';
 import { TermsComponent } from './components/shared/terms/terms.component';
+import { UploadCarComponent } from './components/upload-car/upload-car.component';
 import { ValidationComponent } from './components/validation/validation.component';
 import { VehicleDetailsComponent } from './components/vehicle-details/vehicle-details.component';
 import { AdminGuard } from './core/guards/admin.guard';
@@ -43,6 +45,7 @@ export const routes: Routes = [
   { path: 'terminos-y-condiciones', component: TermsComponent },
   { path: 'politicas-de-privacidad', component: PrivacyComponent },
   { path: 'vehicle-details', component: VehicleDetailsComponent },
+  { path: 'vende-tu-auto', component: UploadCarComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -50,6 +53,21 @@ export const routes: Routes = [
       {
         path: 'todos-los-autos',
         component: CarAllComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'autos-vendidos',
+        component: CarAvailableComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'autos-disponibles',
+        component: CarAvailableComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: 'autos-no-disponibles',
+        component: CarAvailableComponent,
         canActivate: [AdminGuard],
       },
       {

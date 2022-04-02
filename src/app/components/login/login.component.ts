@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       numDocumento: this.registerParticularForm.value.dni,
       nombre: this.registerParticularForm.value.nombres,
       apellidos: this.registerParticularForm.value.apellidos,
-      correo: this.registerParticularForm.value.correo,
+      email: this.registerParticularForm.value.email,
       password: this.registerParticularForm.value.password,
       rol: 'PARTICULAR',
       form: {
@@ -131,34 +131,35 @@ export class LoginComponent implements OnInit {
 
   logIn(): void {
     const body: User = {
-      correo: this.loginForm.value.email,
+      email: this.loginForm.value.email,
       password: this.loginForm.value.password,
     };
     console.log('BODY:', { body });
     this.userService.login(body).subscribe(
       (response: any) => {
-        console.log('response login: ', response);
-        // TODO: adecuar cuando se tenga form de remax
-        if (response.rol == 'ADMIN') {
-          this.storageService.setRoleLocalStorage(RolesEnum.ADMIN);
-        } else if (response.rol == 'SUPERADMIN') {
-          this.storageService.setRoleLocalStorage(RolesEnum.SUPERADMIN);
-        } else if (response.rol == 'REMAX') {
-          this.storageService.setRoleLocalStorage(RolesEnum.REMAX);
-          this.storageService.setTokenLocalStorage(response.secret);
-          this.storageService.setValidatedLocalStorage(response.validated);
-        } else {
-          this.storageService.setRoleLocalStorage(RolesEnum.PARTICULAR);
-          this.storageService.setTokenLocalStorage(response.secret);
-          this.storageService.setValidatedLocalStorage(response.validated);
-          this.storageService.setIdLocalStorage(response.id);
-        }
+        // console.log('response login: ', response);
+        // if (response.rol == 'ADMIN') {
+        //   this.storageService.setRoleLocalStorage(RolesEnum.ADMIN);
+        // } else if (response.rol == 'SUPERADMIN') {
+        //   this.storageService.setRoleLocalStorage(RolesEnum.SUPERADMIN);
+        // } else if (response.rol == 'REMAX') {
+        //   this.storageService.setRoleLocalStorage(RolesEnum.REMAX);
+        //   this.storageService.setTokenLocalStorage(response.secret);
+        //   this.storageService.setValidatedLocalStorage(response.validated);
+        // } else {
+        //   this.storageService.setRoleLocalStorage(RolesEnum.PARTICULAR);
+        //   this.storageService.setTokenLocalStorage(response.secret);
+        //   this.storageService.setValidatedLocalStorage(response.validated);
+        //   this.storageService.setIdLocalStorage(response.id);
+        // }
         this.storageService.setIdLocalStorage(response.id);
+        this.storageService.setRoleLocalStorage(RolesEnum.ADMIN);
         this.storageService.setEmailLocalStorage(this.loginForm.value.email);
-        this.storageService.setDniLocalStorage(response.numDocumento);
-        this.storageService.setNombreLocalStorage(response.nombre);
-        this.storageService.setApellidosLocalStorage(response.apellidos);
-        this.storageService.setPhoneLocalStorage(response.numTelefono);
+        // this.storageService.setIdLocalStorage(response.id);
+        // this.storageService.setDniLocalStorage(response.numDocumento);
+        // this.storageService.setNombreLocalStorage(response.nombre);
+        // this.storageService.setApellidosLocalStorage(response.apellidos);
+        // this.storageService.setPhoneLocalStorage(response.numTelefono);
 
         Swal.fire({
           titleText: 'Logged In!',

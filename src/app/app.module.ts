@@ -65,6 +65,9 @@ import { PrivacyComponent } from './components/shared/privacy/privacy.component'
 import { ChangeBannerComponent } from './components/dashboard/admin/change-banner/change-banner.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CarAllComponent } from './components/dashboard/admin/car-all/car-all.component';
+import { UploadCarComponent } from './components/upload-car/upload-car.component';
+import { CarAvailableComponent } from './components/dashboard/admin/car-available/car-available.component';
+import { SellDetailsComponent } from './components/dashboard/admin/car-available/sell-details/sell-details.component';
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
 
@@ -116,6 +119,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) | null = null;
     PrivacyComponent,
     ChangeBannerComponent,
     CarAllComponent,
+    UploadCarComponent,
+    CarAvailableComponent,
+    SellDetailsComponent,
   ],
   imports: [
     BrowserModule,

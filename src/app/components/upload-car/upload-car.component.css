@@ -1,0 +1,180 @@
+@import url("../../../assets/css/color.css");
+
+li {
+  list-style: none;
+}
+
+ol li {
+  list-style: inherit;
+}
+
+.continuar {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+.mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--primary) !important;
+}
+
+.example-list {
+  /* width: 1002px; */
+  max-width: 100%;
+  width: 100%;
+  /* max-width: 100%; */
+  border: solid 1px #ccc;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  background: white;
+  border-radius: 4px;
+  overflow: auto;
+  /* flex-wrap: wrap; */
+}
+
+.example-box {
+  /* padding: 20px 10px; */
+  border-right: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* justify-content: space-between; */
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  /* flex-grow: 1; */
+  flex-basis: 0;
+  min-width: 200px;
+  min-height: 200px;
+  position: relative;
+}
+.example-box:first-child:after {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  content: "Foto Principal";
+  color: white;
+  padding: 0 5px;
+  background-color: var(--primary);
+  width: 50%;
+  height: 25px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* .example-box:last-child {
+  border: none;
+} */
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-custom-placeholder {
+  background: #ccc;
+  border: dotted 3px #999;
+  min-height: 60px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.image-upload {
+  /* border: 1px solid #ccc; */
+  position: relative;
+}
+.image-upload > input {
+  display: none;
+}
+.image-upload > button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.image-upload img {
+  max-width: 100%;
+  cursor: pointer;
+}
+.photo {
+  padding: 20px;
+  height: 200px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.photo img {
+  object-fit: fill;
+}
+.text-blue {
+  color: var(--primary);
+}
+
+.newBreadcrumb {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #333333;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+.mat-step-header .mat-step-icon-state-done,
+.mat-step-header .mat-step-icon-state-edit {
+  background-color: var(--primary) !important;
+}
+
+::ng-deep .mat-step-icon .mat-step-icon-selected,
+.mat-step-icon .mat-step-icon-state-done,
+.mat-step-icon .mat-step-icon-state-edit {
+  background-color: var(--primary) !important;
+}
+
+.formMobile h2 {
+  text-align: center;
+}
+
+/* .formMobile li {
+  list-style: circle;
+} */
+
+::ng-deep .mat-checkbox-layout {
+  white-space: normal !important;
+  display: inline-block !important;
+}
+
+/* ::ng-deep .mat-primary {
+  color: var(--primary) !important;
+} */
+
+::ng-deep .mat-step-icon-state-edit {
+  background-color: var(--primary) !important;
+}
+
+textarea.inputPrice {
+  height: 100px;
+}
+
+.colorAutoSell {
+  background-color: var(--primary);
+  color: white;
+}

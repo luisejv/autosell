@@ -1,0 +1,290 @@
+<div class="section-title-page area-bg area-bg_dark area-bg_op_60">
+  <div class="area-bg__inner">
+    <div class="container text-center">
+      <h1 class="b-title-page">Vende tu Auto</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a routerLink="home">Home</a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">
+            Vende tu Auto
+          </li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="l-main-content mb-5">
+  <div class="ui-decor ui-decor_mirror ui-decor_sm-h bg-primary"></div>
+  <div class="container-fluid w-75">
+    <div class="row justify-content-center">
+      <form class="col-10 col-xl-8" [formGroup]="formGroup">
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Nombres:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Nombres"
+                  formControlName="nombres"
+                />
+                <mat-error *ngIf="getShowError('nombres')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Apellidos:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Apellidos"
+                  formControlName="apellidos"
+                />
+                <mat-error *ngIf="getShowError('apellidos')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Email:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="email"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Email"
+                  formControlName="email"
+                />
+                <mat-error *ngIf="getShowError('email')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Teléfono:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="tel"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Teléfono"
+                  mask="000 000 000"
+                  prefix="+51 "
+                  formControlName="telefono"
+                />
+                <mat-error *ngIf="getShowError('telefono')">
+                  Este campo es obligatorio.
+                </mat-error>
+                <mat-error
+                  *ngIf="formGroup.controls['telefono'].hasError('minLength')"
+                >
+                  Teléfono debe tener 9 números.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Marca:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Marca"
+                  formControlName="marca"
+                />
+                <mat-error *ngIf="getShowError('marca')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Modelo:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Modelo"
+                  formControlName="modelo"
+                />
+                <mat-error *ngIf="getShowError('modelo')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-4">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Kilometraje:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Kilometraje"
+                  mask="separator"
+                  formControlName="kilometraje"
+                  suffix=" km"
+                />
+                <mat-error *ngIf="getShowError('kilometraje')">
+                  Este campo es obligatorio.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Año:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Año"
+                  mask="0000"
+                  formControlName="anio"
+                />
+                <mat-error *ngIf="getShowError('anio')">
+                  Este campo es obligatorio.
+                </mat-error>
+                <mat-error
+                  *ngIf="
+                    formGroup.controls['anio'].hasError('min') ||
+                    formGroup.controls['anio'].hasError('max')
+                  "
+                >
+                  El año debe estar entre 1980 y {{ getMaxYear() }}
+                </mat-error>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-4">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Placa:</div>
+              <div class="b-main-filter__selector">
+                <input
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  placeholder="Placa"
+                  mask="AAA-AAA"
+                  formControlName="placa"
+                />
+                <mat-error *ngIf="getShowError('placa')">
+                  Este campo es obligatorio.
+                </mat-error>
+                <mat-error
+                  *ngIf="formGroup.controls['placa'].hasError('minLength')"
+                >
+                  La placa debe tener 6 dígitos.
+                </mat-error>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">Mensaje:</div>
+              <div class="b-main-filter__selector">
+                <textarea
+                  type="text"
+                  class="ui-select w-100 inputPrice"
+                  rows="6"
+                  formControlName="mensaje"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12">
+            <div class="b-main-filter__item">
+              <div class="b-main-filter__label">
+                Subir fotos: <small>(Máx 5 fotos)</small>
+              </div>
+              <div class="b-main-filter__selector">
+                <div
+                  cdkDropList
+                  cdkDropListOrientation="horizontal"
+                  class="example-list"
+                  (cdkDropListDropped)="drop($event)"
+                >
+                  <div
+                    class="example-box"
+                    *ngFor="let foto of fotos; let i = index"
+                    cdkDrag
+                  >
+                    <div class="image-upload text-center">
+                      <label [for]="'upload' + i" class="photo text-center">
+                        <img
+                          [src]="
+                            foto.src
+                              ? foto.src
+                              : 'assets/media/general/upload.jpg'
+                          "
+                          class="img-fluid"
+                          alt=""
+                        />
+                      </label>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        [id]="'upload' + i"
+                        (change)="onImageChange($event, i)"
+                      />
+                      <button
+                        mat-mini-fab
+                        color="none"
+                        (click)="removePhoto(i)"
+                        style="outline: none"
+                      >
+                        <mat-icon>close</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="example-box" *ngIf="fotos.length < 15 && update">
+                    <button
+                      mat-fab
+                      color="none"
+                      style="outline: none"
+                      (click)="addPhoto()"
+                    >
+                      <mat-icon>add</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-12">
+            <button
+              mat-raised-button
+              type="button"
+              class="w-100 colorAutoSell"
+              (click)="submit()"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

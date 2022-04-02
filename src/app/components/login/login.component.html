@@ -2,21 +2,15 @@
   <!-- Login -->
   <section class="loginMobile pb-0" *ngIf="isLogin">
     <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col d-flex flex-column justify-content-around">
+      <div class="row h-100 justify-content-center">
+        <div class="col-12 col-sm-10 d-flex flex-column justify-content-around">
           <div class="row">
             <div class="col">
               <div class="row justify-content-center">
-                <h1>Te damos la bienvenida</h1>
+                <h1 class="text-center">Te damos la bienvenida</h1>
               </div>
               <div class="row justify-content-center">
                 <h6>Inicia sesión para continuar</h6>
-              </div>
-              <div class="row justify-content-center">
-                ¿No tienes cuenta? <strong class="mx-2">&gt;</strong>
-                <a class="text-blue" (click)="changeView(false)"
-                  >Regístrate ahora</a
-                >
               </div>
             </div>
           </div>
@@ -43,26 +37,6 @@
                     />
                   </div>
                 </div>
-                <div class="row justify-content-center">
-                  <div class="col">
-                    <p class="small">
-                      Al iniciar sesión acepto los
-                      <a
-                        routerLink="/terminos-y-condiciones"
-                        target="_blank"
-                        class="links"
-                        >términos y condiciones</a
-                      >
-                      y
-                      <a
-                        routerLink="/politicas-de-privacidad"
-                        target="_blank"
-                        class="links"
-                        >políticas de privacidad</a
-                      >
-                    </p>
-                  </div>
-                </div>
                 <br />
                 <div class="row justify-content-center">
                   <div class="col-12 col-sm-8">
@@ -82,35 +56,25 @@
               <hr />
               <div class="row justify-content-center">
                 <p class="small">
-                  Clicker nunca compartirá tu información con terceros; se
+                  Autosell nunca compartirá tu información con terceros; se
                   utilizará para brindar acceso a la plataforma.
                 </p>
               </div>
               <div class="row justify-content-center mt-3">
                 <div class="col-6 col-sm-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="row justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-envelope text-blue mr-2"></i>
-                    <small>Escríbenos a hola@clicker.pe</small>
+                    <small>Escríbenos a jsalas@autosell.pe</small>
                   </div>
                 </div>
                 <div class="col-6 col-sm-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="row justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-phone text-blue mr-2"></i>
-                    <small>Llámanos: (01) 000 000</small>
+                    <small>Llámanos: +1 404 9444</small>
                   </div>
                 </div>
               </div>
@@ -122,210 +86,15 @@
   </section>
 
   <!-- Register -->
-  <section class="registerMobile" *ngIf="!isLogin">
-    <div class="container-fluid h-100">
-      <div class="row">
-        <div class="col d-flex flex-column justify-content-around">
-          <div class="row">
-            <div class="col">
-              <div class="row justify-content-center">
-                <h1>Crea una cuenta ahora</h1>
-              </div>
-              <div class="row justify-content-center">
-                ¿Ya tienes una cuenta? <strong class="mx-2">&gt;</strong>
-                <a class="text-blue" (click)="changeView(true)"
-                  >Inicia sesión</a
-                >
-              </div>
-              <div class="row justify-content-center mt-3">
-                <h5>Selecciona tu perfil</h5>
-              </div>
-            </div>
-          </div>
-          <div class="row justify-content-center no-gutters mt-3">
-            <div class="col-12 col-sm-8">
-              <div class="row justify-content-around">
-                <div class="col-10 col-sm-6">
-                  <div class="row no-gutters">
-                    <button
-                      type="button"
-                      class="registerOption text-center"
-                      [ngClass]="{
-                        active: registerOption === 'particular'
-                      }"
-                      (click)="changeRegisterOption('particular')"
-                    >
-                      <i class="ic fas fa-user mr-2"></i>
-                      Usuario nuevo
-                    </button>
-                  </div>
-                </div>
-                <div class="col-10 col-sm-6 mt-3 mt-sm-0">
-                  <div class="row no-gutters">
-                    <button
-                      type="button"
-                      class="registerOption text-center"
-                      [ngClass]="{
-                        active: registerOption === 'franquicia'
-                      }"
-                      (click)="changeRegisterOption('franquicia')"
-                    >
-                      <i class="ic fas fa-store mr-2"></i>
-                      Franquiciado
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <ng-template [ngIf]="registerOption === 'particular'">
-            <div class="row">
-              <div class="col text-center">
-                <p>Crea una cuenta para comprar o vender un auto</p>
-              </div>
-            </div>
-          </ng-template>
-          <ng-template [ngIf]="registerOption === 'franquicia'">
-            <div class="row">
-              <div class="col text-center">
-                <!-- <p>Sección en construcción</p> -->
-              </div>
-            </div>
-          </ng-template>
-          <div class="row w-100 no-gutters">
-            <ng-template [ngIf]="registerOption === 'particular'">
-              <form
-                [formGroup]="registerParticularForm"
-                (ngSubmit)="registerParticular()"
-                class="container-fluid h-100"
-                (keydown.enter)="handleKeyupEnter($event)"
-              >
-                <div class="row mx-0">
-                  <div class="col-12 col-sm-6 text-center">
-                    <div style="position: relative">
-                      <input
-                        type="text"
-                        class="inputClicker"
-                        placeholder="Primero busca tu DNI"
-                        formControlName="dni"
-                        [OnlyNumber]="true"
-                        (keyup.enter)="checkDNI()"
-                      />
-                      <button
-                        type="button"
-                        style="outline: none"
-                        class="inlineButton"
-                        mat-icon-button
-                        (click)="checkDNI()"
-                      >
-                        <mat-icon *ngIf="!fetchingDNI" style="color: #29abe2">
-                          search
-                        </mat-icon>
-                        <mat-spinner
-                          style="cursor: progress; color: #29abe2"
-                          *ngIf="fetchingDNI"
-                          diameter="24"
-                        >
-                        </mat-spinner>
-                      </button>
-                    </div>
-                    <!-- <small
-                      class="text-white"
-                      *ngIf="registerParticularForm.controls['dni'].value == ''"
-                      >Busca tu DNI para completar tus datos
-                      automáticamente</small
-                    > -->
-                    <input
-                      type="text"
-                      class="inputClicker"
-                      placeholder="Nombre/s"
-                      formControlName="nombres"
-                    />
-                    <input
-                      type="password"
-                      class="inputClicker"
-                      placeholder="Contraseña"
-                      formControlName="password"
-                    />
-                  </div>
-                  <div class="col-12 col-sm-6 text-center">
-                    <input
-                      type="email"
-                      class="inputClicker"
-                      placeholder="Correo electrónico"
-                      formControlName="correo"
-                    />
-                    <input
-                      type="text"
-                      class="inputClicker"
-                      placeholder="Apellido/s"
-                      formControlName="apellidos"
-                    />
-                  </div>
-                </div>
-                <div class="row justify-content-center mt-2">
-                  <div class="col text-center">
-                    <hr />
-                    <mat-checkbox formControlName="terms" color="primary"
-                      >Acepto los
-                      <a
-                        routerLink="/terminos-y-condiciones"
-                        target="_blank"
-                        class="text-blue"
-                        >términos y condiciones</a
-                      >
-                      y
-                      <br *ngIf="commonService.screenWidth < 475" />
-                      <a
-                        routerLink="/politicas-de-privacidad"
-                        target="_blank"
-                        class="text-blue"
-                        >políticas de privacidad</a
-                      ></mat-checkbox
-                    >
-                  </div>
-                </div>
-                <div class="row justify-content-center">
-                  <div class="col-12 col-sm-4">
-                    <button type="submit" class="registerButton">
-                      Crear Cuenta
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </ng-template>
-            <ng-template [ngIf]="registerOption === 'franquicia'">
-              <div class="col text-center">
-                <p>
-                  Sé el dueño de tu propio negocio con la franquicia vehicular
-                  de Clicker
-                </p>
-                <img
-                  src="assets/media/general/Valla-de-construccion-black.svg"
-                  alt="En Construcción"
-                  width="200"
-                  height="200"
-                  class="mt-4"
-                  style="stroke: black"
-                />
-                <h2 class="mt-4">Sección en construcción</h2>
-              </div>
-            </ng-template>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- For -->
 </ng-template>
 <ng-template [ngIf]="commonService.screenWidth >= 1200">
   <section class="login">
     <div class="container-fluid px-0 h-100">
-      <div class="row no-gutters">
+      <div class="row no-gutters justify-content-center">
         <!-- Login -->
-        <div class="col-6 loginSection py-5" *ngIf="isLogin">
+        <div class="col-4 loginSection py-5" *ngIf="isLogin">
           <div class="row">
             <div class="col text-center">
               <h2>Te damos la bienvenida</h2>
@@ -355,7 +124,7 @@
                     />
                   </div>
                 </div>
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                   <p class="small">
                     Al iniciar sesion acepto los
                     <a
@@ -372,55 +141,45 @@
                       >políticas de privacidad</a
                     >
                   </p>
-                </div>
+                </div> -->
                 <br />
-                <div class="row justify-content-center">
+                <div class="row justify-content-center no-gutters">
                   <div class="col-6">
                     <button type="submit" class="loginButton">Ingresar</button>
                   </div>
                 </div>
-                <div class="row justify-content-center mt-2">
+                <!-- <div class="row justify-content-center mt-2">
                   <a class="links" (click)="forgotPass()">
                     ¿Olvidaste tu contraseña?
                   </a>
-                </div>
+                </div> -->
               </form>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-10">
               <hr />
-              <div class="row justify-content-center text-center">
+              <div class="row no-gutters justify-content-center text-center">
                 <p class="small">
-                  Clicker nunca compartirá tu información con terceros; se
+                  Autosell nunca compartirá tu información con terceros; se
                   utilizará para brindar acceso a la plataforma.
                 </p>
               </div>
-              <div class="row justify-content-center mt-3">
+              <div class="row no-gutters justify-content-center mt-3">
                 <div class="col-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="d-flex flex-column align-items-center justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-envelope text-blue mr-2"></i>
-                    <small>Escríbenos a hola@clicker.pe</small>
+                    <small>Escríbenos a jsalas@autosell.pe</small>
                   </div>
                 </div>
                 <div class="col-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="d-flex flex-column align-items-center justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-phone text-blue mr-2"></i>
-                    <small>Llámanos: (01) 000 000</small>
+                    <small>Llámanos: +1 404 9444</small>
                   </div>
                 </div>
               </div>
@@ -503,12 +262,7 @@
               <div class="row justify-content-center mt-3">
                 <div class="col-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="row justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-envelope text-blue mr-2"></i>
                     <small>Escríbenos a hola@clicker.pe</small>
@@ -516,15 +270,10 @@
                 </div>
                 <div class="col-4 text-center">
                   <div
-                    class="
-                      row
-                      justify-content-center
-                      align-items-center
-                      infoBottom
-                    "
+                    class="row justify-content-center align-items-center infoBottom"
                   >
                     <i class="ic fas fa-phone text-blue mr-2"></i>
-                    <small>Llámanos: (01) 000 000</small>
+                    <small>Llámanos: +1 404 9444</small>
                   </div>
                 </div>
               </div>
@@ -533,273 +282,6 @@
         </div>
 
         <!-- Register -->
-        <div class="col-6 registerSection py-5">
-          <div class="row">
-            <div class="col no-gutters">
-              <div class="row">
-                <div class="col text-center">
-                  <h2>Crea una cuenta ahora</h2>
-                  <p>Selecciona tu perfil</p>
-                </div>
-              </div>
-              <div class="row justify-content-center no-gutters">
-                <div class="col-8">
-                  <div class="row no-gutters justify-content-around">
-                    <div class="col-5">
-                      <div class="row no-gutters">
-                        <button
-                          type="button"
-                          class="registerOption text-center"
-                          [ngClass]="{
-                            active: registerOption === 'particular'
-                          }"
-                          (click)="changeRegisterOption('particular')"
-                        >
-                          <i class="ic fas fa-user mr-2"></i>
-                          Usuario nuevo
-                        </button>
-                      </div>
-                    </div>
-                    <div class="col-5">
-                      <div class="row no-gutters">
-                        <button
-                          type="button"
-                          class="registerOption text-center"
-                          [ngClass]="{
-                            active: registerOption === 'franquicia'
-                          }"
-                          (click)="changeRegisterOption('franquicia')"
-                        >
-                          <i class="ic fas fa-store mr-2"></i>
-                          Franquiciado
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <br />
-              <ng-template [ngIf]="registerOption === 'particular'">
-                <div class="row">
-                  <div class="col text-center">
-                    <p>Crea una cuenta para comprar o vender un auto</p>
-                  </div>
-                </div>
-              </ng-template>
-              <ng-template [ngIf]="registerOption === 'franquicia'">
-                <div class="row">
-                  <div class="col text-center">
-                    <!-- <p>Sección en construcción</p> -->
-                  </div>
-                </div>
-              </ng-template>
-            </div>
-          </div>
-          <div class="row w-100">
-            <ng-template [ngIf]="registerOption === 'particular'">
-              <form
-                [formGroup]="registerParticularForm"
-                (ngSubmit)="registerParticular()"
-                class="container"
-              >
-                <div class="row mx-0">
-                  <div class="col-6 text-center">
-                    <div style="position: relative">
-                      <input
-                        type="text"
-                        class="inputClicker"
-                        placeholder="Primero busca tu DNI"
-                        formControlName="dni"
-                        [OnlyNumber]="true"
-                        (keyup.enter)="checkDNI()"
-                      />
-                      <button
-                        type="button"
-                        style="outline: none"
-                        class="inlineButton"
-                        mat-icon-button
-                        (click)="checkDNI()"
-                      >
-                        <mat-icon *ngIf="!fetchingDNI" style="color: #29abe2">
-                          search
-                        </mat-icon>
-                        <mat-spinner
-                          style="cursor: progress; color: #29abe2"
-                          *ngIf="fetchingDNI"
-                          diameter="24"
-                        >
-                        </mat-spinner>
-                      </button>
-                      <mat-error
-                        class="text-white"
-                        *ngIf="
-                          registerParticularForm.get('dni')?.touched &&
-                          registerParticularForm.get('dni')?.errors?.required
-                        "
-                      >
-                        Este campo es obligatorio.
-                      </mat-error>
-                      <mat-error
-                        class="text-white"
-                        *ngIf="
-                          registerParticularForm.get('dni')?.touched &&
-                          registerParticularForm.get('dni')?.errors?.pattern
-                        "
-                      >
-                        Debe ingresar un DNI válido.
-                      </mat-error>
-                    </div>
-                    <!-- <small
-                      class="text-white"
-                      *ngIf="registerParticularForm.controls['dni'].value == ''"
-                      >Busca tu DNI para completar tus datos
-                      automáticamente</small
-                    > -->
-                    <input
-                      type="text"
-                      class="inputClicker"
-                      placeholder="Nombre(s)"
-                      formControlName="nombres"
-                    />
-                    <mat-error
-                      class="text-white"
-                      *ngIf="
-                        registerParticularForm.get('nombres')?.touched &&
-                        registerParticularForm.get('nombres')?.errors?.required
-                      "
-                    >
-                      Este campo es obligatorio.
-                    </mat-error>
-                    <input
-                      type="password"
-                      class="inputClicker"
-                      placeholder="Contraseña"
-                      formControlName="password"
-                    />
-                    <mat-error
-                      class="text-white"
-                      *ngIf="
-                        registerParticularForm.get('password')?.touched &&
-                        registerParticularForm.get('password')?.errors?.required
-                      "
-                    >
-                      Este campo es obligatorio.
-                    </mat-error>
-                  </div>
-                  <div class="col-6 text-center">
-                    <input
-                      type="email"
-                      class="inputClicker"
-                      placeholder="Correo electrónico"
-                      formControlName="correo"
-                    />
-                    <mat-error
-                      class="text-white"
-                      *ngIf="
-                        registerParticularForm.get('correo')?.touched &&
-                        registerParticularForm.get('correo')?.errors?.required
-                      "
-                    >
-                      Este campo es obligatorio.
-                    </mat-error>
-                    <mat-error
-                      class="text-white"
-                      *ngIf="
-                        registerParticularForm.get('correo')?.touched &&
-                        registerParticularForm.get('correo')?.errors?.email
-                      "
-                    >
-                      Debe ingresar un correo válido.
-                    </mat-error>
-                    <input
-                      type="text"
-                      class="inputClicker"
-                      placeholder="Apellido(s)"
-                      formControlName="apellidos"
-                    />
-                    <mat-error
-                      class="text-white"
-                      *ngIf="
-                        registerParticularForm.get('apellidos')?.touched &&
-                        registerParticularForm.get('apellidos')?.errors
-                          ?.required
-                      "
-                    >
-                      Este campo es obligatorio.
-                    </mat-error>
-                  </div>
-                </div>
-                <div class="row justify-content-center mt-2">
-                  <div class="col text-center">
-                    <hr style="border-top: 1px solid white" />
-                    <mat-checkbox formControlName="terms" color="primary"
-                      >Acepto los
-                      <a
-                        routerLink="/terminos-y-condiciones"
-                        target="_blank"
-                        class="text-white"
-                        >términos y condiciones</a
-                      >
-                      y
-                      <a
-                        routerLink="/politicas-de-privacidad"
-                        target="_blank"
-                        class="text-white"
-                        >políticas de privacidad</a
-                      ></mat-checkbox
-                    >
-                  </div>
-                </div>
-                <div class="row justify-content-center mt-3">
-                  <div class="col-4">
-                    <button
-                      type="button"
-                      (click)="registerParticular()"
-                      class="registerButton"
-                    >
-                      Crear Cuenta
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </ng-template>
-            <ng-template [ngIf]="registerOption === 'franquicia'">
-              <div class="row">
-                <div class="col text-center">
-                  <p>
-                    Sé el dueño de tu propio negocio con la franquicia vehicular
-                    de Clicker
-                  </p>
-                  <img
-                    src="assets/media/general/Valla-de-construccion-41.svg"
-                    alt="En Construcción"
-                    width="200"
-                    height="200"
-                    class="mt-4"
-                  />
-                  <h2 class="mt-4">Sección en construcción</h2>
-                </div>
-              </div>
-            </ng-template>
-          </div>
-          <!-- <div class="row justify-content-center">
-            <div class="col text-center">
-              <hr style="border-top: 1px solid white" />
-              <mat-checkbox color="primary"
-                >Acepto los
-                <a href="" class="text-white">términos y condiciones</a> y
-                <a href="" class="text-white"
-                  >políticas de privacidad</a
-                ></mat-checkbox
-              >
-            </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-4">
-              <button type="submit" class="registerButton">Crear Cuenta</button>
-            </div>
-          </div> -->
-        </div>
       </div>
     </div>
   </section>

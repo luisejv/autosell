@@ -37,13 +37,13 @@ export class AutoSemiNuevoComponent implements OnInit {
   contactFormGroup: FormGroup;
 
   slideConfig = {
-    arrows: true,
+    arrows: false,
     fade: true,
     asNavFor: '.js-slider-for',
   };
 
   slideConfig2 = {
-    arrows: true,
+    arrows: false,
     slidesToShow: 5,
     slidesToScroll: 1,
     asNavFor: '.js-slider-nav',
@@ -122,62 +122,28 @@ export class AutoSemiNuevoComponent implements OnInit {
 
   submitForm() {
     this.sendingContactForm = true;
-    let bodyForm = new HttpParams()
-      .set('DNI', this.contactFormGroup.value.dni)
-      .set('First_Name', this.contactFormGroup.value.nombres)
-      .set('Last_Name', this.contactFormGroup.value.apellidos)
-      .set('Phone_Number', this.contactFormGroup.value.telefono)
-      .set('Email', this.contactFormGroup.value.correo)
-      .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
-      .set('Nuevo', 'false')
-      .set('ID_Auto', '424')
-      .set(
-        'DatosSemiNuevo',
-        this.contactFormGroup.value.descripcion.length > 0
-          ? this.auto.marca +
-              '-' +
-              this.auto.modelo +
-              '-' +
-              this.auto.placa +
-              '-' +
-              this.contactFormGroup.value.descripcion
-          : this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
-      );
-
     const body2 = {
-      autoSemiNuevo: {
-        id: this.auto.id,
-      },
+      autoSemiNuevoId: this.auto.id,
       dni: this.contactFormGroup.value.dni,
-      nombres:
-        this.contactFormGroup.value.nombres +
-        ' ' +
-        this.contactFormGroup.value.apellidos,
+      nombres: this.contactFormGroup.value.nombres,
+      apellidos: this.contactFormGroup.value.apellidos,
       correo: this.contactFormGroup.value.correo,
       numTelefono: this.contactFormGroup.value.telefono,
+      placa: this.auto.placa,
     };
 
-    this.clientService.postPilot(bodyForm).subscribe(
+    this.clientService.postFormInterested(body2).subscribe(
       (response) => {
-        console.log(response);
+        console.log('Agregado a InteresadosCompra');
         Swal.fire({
           title: 'Enviado!',
           icon: 'success',
           html: 'Solicitud generada! Le llamarán por teléfono para seguir con el proceso de compra.',
           showConfirmButton: true,
         });
-        this.clientService.postFormInterested(body2).subscribe(
-          (response) => {
-            console.log('Agregado a InteresadosCompra');
-          },
-          (error) => {
-            console.log('Error en agregar a InteresadosCompra');
-          }
-        );
-        this.sendingContactForm = false;
-        this.contactFormGroup.reset();
       },
       (error) => {
+        console.log('Error en agregar a InteresadosCompra');
         console.log(error);
         Swal.fire({
           title: 'Oops!',
@@ -185,9 +151,49 @@ export class AutoSemiNuevoComponent implements OnInit {
           html: 'Hubo un fallo en el servidor, por favor intenta más tarde. Si el problema persiste, contacta con un administrador.',
           showConfirmButton: true,
         });
-        this.sendingContactForm = false;
       }
     );
+    this.sendingContactForm = false;
+    this.contactFormGroup.reset();
+
+    // let bodyForm = new HttpParams()
+    //   .set('DNI', this.contactFormGroup.value.dni)
+    //   .set('First_Name', this.contactFormGroup.value.nombres)
+    //   .set('Last_Name', this.contactFormGroup.value.apellidos)
+    //   .set('Phone_Number', this.contactFormGroup.value.telefono)
+    //   .set('Email', this.contactFormGroup.value.correo)
+    //   .set('Carroceria_Vehiculo', this.auto.tipoCarroceria)
+    //   .set('Nuevo', 'false')
+    //   .set('ID_Auto', '424')
+    //   .set(
+    //     'DatosSemiNuevo',
+    //     this.contactFormGroup.value.descripcion.length > 0
+    //       ? this.auto.marca +
+    //           '-' +
+    //           this.auto.modelo +
+    //           '-' +
+    //           this.auto.placa +
+    //           '-' +
+    //           this.contactFormGroup.value.descripcion
+    //       : this.auto.marca + '-' + this.auto.modelo + '-' + this.auto.placa
+    //   );
+
+    // this.clientService.postPilot(bodyForm).subscribe(
+    //   (response) => {
+    //     console.log(response);
+
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //     Swal.fire({
+    //       title: 'Oops!',
+    //       icon: 'error',
+    //       html: 'Hubo un fallo en el servidor, por favor intenta más tarde. Si el problema persiste, contacta con un administrador.',
+    //       showConfirmButton: true,
+    //     });
+    //     this.sendingContactForm = false;
+    //   }
+    // );
   }
 
   contact(): void {

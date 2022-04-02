@@ -104,14 +104,14 @@ export class HomeComponent implements OnInit {
         console.error('error when fetching brand count');
       }
     );
-    this.clientService.getUserCount().subscribe(
-      (res: number) => {
-        this.userCount?.nativeElement.setAttribute('data-percent', res);
-      },
-      (error: any) => {
-        console.error('error when fetching user count');
-      }
-    );
+    // this.clientService.getUserCount().subscribe(
+    //   (res: number) => {
+    //     this.userCount?.nativeElement.setAttribute('data-percent', res);
+    //   },
+    //   (error: any) => {
+    //     console.error('error when fetching user count');
+    //   }
+    // );
     this.clientService.getSoldVehiclesCount().subscribe(
       (res: number) => {
         this.soldVehicles?.nativeElement.setAttribute('data-percent', res);
@@ -124,18 +124,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
-    this.clientService.getSponsoredCars().subscribe(
-      (response: SponsoredCar[]) => {
-        console.log('Response Sponsored: ', response);
-        this.sponsoredCars = response.map(
-          (elem: SponsoredCar) => elem.autoSemiNuevo
-        );
-        console.log(this.sponsoredCars);
-      },
-      (error: any) => {
-        console.log('Error fetching sponsoredCars: ', error);
-      }
-    );
+
+    // this.clientService.getSponsoredCars().subscribe(
+    //   (response: SponsoredCar[]) => {
+    //     console.log('Response Sponsored: ', response);
+    //     this.sponsoredCars = response.map(
+    //       (elem: SponsoredCar) => elem.autoSemiNuevo
+    //     );
+    //     console.log(this.sponsoredCars);
+    //   },
+    //   (error: any) => {
+    //     console.log('Error fetching sponsoredCars: ', error);
+    //   }
+    // );
 
     this.clientService.getFilters().subscribe(
       (response: Filter[]) => {
@@ -184,30 +185,6 @@ export class HomeComponent implements OnInit {
         console.log('Error fetching recentCars: ', error);
       }
     );
-  }
-
-  get carType(): string {
-    return this.filterFormGroup.get('carType')?.value;
-  }
-
-  get carSubset(): string {
-    return this.filterFormGroup.get('carSubset')?.value;
-  }
-
-  get carBrand(): string {
-    return this.filterFormGroup.get('carBrand')?.value;
-  }
-
-  get carModel(): string {
-    return this.filterFormGroup.get('carModel')?.value;
-  }
-
-  get carMaxPrice(): string {
-    return this.filterFormGroup.get('carMaxPrice')?.value;
-  }
-
-  get carMinYear(): string {
-    return this.filterFormGroup.get('carMinYear')?.value;
   }
 
   // Cambiar Carroceria
@@ -338,22 +315,6 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  slickInit(e: any) {
-    console.log('slick initialized');
-  }
-
-  breakpoint(e: any) {
-    console.log('breakpoint');
-  }
-
-  afterChange(e: any) {
-    console.log('afterChange');
-  }
-
-  beforeChange(e: any) {
-    console.log('beforeChange');
-  }
-
   getBannerImg(carType: string) {
     switch (carType) {
       case 'SEDAN': {
@@ -389,5 +350,29 @@ export class HomeComponent implements OnInit {
   round(kilometraje: number) {
     const kiloToShow = kilometraje / 1000;
     return Math.round(kiloToShow * 10) / 10;
+  }
+
+  get carType(): string {
+    return this.filterFormGroup.get('carType')?.value;
+  }
+
+  get carSubset(): string {
+    return this.filterFormGroup.get('carSubset')?.value;
+  }
+
+  get carBrand(): string {
+    return this.filterFormGroup.get('carBrand')?.value;
+  }
+
+  get carModel(): string {
+    return this.filterFormGroup.get('carModel')?.value;
+  }
+
+  get carMaxPrice(): string {
+    return this.filterFormGroup.get('carMaxPrice')?.value;
+  }
+
+  get carMinYear(): string {
+    return this.filterFormGroup.get('carMinYear')?.value;
   }
 }

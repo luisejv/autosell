@@ -30,7 +30,7 @@ export class ParticularComponent implements OnInit {
 
   toJSON(): User {
     return {
-      correo: this.formGroup.value.correo,
+      email: this.formGroup.value.correo,
       password: this.formGroup.value.password,
       rol: 'PARTICULAR',
       form: {

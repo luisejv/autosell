@@ -4,7 +4,7 @@ import { User } from './user';
 
 export interface AutoSemiNuevo {
   id?: number;
-  usuario: User;
+  // usuario: User;
   placa: string;
   serie: string;
   correoDueno: string;
@@ -44,6 +44,8 @@ export interface AutoSemiNuevo {
   mantenimiento?: string;
   unicoDueno?: boolean;
   vin?: string;
+  tag?: string;
+  registrador?: any;
 
   // ? De Auto Nuevo:
   concesionarios?: string;

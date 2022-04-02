@@ -35,21 +35,21 @@
 }
 
 .login {
-  margin-top: 150px;
-  height: calc(100vh - 150px);
+  /* padding-top: 150px; */
+  /* height: calc(100vh - 150px); */
   background-color: var(--primary);
 }
 
 .loginSection {
   background-color: #fff;
-  border-top-right-radius: 10%;
-  border-bottom-right-radius: 10%;
-  height: calc(100vh - 150px);
+  border-radius: 25px;
+  /* height: calc(100vh - 150px); */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding-top: 100px;
+  margin: 20px 0px;
 }
 
 .registerSection {
@@ -154,7 +154,7 @@
 }
 
 .loginMobile {
-  margin-top: 150px;
+  margin-top: 230px;
   /* height: calc(100vh - 150px); */
   height: 100%;
   max-height: 100%;
@@ -177,12 +177,12 @@
 
 @media screen and (min-width: 1200px) and (max-width: 1440px) {
   .login {
-    margin-top: 145px;
-    height: calc(100vh - 145px);
+    padding-top: 200px;
+    /* height: calc(100vh - 200px); */
   }
 
   .loginSection {
-    height: calc(100vh - 145px);
+    /* height: calc(100vh - 200px); */
   }
 
   .registerOption {
@@ -194,12 +194,12 @@
 }
 @media screen and (min-width: 1441px) {
   .login {
-    margin-top: 150px;
-    height: calc(100vh - 150px);
+    padding-top: 235px;
+    /* height: calc(100vh - 235px); */
   }
 
   .loginSection {
-    height: calc(100vh - 150px);
+    /* height: calc(100vh - 235px); */
   }
 
   .registerOption {
@@ -280,9 +280,9 @@
   }
 }
 
-@media screen and (max-height: 935px) {
+/* @media screen and (max-height: 935px) {
   .login,
   .loginSection {
     height: 105vh;
   }
-}
+} */

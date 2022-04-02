@@ -56,6 +56,7 @@ export class CarRegistrationComponent implements OnInit {
       formData.append('files', '');
       formData.append('autoSemiNuevo', JSON.stringify(body));
     }
+
     this.userService.postAutoSemiNuevo(formData).subscribe(
       (response: User) => {
         console.group('Response');
@@ -69,7 +70,7 @@ export class CarRegistrationComponent implements OnInit {
           icon: 'success',
           showConfirmButton: true,
         }).then(() => {
-          this.router.navigateByUrl('/dashboard/publicados-autos');
+          this.router.navigateByUrl('/dashboard');
         });
       },
       (error: any) => {
@@ -83,7 +84,10 @@ export class CarRegistrationComponent implements OnInit {
             showConfirmButton: true,
           });
         }
-        if (error.status === 226) {
+        if (
+          error.status === 226 ||
+          error.error.includes('este auto esta siendo vendido')
+        ) {
           Swal.fire({
             titleText: 'Oops!',
             html: 'El auto ya existe actualmente en la aplicación!!',

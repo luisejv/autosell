@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   overflow: auto;
 }
 .sidebar-container {
@@ -15,7 +15,7 @@
 }
 .sidebar-container-admin {
   /* background-color: rgb(148, 82, 192); */
-  background-color: var(--blue);
+  background-color: var(--secondary);
 }
 
 .sidebar-item {
@@ -27,13 +27,19 @@
   width: 100%;
 }
 
+.sidebar-item a {
+  color: white;
+  text-decoration: none;
+}
+
 .sidebar-item:hover {
   background-color: black;
   border-radius: 5px;
 }
 
 .sideops-container {
-  padding: 3rem 0;
+  width: 100%;
+  padding: 3rem 10px 3rem 20px;
   margin: 0 auto;
   list-style-type: none;
   display: flex;
@@ -47,4 +53,8 @@
 
 .sideops-container li a {
   text-align: center;
+}
+
+.active {
+  background-color: var(--blue);
 }

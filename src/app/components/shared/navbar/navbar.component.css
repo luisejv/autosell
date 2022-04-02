@@ -10,10 +10,16 @@
 }
 
 .loginBtn {
-  background-color: #29abe2;
+  background-color: var(--primary);
   border-radius: 40px;
   outline: none;
   color: white;
+}
+
+.loginBtn:hover {
+  text-decoration: none;
+  transform: scale(1.1);
+  transition: all ease-in-out 0.2s;
 }
 
 .registerBtn,

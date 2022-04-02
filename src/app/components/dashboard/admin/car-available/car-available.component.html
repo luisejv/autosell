@@ -1,0 +1,9 @@
+<app-admin-cars
+  *ngIf="hasLoaded"
+  [name]="getName()"
+  [adminView]="true"
+  [allCars]="availableCars"
+  (remove)="setEnabled($event)"
+  (mostrarVentaDetails)="mostrarVentaDetails($event)"
+>
+</app-admin-cars>

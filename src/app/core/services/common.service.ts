@@ -32,6 +32,8 @@ export class CommonService {
   removeReportedCarUrl: string = this.adminUrl + '/reported';
   carrosInteresadosUrl: string = this.adminUrl + '/interesados';
   registerSaleUrl: string = this.autoSemiNuevoUrl + '/venta';
+  carsAvailableUrl: string = this.autoSemiNuevoUrl + '/query';
+  setEnabledUrL: string = this.autoSemiNuevoUrl + '/enable/';
 
   // * User
   userUrl: string = this.baseUrl + '/user';

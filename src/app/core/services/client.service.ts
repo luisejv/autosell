@@ -15,7 +15,10 @@ export class ClientService {
     return this.http.get(this.commonService.sponsoredCarsUrl);
   }
   public getRecentCars(): Observable<any> {
-    return this.http.get(this.commonService.getRecentCarsUrl);
+    return this.http.get(
+      this.commonService.getRecentCarsUrl +
+        `?enabled=true&validado=true&comprado=false`
+    );
   }
   public getBrandCount(): Observable<any> {
     return this.http.get(this.commonService.brandCountUrl);

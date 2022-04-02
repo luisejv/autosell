@@ -41,7 +41,7 @@ export class AdminService {
     );
   }
 
-  public registrarVenta(body: FormData): Observable<any> {
+  public registrarVenta(body: any): Observable<any> {
     return this.http.post(this.commonService.registerSaleUrl, body);
   }
 
@@ -72,5 +72,19 @@ export class AdminService {
 
   public postBanner(formData: FormData): Observable<any> {
     return this.http.post(this.commonService.bannerUrl, formData);
+  }
+
+  public getCarsByFilter(
+    enabled: boolean,
+    sold: boolean,
+    validated: boolean
+  ): Observable<any> {
+    return this.http.get(
+      `${this.commonService.carsAvailableUrl}?enabled=${enabled}&comprado=${sold}&validado=${validated}`
+    );
+  }
+
+  public setEnabled(id: number): Observable<any> {
+    return this.http.put(`${this.commonService.setEnabledUrL}/${id}`, null);
   }
 }

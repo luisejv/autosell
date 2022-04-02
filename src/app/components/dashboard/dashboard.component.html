@@ -3,12 +3,15 @@
     [ngStyle]="{
       'margin-top':
         commonService.screenWidth >= 1200
-          ? '155px'
+          ? '130px'
           : commonService.screenWidth < 768
-          ? '75px'
-          : '85px'
+          ? '140px'
+          : '150px'
     }"
   >
+    <!-- ? scrolled
+        ? '130px'
+        : '160px' -->
     <app-sidebar
       *ngIf="!registerCarUrl"
       [ngClass]="{
@@ -16,7 +19,7 @@
       }"
       [ngStyle]="{
         display: commonService.screenWidth < 1200 ? 'none' : 'block',
-        top: scrolled ? '70px' : '158px'
+        top: scrolled ? '90px' : '180px'
       }"
       [isAdmin]="isAdmin"
       [isRemax]="isRemax"
@@ -36,24 +39,25 @@
         'wrapper-lg': commonService.screenWidth >= 1200 && !registerCarUrl
       }"
     >
-      <!-- [ngStyle]="{
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- [ngStyle]="{
         'min-height':
           commonService.screenWidth <= 672
             ? 'calc(' + commonService.screenHeight + 'px - 2vw - 50px)'
             : 'calc(' + commonService.screenHeight + 'px - 2vw)'
       }" -->
-      <div class="pill text-white" *ngIf="isRemax && user">
-        Balance: $ {{ user.balance }}
-      </div>
-      <ng-template [ngIf]="isUser && isDashboard">
+<!-- <ng-template [ngIf]="isUser && isDashboard">
         <div class="container-fluid pt-5">
           <div class="row">
             <div class="col text-center">
-              <h1 class="welcome">¡BIENVENIDO A CLICKER!</h1>
+              <h1 class="welcome">¡BIENVENIDO A AUTOSELL!</h1>
               <section class="section-area mt-5">
                 <div class="container">
                   <div class="text-center">
-                    <!-- <div class="ui-title-logo">CLICKER</div> -->
                     <h2 class="ui-title">¿Cómo funciona?</h2>
                     <p>Compra o vende tu auto con nosotros</p>
                   </div>
@@ -71,12 +75,7 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          b-stages__item
-                          col-lg-3
-                          d-flex-lg
-                          flex-lg-column-reverse
-                        "
+                        class="b-stages__item col-lg-3 d-flex-lg flex-lg-column-reverse"
                       >
                         <span class="b-stages__number">02</span>
                         <div class="b-stages__inner">
@@ -99,12 +98,7 @@
                         </div>
                       </div>
                       <div
-                        class="
-                          b-stages__item
-                          col-lg-3
-                          d-flex-lg
-                          flex-lg-column-reverse
-                        "
+                        class="b-stages__item col-lg-3 d-flex-lg flex-lg-column-reverse"
                       >
                         <span class="b-stages__number">04</span>
                         <div class="b-stages__inner">
@@ -124,10 +118,6 @@
             </div>
           </div>
         </div>
-      </ng-template>
-      <ng-template [ngIf]="(isUser && !isDashboard) || !isUser">
-        <router-outlet></router-outlet>
-      </ng-template>
-    </div>
-  </div>
-</div>
+      </ng-template> -->
+<!-- <ng-template [ngIf]="(isUser && !isDashboard) || !isUser"> -->
+<!-- </ng-template> -->

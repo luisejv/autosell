@@ -46,7 +46,7 @@ export class AdminCarsComponent
   @Output() remove = new EventEmitter<number>(); //admin
   @Output() reportedIsValid = new EventEmitter<number>();
   @Output() mostrarReportadores = new EventEmitter<AutoReportado>();
-  @Output() mostrarVentaDetails = new EventEmitter<AutoInteresado>();
+  @Output() mostrarVentaDetails = new EventEmitter<AutoSemiNuevo>();
   @Output() setSponsorLevel = new EventEmitter<number>();
   @Output() removeSponsor = new EventEmitter<number>();
 
@@ -126,7 +126,7 @@ export class AdminCarsComponent
     this.mostrarReportadores.emit(auto);
   }
 
-  sellCar(auto: AutoInteresado): void {
+  sellCar(auto: AutoSemiNuevo): void {
     this.mostrarVentaDetails.emit(auto);
   }
 

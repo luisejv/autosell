@@ -87,7 +87,7 @@ export class StorageService {
   }
 
   isLoggedIn(): boolean {
-    return this.getEmailLocalStorage() != null;
+    return !!this.getEmailLocalStorage();
   }
 
   isValidated(): boolean {

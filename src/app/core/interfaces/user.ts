@@ -2,7 +2,7 @@ import { AutoSemiNuevo } from './auto-semi-nuevo';
 
 export interface User {
   id?: number;
-  correo: string;
+  email: string;
   password?: string;
   rol?: string;
   fbId?: string;

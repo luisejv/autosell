@@ -33,7 +33,7 @@ export class RemaxComponent implements OnInit {
 
   toJSON(): User {
     return {
-      correo: this.formGroup.value.correo,
+      email: this.formGroup.value.correo,
       password: this.formGroup.value.password,
       rol: 'REMAX',
       form: {
@@ -49,8 +49,7 @@ export class RemaxComponent implements OnInit {
       (response: User) => {
         Swal.fire({
           titleText: '¡Registrado!',
-          html:
-            'Tu solicitud está siendo procesada. Te llegará un correo con los siguientes pasos.',
+          html: 'Tu solicitud está siendo procesada. Te llegará un correo con los siguientes pasos.',
           allowOutsideClick: true,
           icon: 'success',
           showConfirmButton: true,

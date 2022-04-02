@@ -1,38 +1,3 @@
-<!-- ========================== -->
-<!-- SEARCH MODAL-->
-<!-- ==========================-->
-<!-- <div class="header-search open-search">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 offset-sm-2 col-10 offset-1">
-        <div class="navbar-search">
-          <form class="search-global">
-            <input
-              class="search-global__input"
-              type="text"
-              placeholder="Type to search"
-              autocomplete="off"
-              name="s"
-              value=""
-            />
-            <button class="search-global__btn">
-              <i class="icon stroke icon-Search"></i>
-            </button>
-            <div class="search-global__note">
-              Begin typing your search above and press return to search.
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  <button class="search-close close" type="button">
-    <i class="fa fa-times"></i>
-  </button>
-</div> -->
-<!-- ==========================-->
-<!-- MOBILE MENU-->
-<!-- ==========================-->
 <div
   data-off-canvas="mobile-slidebar left overlay"
   *ngIf="showSidebar"
@@ -109,7 +74,7 @@
       <a class="nav-link" [routerLink]="['/home']" (click)="toggle()">Inicio</a>
     </li>
     <ng-template [ngIf]="!isDashboard()">
-      <li class="nav-item" *ngIf="isLoggedIn()">
+      <li class="nav-item" *ngIf="isLoggedIn">
         <a class="nav-link" [routerLink]="['/dashboard']" (click)="toggle()"
           >Dashboard</a
         >
@@ -119,38 +84,29 @@
         <a
           class="nav-link"
           [routerLink]="['/inventory-listings']"
-          (click)="toggle(); goToCarsSubset('NEW')"
-          >Autos Nuevos</a
-        >
-      </li>
-
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          [routerLink]="['/inventory-listings']"
           (click)="toggle(); goToCarsSubset('USED')"
-          >Autos Seminuevos</a
+          >Compra Tu Auto</a
         >
       </li>
 
       <li class="nav-item" *ngIf="!isAdmin">
-        <a class="nav-link" [routerLink]="getRuta()" (click)="toggle()"
+        <a class="nav-link" [routerLink]="['/vende-tu-auto']" (click)="toggle()"
           >Vende Tu Auto</a
         >
       </li>
 
-      <li
-        *ngIf="!isLoggedIn()"
+      <!-- <li
+        *ngIf="!isLoggedIn"
         class="nav-item d-flex flex-column justify-content-center"
       >
-        <!-- <a class="registerBtn" [routerLink]="['/auth']" (click)="toggle()">Registrate</a> -->
+        registerBtn
         <a class="nav-link" [routerLink]="['/auth']" (click)="toggle()"
           >Regístrate</a
         >
-      </li>
+      </li> -->
 
       <li
-        *ngIf="!isLoggedIn()"
+        *ngIf="!isLoggedIn"
         class="nav-item d-flex flex-column justify-content-center"
       >
         <a class="nav-link" [routerLink]="['/auth']" (click)="toggle()"
@@ -159,7 +115,7 @@
       </li>
     </ng-template>
     <ng-template [ngIf]="isDashboard()">
-      <li class="nav-item" *ngIf="!isAdmin">
+      <!-- <li class="nav-item" *ngIf="!isAdmin">
         <a
           class="nav-link d-flex align-items-center"
           [routerLink]="['/dashboard/cuenta']"
@@ -189,15 +145,6 @@
       <li class="nav-item" *ngIf="!isAdmin">
         <a
           class="nav-link d-flex align-items-center"
-          [routerLink]="['/dashboard/registrar-auto']"
-          (click)="toggle()"
-          ><mat-icon class="mr-2">directions_car</mat-icon>Ingresar Auto</a
-        >
-      </li>
-
-      <li class="nav-item" *ngIf="!isAdmin">
-        <a
-          class="nav-link d-flex align-items-center"
           [routerLink]="['/dashboard/publicados-autos']"
           (click)="toggle()"
           ><mat-icon class="mr-2">car_rental</mat-icon>Mis Autos Publicados</a
@@ -211,14 +158,41 @@
           (click)="toggle()"
           ><mat-icon class="mr-2">warning</mat-icon>Reportar Incidencia</a
         >
+      </li> -->
+
+      <li class="nav-item" *ngIf="isAdmin">
+        <a
+          class="nav-link d-flex align-items-center"
+          [routerLink]="['/dashboard/registrar-auto']"
+          (click)="toggle()"
+          ><mat-icon class="mr-2">directions_car</mat-icon>Ingresar Auto</a
+        >
       </li>
 
       <li class="nav-item" *ngIf="isAdmin">
         <a
           class="nav-link d-flex align-items-center"
-          [routerLink]="['/dashboard/todos-los-autos']"
+          [routerLink]="['/dashboard/autos-vendidos']"
           (click)="toggle()"
-          ><mat-icon class="mr-2">directions_car</mat-icon>Todos los Autos</a
+          ><mat-icon class="mr-2">directions_car</mat-icon>Autos Vendidos</a
+        >
+      </li>
+
+      <li class="nav-item" *ngIf="isAdmin">
+        <a
+          class="nav-link d-flex align-items-center"
+          [routerLink]="['/dashboard/autos-disponibles']"
+          (click)="toggle()"
+          ><mat-icon class="mr-2">electric_car</mat-icon>Autos Disponibles</a
+        >
+      </li>
+
+      <li class="nav-item" *ngIf="isAdmin">
+        <a
+          class="nav-link d-flex align-items-center"
+          [routerLink]="['/dashboard/autos-no-disponibles']"
+          (click)="toggle()"
+          ><mat-icon class="mr-2">electric_car</mat-icon>Autos No Disponibles</a
         >
       </li>
 
@@ -231,7 +205,7 @@
         >
       </li>
 
-      <li class="nav-item" *ngIf="isAdmin">
+      <!-- <li class="nav-item" *ngIf="isAdmin">
         <a
           class="nav-link d-flex align-items-center"
           [routerLink]="['/dashboard/solicitudes-franquicia']"
@@ -247,7 +221,7 @@
           (click)="toggle()"
           ><mat-icon class="mr-2">local_car_wash</mat-icon> Autos Reportados</a
         >
-      </li>
+      </li> 
 
       <li class="nav-item" *ngIf="isAdmin">
         <a
@@ -286,7 +260,7 @@
         >
           <mat-icon class="mr-2">collections</mat-icon>Imagen Banner</a
         >
-      </li>
+      </li> -->
 
       <li class="nav-item" *ngIf="isAdmin">
         <a
@@ -299,7 +273,7 @@
       </li>
     </ng-template>
 
-    <li *ngIf="isLoggedIn()" class="nav-item">
+    <li *ngIf="isLoggedIn" class="nav-item">
       <a
         class="nav-link"
         (click)="logout()"
@@ -308,26 +282,6 @@
         >Logout</a
       >
     </li>
-
-    <!-- <li class="nav-item">
-      <a class="nav-link">Sobre Nosotros</a>
-      <ul class="mobile-sub-menu">
-        <li><a href="reservation-grid.html">Reservation car</a></li>
-        <li><a href="booking-system.html">Reservation service</a></li>
-      </ul>
-    </li>
-
-    <li class="nav-item">
-      <a class="nav-link">Novedades</a>
-      <ul class="mobile-sub-menu">
-        <li><a href="blog-main.html">Blog main</a></li>
-        <li><a href="blog-grid.html">Blog grid</a></li>
-        <li><a href="blog-post.html">Blog post</a></li>
-      </ul>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="contacts.html">Contacto</a>
-    </li> -->
   </ul>
 </div>
 
@@ -336,32 +290,31 @@
     <div class="container-fluid">
       <div class="row justify-content-between align-items-center">
         <div class="col-auto">
-          <!-- <div class="top-bar__item">
+          <div class="top-bar__item">
             <i class="ic fas fa-map-marker-alt"></i> Llámanos:<a
               class="top-bar__link"
-              href="tel:+17553028549"
+              href="tel:+14049444"
             >
-              +1 755 302 8549</a
+              +1 404 9444</a
             >
-          </div> -->
+          </div>
           <div class="top-bar__item">
             <i class="ic fas fa-envelope"></i> Email:<a
               class="top-bar__link"
-              href="mailto:hola@clicker.pe"
+              href="mailto:jsalas@autosell.pe"
             >
-              hola@clicker.pe</a
+              jsalas@autosell.pe</a
             >
           </div>
           <div class="top-bar__item">
             <i class="ic fas fa-clock"></i> Horario de atención:
 
             <span class="top-bar__link"
-              >Lun - Vie : 9am a 6:30pm y Sab: 9am a 1:30pm</span
+              >Lun - Vie : 9am a 6pm y Sab: 9am a 3pm</span
             >
           </div>
         </div>
         <div class="col-auto">
-          <!-- TODO: linkear las redes -->
           <ul class="header-soc list-unstyled">
             <li class="header-soc__item">
               <a
@@ -391,14 +344,14 @@
           <a class="navbar-brand navbar-brand_light scroll" href="home.html">
             <img
               class="normal-logo img-fluid"
-              src="assets/media/general/V_B2_Logo-horizontal.svg"
+              src="assets/media/general/logo-autosell-color-azul.svg"
               alt="logo"
             />
           </a>
           <a class="navbar-brand navbar-brand_dark scroll" href="home.html">
             <img
               class="normal-logo img-fluid w-100"
-              src="assets/media/general/V_B2_Logo-horizontal.svg"
+              src="assets/media/general/logo-autosell-color-azul.svg"
               alt="logo"
             />
           </a>
@@ -406,20 +359,16 @@
         <div class="col-auto d-xl-none">
           <!-- Mobile Trigger Start-->
           <button
-            class="
-              menu-mobile-button
-              js-toggle-mobile-slidebar
-              toggle-menu-button
-            "
+            class="menu-mobile-button js-toggle-mobile-slidebar toggle-menu-button"
             (click)="toggle()"
           >
-            <i class="toggle-menu-button-icon" style="color: #29abe2"
-              ><span style="background-color: #29abe2"></span
-              ><span style="background-color: #29abe2"></span
-              ><span style="background-color: #29abe2"></span
-              ><span style="background-color: #29abe2"></span
-              ><span style="background-color: #29abe2"></span
-              ><span style="background-color: #29abe2"></span
+            <i class="toggle-menu-button-icon" style="color: #136ee6"
+              ><span style="background-color: #136ee6"></span
+              ><span style="background-color: #136ee6"></span
+              ><span style="background-color: #136ee6"></span
+              ><span style="background-color: #136ee6"></span
+              ><span style="background-color: #136ee6"></span
+              ><span style="background-color: #136ee6"></span
             ></i>
           </button>
           <!-- Mobile Trigger End-->
@@ -430,40 +379,36 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  [routerLink]="['/inventory-listings']"
-                  (click)="goToCarsSubset('NEW')"
-                  >Autos Nuevos</a
-                >
-              </li>
-
-              <li class="nav-item">
-                <a
-                  class="nav-link"
+                  *ngIf="!isAdmin && !isLoggedIn"
                   [routerLink]="['/inventory-listings']"
                   (click)="goToCarsSubset('USED')"
-                  >Autos Seminuevos</a
+                  >Compra Tu Auto</a
                 >
               </li>
 
-              <li class="nav-item borderRight" *ngIf="!isAdmin">
-                <a class="nav-link" [routerLink]="getRuta()">Vende Tu Auto</a>
+              <li class="nav-item" *ngIf="!isAdmin && !isLoggedIn">
+                <a class="nav-link" [routerLink]="['/vende-tu-auto']"
+                  >Vende Tu Auto</a
+                >
               </li>
 
-              <li
-                *ngIf="!isLoggedIn()"
+              <div class="borderRight mx-3"></div>
+
+              <!-- <li
+                *ngIf="!isLoggedIn"
                 class="nav-item d-flex flex-column justify-content-center"
               >
                 <a class="registerBtn" [routerLink]="['/auth']">Regístrate</a>
-              </li>
+              </li> -->
 
               <li
-                *ngIf="!isLoggedIn()"
+                *ngIf="!isLoggedIn"
                 class="nav-item d-flex flex-column justify-content-center"
               >
                 <a class="loginBtn" [routerLink]="['/auth']">Ingresa</a>
               </li>
 
-              <li *ngIf="isLoggedIn()" class="nav-item">
+              <li *ngIf="isLoggedIn" class="nav-item">
                 <a class="nav-link" (click)="logout()" [routerLink]="['/home']"
                   >Logout</a
                 >
@@ -471,14 +416,11 @@
             </ul>
             <a
               class="header-main__link"
-              *ngIf="isLoggedIn()"
+              *ngIf="isLoggedIn"
               [routerLink]="['/dashboard']"
             >
               <i class="ic icon-user"></i>
             </a>
-            <!-- <span class="header-main__link btn_header_search">
-              <i class="ic icon-magnifier"></i>
-            </span> -->
           </nav>
         </div>
       </div>

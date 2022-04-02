@@ -3,10 +3,13 @@
 /*//////////////////////////////////////////////////////////////////////////////////////////*/
 
 :root {
-  --primary: #29abe2;
+  /* --primary: #29abe2; */
+  /* --blue: #0071bc; */
+  --primary: #136ee6;
+  --secondary: #ee5743;
   --grey: #333333;
   --black: #1a1a1a;
-  --blue: #0071bc;
+  --blue: #f8cc42;
   --lightgrey: #eff2f9;
 }
 
@@ -33,7 +36,8 @@ a,
 .entry-blockquote:before,
 .header-soc__link:hover,
 .navbar-nav .nav-link:hover {
-  color: #29abe2;
+  /* color: #29abe2; */
+  color: var(--primary);
 }
 
 .bg-primary,
@@ -57,7 +61,8 @@ a,
 .b-booking-main__cat-item:hover,
 .b-title-page__label:after,
 html .b-goods__img:before {
-  background-color: #29abe2;
+  background-color: var(--primary);
+  /* background-color: #29abe2; */
 }
 
 .btn-primary,
@@ -131,7 +136,8 @@ html .b-goods__img:before {
 .b-post-2 .btn:hover,
 .btn-arr_secondary:after,
 .b-booking-nav__item.active .b-booking-nav__main {
-  background-color: #29abe2 !important;
+  /* background-color: #29abe2 !important; */
+  background-color: var(--blue) !important;
 }
 
 .slick-dots li button:hover,

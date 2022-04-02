@@ -33,17 +33,17 @@ export class DashboardComponent implements OnInit {
     this.isAdmin = this.rol == RolesEnum.ADMIN;
     this.isRemax = this.rol == RolesEnum.REMAX;
     this.isUser = this.rol == RolesEnum.PARTICULAR;
-    this.userService
-      .getUser(this.storageService.getEmailLocalStorage()!)
-      .subscribe(
-        (response) => {
-          this.user = response;
-        },
-        (error) => {
-          console.log('Error getting user info: ', error);
-          // TODO: handlear esto
-        }
-      );
+    // this.userService
+    //   .getUser(this.storageService.getEmailLocalStorage()!)
+    //   .subscribe(
+    //     (response) => {
+    //       this.user = response;
+    //     },
+    //     (error) => {
+    //       console.log('Error getting user info: ', error);
+    //       // TODO: handlear esto
+    //     }
+    //   );
     const arrayUrl = this.router.url.split('/');
     this.registerCarUrl = arrayUrl[arrayUrl.length - 1] == 'registrar-auto';
     this.isDashboard = arrayUrl[arrayUrl.length - 1] === 'dashboard';

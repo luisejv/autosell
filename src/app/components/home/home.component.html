@@ -39,21 +39,6 @@
               formControlName="carType"
               [value]="carType"
             />
-            <!-- <span
-              [ngClass]="{
-                ic: true,
-                'flaticon-pick-up': carType == 'PICKUP',
-                'flaticon-car-suv': carType == 'SUV',
-                'flaticon-coupe-car': carType == 'COUPE',
-                'flaticon-cabrio-car': carType == 'CONVERTIBLE',
-                'flaticon-sedan-car-model': carType == 'SEDAN',
-                'flaticon-car': carType == 'CITYCAR',
-                'flaticon-minivan-car': carType == 'VAN' || carType == 'PANEL',
-                'flaticon-car-of-hatchback-model': carType == 'HATCHBACK',
-                'flaticon-car': carType == 'OTRO',
-                'flaticon-jeep': carType == 'CAMION'
-              }"
-            ></span> -->
             <img
               class="ic"
               [src]="getBannerImg(carType)"
@@ -64,7 +49,7 @@
             {{ carType }}
           </label>
         </div>
-        <ul class="b-main-filter-nav nav nav-tabs" id="findTab" role="tablist">
+        <!-- <ul class="b-main-filter-nav nav nav-tabs" id="findTab" role="tablist">
           <li class="b-main-filter-nav__item nav-item">
             <a
               (click)="changeCarSubset('ALL')"
@@ -104,7 +89,7 @@
               >Autos Seminuevos</a
             >
           </li>
-        </ul>
+        </ul> -->
         <div class="b-main-filter-content tab-content" id="findTabContent">
           <div class="tab-pane fade show active" id="content-allCar">
             <div class="row align-items-end justify-content-between">
@@ -213,15 +198,13 @@
 </section>
 
 <!-- Section-5 Autos patrocinados -->
-<section
+<!-- <section
   class="section-goods-slider bg-dark b-services"
   *ngIf="sponsoredCars.length > 0"
 >
   <div class="section-goods-slider__inner">
-    <!-- <div class="ui-decor ui-decor_center bg-primary"></div> -->
     <div class="container" style="padding-top: 200px">
       <div class="text-center">
-        <!-- <div class="ui-title-logo ui-title-logo_dark">CLICKER</div> -->
         <h2 class="ui-title ui-title_light">OFERTAS DE LA SEMANA</h2>
         <div class="row justify-content-center">
           <div class="col-8">
@@ -233,10 +216,6 @@
           #slickModal="slick-carousel"
           [config]="slideConfig"
         >
-          <!--(init)="slickInit($event)"
-          (breakpoint)="breakpoint($event)"
-          (afterChange)="afterChange($event)"
-          (beforeChange)="beforeChange($event)" -->
           <div *ngFor="let sponsored of sponsoredCars">
             <div
               ngxSlickItem
@@ -310,7 +289,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- Section-3 Recién Llegados -->
 <section *ngIf="recentCars.length > 0" class="section-goods">
@@ -371,8 +350,7 @@
           <span class="b-stages__number">01</span>
           <div class="b-stages__title text-primary">Encuentra tu auto</div>
           <div class="b-stages__info">
-            Usa el buscador para filtrar el auto nuevo o seminuevo que estés
-            buscando.
+            Usa el buscador para filtrar el auto seminuevo que estés buscando.
           </div>
         </div>
         <div class="b-stages__item col-lg-3 d-flex-lg flex-lg-column-reverse">
@@ -380,8 +358,8 @@
           <div class="b-stages__inner">
             <div class="b-stages__title text-primary">Envía tu solicitud</div>
             <div class="b-stages__info">
-              Si te gustó un auto nuevo o seminuevo, envía tu solicitud y
-              nuestros asesores se pondrán en contacto contigo.
+              Si te gustó un auto seminuevo, envía tu solicitud y nuestros
+              asesores se pondrán en contacto contigo.
             </div>
           </div>
         </div>
@@ -389,8 +367,7 @@
           <span class="b-stages__number">03</span>
           <div class="b-stages__title text-primary">¿Quieres vender?</div>
           <div class="b-stages__info">
-            Crea tu cuenta, publica tu auto, espera la aprobación y Clicker se
-            encarga.
+            Déjanos tus datos y los de tu auto y nos pondremos en contacto.
           </div>
         </div>
         <div class="b-stages__item col-lg-3 d-flex-lg flex-lg-column-reverse">
@@ -398,8 +375,8 @@
           <div class="b-stages__inner">
             <div class="b-stages__title text-primary">No más trámites</div>
             <div class="b-stages__info">
-              En Clicker estamos para ayudarte. Disfruta de tu auto nuevo o
-              seminuevo y evítate trámites al vender tu auto con nosotros.
+              En Autosell estamos para ayudarte. Disfruta de tu auto seminuevo y
+              evítate trámites al vender tu auto con nosotros.
             </div>
           </div>
         </div>
@@ -417,7 +394,7 @@
           <div class="b-bnr-2__inner bg-primary">
             <span class="btn-arr btn-arr_left"></span>
             <h2 class="b-bnr-2__title">
-              ¿Quieres comprar un auto<br />nuevo o un seminuevo?
+              ¿Quieres comprar <br />un auto seminuevo?
             </h2>
             <div class="b-bnr-2__info">
               ¡Empecemos con la búsqueda de tu próximo auto!
@@ -840,9 +817,9 @@
             </div>
             <div class="b-services-content__main">
               <p>
-                Pensando en ti, hemos recopilado los mejores autos nuevos y semi
-                nuevos del mercado. Filtra por marca, modelo, precio, año y
-                conoce el portafolio de autos seleccionados.
+                Pensando en ti, hemos recopilado los mejores autos semi nuevos
+                del mercado. Filtra por marca, modelo, precio, año y conoce el
+                portafolio de autos seleccionados.
               </p>
             </div>
           </section>
@@ -858,9 +835,9 @@
             </div>
             <div class="b-services-content__main">
               <p>
-                Sabemos que no todos son expertos en autos. Por eso, en Clicker
-                te asesoraremos para que puedas conseguir tu próximo auto nuevo
-                o seminuevo de una manera fácil, rápida y transparente.
+                Sabemos que no todos son expertos en autos. Por eso, en Autosell
+                te asesoraremos para que puedas conseguir tu próximo auto
+                seminuevo de una manera fácil, rápida y transparente.
               </p>
             </div>
           </section>
@@ -876,7 +853,7 @@
             </div>
             <div class="b-services-content__main">
               <p>
-                En Clicker creemos que comprar un auto no tiene porque ser una
+                En Autosell creemos que comprar un auto no tiene por qué ser una
                 tarea tediosa o complicada. Confía en nosotros y descubre la
                 mejor forma de comprar o vender un auto.
               </p>
@@ -894,10 +871,9 @@
             </div>
             <div class="b-services-content__main">
               <p>
-                Si tu idea es adquirir un auto nuevo o usado al crédito, estás
-                en el lugar correcto. Trabajamos con las principales entidades
-                financieras del mercado para poder brindarte el crédito que
-                mejor se ajuste a tus necesidades.
+                Si tu idea es _____, estás en el lugar correcto. Trabajamos con
+                las principales entidades financieras del mercado para poder
+                brindarte _____.
               </p>
             </div>
           </section>
@@ -1145,7 +1121,7 @@
       <div class="footer__figure">
         <img
           class="img-fluid h-75 w-75"
-          src="assets/media/content/footer/figure-1.png"
+          src="assets/media/content/footer/mercedes.png"
           alt="foto"
         />
       </div>
@@ -1158,7 +1134,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-7 offset-xl-5">
+      <div class="col-xl-6 offset-xl-6">
         <div
           class="b-bnr-contacts row justify-content-center align-items-center"
         >
@@ -1176,7 +1152,7 @@
               <a
                 class="b-bnr-contacts__link text-white"
                 href="mailto:hola@clicker.pe"
-                >hola@clicker.pe</a
+                >jsalas@autosell.pe</a
               >
             </div>
           </div>
