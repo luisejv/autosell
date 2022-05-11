@@ -86,7 +86,7 @@ export class CarRegistrationComponent implements OnInit {
         }
         if (
           error.status === 226 ||
-          error.error.includes('este auto esta siendo vendido')
+          error.message.includes('este auto esta siendo vendido')
         ) {
           Swal.fire({
             titleText: 'Oops!',

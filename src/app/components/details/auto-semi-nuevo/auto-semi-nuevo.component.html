@@ -381,13 +381,13 @@
               </div>
             </div>
 
-            <div class="widget-2 section-sidebar bg-gray">
+            <div class="widget-2 section-sidebar bg-gray" *ngIf="!isAdmin">
               <h3 class="widget-title-2 pb-0">
                 <img
                   class="ic pr-2 pl-4"
-                  src="assets/media/general/Favicon192x192.svg"
-                  height="70"
-                  width="70"
+                  src="assets/media/general/favicon.png"
+                  height="50"
+                  width="60"
                   alt="photo"
                 />
                 <span
@@ -413,7 +413,7 @@
                     brevedad posible.
                   </p>
                   <span class="widget-title__inner" *ngIf="isAdmin"
-                    >¿Patrocinar este auto?</span
+                    >Patrocinar¿ este auto?</span
                   >
                 </ng-template>
               </h3>
@@ -538,13 +538,13 @@
                     </form>
                   </div>
                   <ng-template #enviar>
-                    <button
+                    <!-- <button
                       class="btn btn-secondary w-100"
                       *ngIf="isAdmin"
                       (click)="addCarToSponsored()"
                     >
                       Patrocinar
-                    </button>
+                    </button> -->
                     <button
                       class="btn btn-secondary w-100"
                       *ngIf="!isRemax && !isAdmin"

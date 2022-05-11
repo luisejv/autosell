@@ -4431,7 +4431,7 @@ html .b-goods-slider .slick-list {
 .section-title-page {
   position: relative;
   /* margin-top: 235px; */
-  margin-top: 180px;
+  margin-top: 165px;
   padding-top: 95px;
   padding-bottom: 75px;
   background-image: url("/assets/media/general/Imagen-2.png");
@@ -4641,8 +4641,10 @@ html .b-goods-slider .slick-list {
   z-index: 1;
   padding-top: 100px;
   padding-bottom: 40px;
-  color: #999;
-  background-color: #1a1a1a;
+  color: #fff;
+  /* color: #999; */
+  background-color: var(--primary);
+  /* background-color: #1a1a1a; */
   /* background: url(/assets/media/content/footer/bg.jpg) 50% 0; */
   background-size: cover;
 }
@@ -4741,7 +4743,8 @@ html .b-goods-slider .slick-list {
 
 .footer-contacts__item {
   margin-bottom: 6px;
-  color: #a9aeb3;
+  color: #fff;
+  /* color: #a9aeb3; */
 }
 
 .footer-contacts__item .ic {
@@ -4751,7 +4754,8 @@ html .b-goods-slider .slick-list {
 }
 
 .footer-contacts__item a {
-  color: #a9aeb3;
+  color: #fff;
+  /* color: #a9aeb3; */
 }
 
 .footer-contacts .footer-contacts__phone {
@@ -4767,7 +4771,8 @@ html .b-goods-slider .slick-list {
 .footer-list li a {
   position: relative;
   padding-left: 15px;
-  color: #cfcfcf;
+  color: #fff;
+  /* color: #cfcfcf; */
 }
 
 .footer-list li a:before {
@@ -4777,7 +4782,8 @@ html .b-goods-slider .slick-list {
   font-family: "Font Awesome 5 Free";
   font-size: 12px;
   font-weight: 900;
-  color: #ccc;
+  color: #fff;
+  /* color: #ccc; */
   content: "\f105";
 }
 
@@ -4842,7 +4848,8 @@ html .b-goods-slider .slick-list {
 .footer-copyright {
   margin-top: 50px;
   padding-top: 30px;
-  color: #999;
+  color: #fff;
+  /* color: #999; */
   border-top: 1px solid rgba(221, 221, 221, 0.1);
   text-align: center;
 }

@@ -5,7 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class NormalizePipe implements PipeTransform {
   transform(value: string, ...args: unknown[]): string {
-    let normalizedString: string = value.toLowerCase().replace(/(\s)/g, '');
+    let normalizedString: string =
+      value.toLowerCase(); /* .replace(/(\s)/g, '') */
 
     let a = 'á'.charCodeAt(0);
     let e = 'é'.charCodeAt(0);
@@ -39,8 +40,8 @@ export class NormalizePipe implements PipeTransform {
         } else {
           return c;
         }
-
       })
-      .join('').toUpperCase();
+      .join('')
+      .toUpperCase();
   }
 }

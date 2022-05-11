@@ -40,3 +40,13 @@
 .navbar-nav li {
   margin: 5px 0px;
 }
+
+.whatsapp {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.whatsapp:before {
+  content: "\f232";
+}

@@ -37,6 +37,7 @@
 
 .rounded-corners {
   border-radius: 999px;
+  font-size: 14px;
 }
 
 ::ng-deep .mat-form-field-underline {

@@ -60,6 +60,14 @@ export class NavbarComponent implements OnInit {
     this.showSidebar = !this.showSidebar;
   }
 
+  openWhatsapp() {
+    window.open(
+      'https://wa.me/51933048570?text=Hola!%20¿Como%20podemos%20ayudarte?%20No%20olvides%20dejar%20tus%20datos.%20Te%20contactaremos%20pronto.',
+      '?text=Hola!%20¿Como%20podemos%20ayudarte?%20No%20olvides%20dejar%20tus%20datos.%20Te%20contactaremos%20pronto.',
+      '_ blank'
+    );
+  }
+
   goToCarsSubset(subset: string): void {
     const body: CarSearchFilter = {
       carSubset: subset,

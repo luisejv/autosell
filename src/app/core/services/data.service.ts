@@ -81,6 +81,7 @@ export class DataService {
     'Hatchback',
     'Camión',
     'Panel',
+    'Motocicleta',
   ];
 
   tiposTracciones: string[] = ['4x4', '4x2 Delantera', '4x2 Trasera', 'AWD'];

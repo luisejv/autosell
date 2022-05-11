@@ -649,8 +649,9 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
 
   getUsedcars(shouldFilterCars?: boolean): void {
     this.loadingCars = true;
-    this.userService.getAutosSemiNuevosValidados().subscribe(
+    this.userService.getCarsByFilter(true, false, true).subscribe(
       (response: AutoSemiNuevo[]) => {
+        console.log(response);
         this.carros = response.map((auto: AutoSemiNuevo) => {
           return {
             ...auto,

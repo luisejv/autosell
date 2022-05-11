@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
   ) {
     this.filterFormGroup = this.fb.group({
       carType: 'OTRO',
-      carSubset: 'ALL',
+      carSubset: 'USED',
       carBrand: '',
       carModel: '',
       carMaxPrice: '',
@@ -300,10 +300,10 @@ export class HomeComponent implements OnInit {
 
   goToCarRegistration(): void {
     if (this.storageService.isLoggedIn()) {
-      console.log('redirect to car-registration');
-      this.router.navigateByUrl('/dashboard/registrar-auto');
+      // console.log('redirect to car-registration');
+      // this.router.navigateByUrl('/dashboard/registrar-auto');
     } else {
-      this.router.navigateByUrl('/auth');
+      this.router.navigateByUrl('/vende-tu-auto');
     }
   }
 

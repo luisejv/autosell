@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8081',
+  baseUrl: 'https://api.autosell.pe/Autosell-0.0.1-SNAPSHOT',
+  // baseUrl: 'http://localhost:8081',
 };
 
 /*

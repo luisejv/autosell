@@ -76,3 +76,12 @@
     width: 100px !important;
   }
 }
+
+.dropdown-menu,
+.inner.show {
+  z-index: 10;
+}
+
+bs-dropdown-container {
+  z-index: 1060;
+}

@@ -73,6 +73,16 @@ export class UserService {
     );
   }
 
+  public getCarsByFilter(
+    enabled: boolean,
+    sold: boolean,
+    validated: boolean
+  ): Observable<any> {
+    return this.http.get(
+      `${this.commonService.carsAvailableUrl}?enabled=${enabled}&comprado=${sold}&validado=${validated}`
+    );
+  }
+
   public getAutosSemiNuevosValidados(): Observable<any> {
     return this.http.get(this.commonService.getAutosSemiNuevosValidadosUrl);
   }

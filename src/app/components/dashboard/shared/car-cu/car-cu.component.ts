@@ -108,7 +108,7 @@ export class CarCuComponent implements OnInit {
           Validators.required,
           Validators.max(this.date.getFullYear() + 1),
           Validators.maxLength(4),
-          Validators.min(1999),
+          Validators.min(1980),
         ],
       ],
       tipoCambios: ['', Validators.required],
@@ -116,7 +116,7 @@ export class CarCuComponent implements OnInit {
       tipoCarroceria: ['', Validators.required],
       cilindrada: [
         '',
-        [Validators.required, Validators.min(800), Validators.max(6000)],
+        [Validators.required, Validators.min(200), Validators.max(6000)],
       ],
       kilometraje: ['', Validators.required],
       numeroPuertas: ['', Validators.required],
