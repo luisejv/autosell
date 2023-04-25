@@ -314,6 +314,16 @@ export class CarCuComponent implements OnInit {
   onImageChange(e: any, idx: number) {
     const reader = new FileReader();
 
+    /*if (e.target.files && e.target.files.length) {
+      for(let i=0; i<File.length; i++){
+        const [file] = e.target.files;
+        this.fotos[idx].foto = e.target.files;
+        reader.readAsDataURL(file[i]);
+        reader.onload=(events:any)=>{
+          this.fotos.push(events.target.result);
+        }
+      }*/
+
     if (e.target.files && e.target.files.length) {
       const [file] = e.target.files;
       this.fotos[idx].foto = e.target.files;
