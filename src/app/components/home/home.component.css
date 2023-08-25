@@ -1,5 +1,35 @@
 @import url("../../../styles.css");
 
+.whatsapp {
+  font-family: "Font Awesome 5 Brands";
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.whatsapp:before {
+  top: 14px;
+  content: "\f232";
+  position: relative;
+}
+
+.whatsapp {
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#25d366;
+  color:#FFF;
+  border-radius:50px;
+  text-align:center;
+  font-size:30px;
+  z-index:100;
+}
+
+.whatsapp-icon {
+  margin-top:13px;
+}
+
 .find-your-dream-car {
   /* background-image: url("https://images.pexels.com/photos/919073/pexels-photo-919073.jpeg?cs=srgb&dl=pexels-albin-berlin-919073.jpg&fm=jpg"); */
   /* background-image: url("/assets/media/content/b-main-filter/banner.png"); */

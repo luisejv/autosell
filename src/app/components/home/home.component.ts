@@ -187,6 +187,14 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  openWhatsapp() {
+    window.open(
+      'https://wa.me/51905449442?text=%C2%A1Hola%2C+estoy+interesado+en+trabajar+con+ustedes%21',
+      '?text=%C2%A1Hola%2C+estoy+interesado+en+trabajar+con+ustedes%21',
+      '_ blank'
+    );
+  }
+
   // Cambiar Carroceria
   changeCarType(type: string): void {
     console.warn(type);

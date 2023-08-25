@@ -62,8 +62,8 @@ export class NavbarComponent implements OnInit {
 
   openWhatsapp() {
     window.open(
-      'https://wa.me/51933048570?text=Hola!%20¿Como%20podemos%20ayudarte?%20No%20olvides%20dejar%20tus%20datos.%20Te%20contactaremos%20pronto.',
-      '?text=Hola!%20¿Como%20podemos%20ayudarte?%20No%20olvides%20dejar%20tus%20datos.%20Te%20contactaremos%20pronto.',
+      'https://wa.me/51905449442?text=%C2%A1Hola%2C+estoy+interesado+en+trabajar+con+ustedes%21',
+      '?text=%C2%A1Hola%2C+estoy+interesado+en+trabajar+con+ustedes%21',
       '_ blank'
     );
   }

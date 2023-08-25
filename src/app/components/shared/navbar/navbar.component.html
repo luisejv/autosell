@@ -226,7 +226,7 @@
           (click)="toggle()"
           ><mat-icon class="mr-2">local_car_wash</mat-icon> Autos Reportados</a
         >
-      </li> 
+      </li>
 
       <li class="nav-item" *ngIf="isAdmin">
         <a
@@ -298,18 +298,21 @@
           <div class="top-bar__item">
             <i class="ic fas fa-map-marker-alt"></i> Llámanos:<a
               class="top-bar__link"
-              href="tel:+14049444"
+              href="tel:+13258506"
             >
-              01 404 9444</a
+              01 325 8506</a
             >
           </div>
           <div
             class="top-bar__item"
-            style="cursor: pointer"
-            (click)="openWhatsapp()"
           >
             <i class="ic fas whatsapp"></i>
-            <a class="top-bar__link"> Whatsapp </a>
+            <a class="top-bar__link"
+            style="cursor: pointer"
+            (click)="openWhatsapp()"
+            >
+             WhatsApp
+            </a>
           </div>
           <div class="top-bar__item">
             <i class="ic fas fa-envelope"></i> Email:<a
@@ -321,7 +324,6 @@
           </div>
           <div class="top-bar__item">
             <i class="ic fas fa-clock"></i> Horario de atención:
-
             <span class="top-bar__link"
               >Lun - Vie : 9am a 6pm y Sab: 9am a 3pm</span
             >

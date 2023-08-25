@@ -1,4 +1,9 @@
 <!-- Section-1 Buscador & filtros por carrocería, marca, modelo, precio y año -->
+<a style="cursor: pointer"
+    (click)="openWhatsapp()"
+    class="whatsapp"
+    target="_blank">
+    <i class="ic fas whatsapp"></i></a>
 <section
   class="b-main-filter find-your-dream-car"
   [ngStyle]="{ 'padding-bottom': sponsoredCars.length == 0 ? '150px' : '0px' }"
