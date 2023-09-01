@@ -110,13 +110,8 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
     this.loaderService.setIsLoading(true);
     this.loadingCars = true;
 
-    // console.group('Filtros desde Home');
-    // console.log(this.filters);
-    // console.groupEnd();
-
-    this.clientService.getFilters().subscribe(
+     this.clientService.getFilters().subscribe(
       (response: Filter[]) => {
-        console.log('Filtros: ', response);
         this.carFilters = response.map((filter: Filter) => {
           return {
             marca: NormalizePipe.prototype.transform(filter.marca),
@@ -145,8 +140,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
           .map((elem: Filter) => elem.tipoCarroceria)
           .filter((v, i, a) => a.indexOf(v) == i);
         this.carrocerias.push('OTRO');
-        console.log('Marcas: ', this.filteredBrands);
-        console.log('Carrocerias: ', this.carrocerias);
 
         // carType: carrocería
         // carBrand: marca
@@ -183,14 +176,9 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
           }
         }
 
-        console.group('Modelos');
-        console.log(this.filteredModels);
-        console.groupEnd();
       },
       (error) => {
-        console.group('In getting filters');
         console.error(error);
-        console.groupEnd();
       }
     );
 
@@ -216,10 +204,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
     this.updateKilometrajeSliderOptions();
     this.updateYearSliderOptions();
 
-    // console.group('Marca y Modelo de Home');
-    // console.log(this.marca);
-    // console.log(this.modelo);
-    // console.groupEnd();
 
     this.filterFormGroup = this.fb.group({
       carSubset: this.subset,
@@ -258,10 +242,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
             console.group('Autos Semi Nuevos');
             console.dir(this.carros);
             console.groupEnd();
-
-            // console.group('Carrocerías');
-            // console.log(this.carros.map((carro) => carro.tipoCarroceria));
-            // console.groupEnd();
 
             this.filteredCarros = response;
 
@@ -539,7 +519,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
       }
     });
 
-    console.log('filtered: ', this.filteredCarros);
 
     this.filteredCarros = aux;
     this.auxFilteredCarros = this.filteredCarros;
@@ -570,11 +549,9 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
 
   sortBy(e: any): void {
     const by = e.target.value;
-    console.log('sortBy option selected: ', by);
 
     switch (by) {
       case SortType.PrecioMenorMayor: {
-        console.log('precio ascendiente');
 
         this.filteredCarros.sort((a: AutoSemiNuevo, b: AutoSemiNuevo) => {
           return a.precioVenta - b.precioVenta;
@@ -583,7 +560,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         break;
       }
       case SortType.PrecioMayorMenor: {
-        console.log('precio descendiente');
 
         this.filteredCarros.sort((a: AutoSemiNuevo, b: AutoSemiNuevo) => {
           return b.precioVenta - a.precioVenta;
@@ -591,7 +567,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         break;
       }
       case SortType.AnoMenorMayor: {
-        console.log('precio ascendiente');
 
         this.filteredCarros.sort((a: AutoSemiNuevo, b: AutoSemiNuevo) => {
           return a.anoFabricacion - b.anoFabricacion;
@@ -600,7 +575,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
         break;
       }
       case SortType.AnoMayorMenor: {
-        console.log('precio descendiente');
 
         this.filteredCarros.sort((a: AutoSemiNuevo, b: AutoSemiNuevo) => {
           return b.anoFabricacion - a.anoFabricacion;
@@ -651,7 +625,6 @@ export class PublishedCarsComponent extends Pagination implements OnInit {
     this.loadingCars = true;
     this.userService.getCarsByFilter(true, false, true).subscribe(
       (response: AutoSemiNuevo[]) => {
-        console.log(response);
         this.carros = response.map((auto: AutoSemiNuevo) => {
           return {
             ...auto,

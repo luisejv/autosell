@@ -61,8 +61,8 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log('auto interesado: ', this.auto);
-    console.log('interesting view: ', this.interestingView);
+    //console.log('auto interesado: ', this.auto);
+    //console.log('interesting view: ', this.interestingView);
   }
 
   includesDashboard(): boolean {
@@ -74,9 +74,7 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.group('Changes');
-    console.dir(changes);
-    console.groupEnd();
+
 
     if (this.normalView || this.particularPublishedView || this.adminView) {
       this.autoCasteado = this.auto as AutoSemiNuevo;
@@ -125,7 +123,6 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   }
 
   goToVehicleDetails(): void {
-    console.log('clicked on new car');
     if (this.adminView) {
       if ('documentacion' in this.auto) {
         // carro nuevo
@@ -194,7 +191,6 @@ export class PublishedCarComponent implements OnInit, OnChanges {
   }
 
   sponsorLevelEvent(): void {
-    console.log('casteado: ', (this.auto as SponsoredCar).id!);
     this.changeSponsorLevel.emit((this.auto as SponsoredCar).id!);
   }
 

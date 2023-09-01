@@ -84,15 +84,6 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Logging Out!');
-    this.storageService.removeEmailLocalStorage();
-    this.storageService.removeRoleFromLocalStorage();
-    this.storageService.removeTokenLocalStorage();
-    this.storageService.removeValidatedLocalStorage();
-    this.storageService.removeIdLocalStorage();
-    this.storageService.removeDniLocalStorage();
-    this.storageService.removeNombreLocalStorage();
-    this.storageService.removeApellidosLocalStorage();
-    this.storageService.removePhoneLocalStorage();
+    localStorage.clear();
   }
 }

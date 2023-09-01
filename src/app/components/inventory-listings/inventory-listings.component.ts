@@ -16,9 +16,7 @@ export class InventoryListingsComponent implements OnInit {
       (params: CarSearchFilter) => {
         // siempre mandará todos los parámetros así que normal hacer esto
         this.filters = params;
-        // console.group('Route Params pasados a Inventory Listings:');
-        // console.log(this.filters);
-        // console.groupEnd();
+       
       },
       (error: any) => {
         console.error(

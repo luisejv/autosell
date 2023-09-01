@@ -104,14 +104,7 @@ export class HomeComponent implements OnInit {
         console.error('error when fetching brand count');
       }
     );
-    // this.clientService.getUserCount().subscribe(
-    //   (res: number) => {
-    //     this.userCount?.nativeElement.setAttribute('data-percent', res);
-    //   },
-    //   (error: any) => {
-    //     console.error('error when fetching user count');
-    //   }
-    // );
+
     this.clientService.getSoldVehiclesCount().subscribe(
       (res: number) => {
         this.soldVehicles?.nativeElement.setAttribute('data-percent', res);
@@ -125,22 +118,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.loaderService.setIsLoading(true);
 
-    // this.clientService.getSponsoredCars().subscribe(
-    //   (response: SponsoredCar[]) => {
-    //     console.log('Response Sponsored: ', response);
-    //     this.sponsoredCars = response.map(
-    //       (elem: SponsoredCar) => elem.autoSemiNuevo
-    //     );
-    //     console.log(this.sponsoredCars);
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching sponsoredCars: ', error);
-    //   }
-    // );
+
 
     this.clientService.getFilters().subscribe(
       (response: Filter[]) => {
-        console.log('Filtros: ', response);
         this.filters = response.map((filter: Filter) => {
           return {
             marca: NormalizePipe.prototype.transform(filter.marca),
@@ -160,8 +141,6 @@ export class HomeComponent implements OnInit {
           )
           .filter((v, i, a) => a.indexOf(v) == i);
         // this.carrocerias.push('OTRO');
-        console.log('Marcas: ', this.filteredBrands);
-        console.log('Carrocerias: ', this.carrocerias);
         setTimeout(() => {
           $('#marcas').selectpicker('refresh');
           $('#modelos').selectpicker('refresh');
@@ -169,15 +148,12 @@ export class HomeComponent implements OnInit {
         }, 500);
       },
       (error) => {
-        console.group('In getting filters');
         console.error(error);
-        console.groupEnd();
       }
     );
 
     this.clientService.getRecentCars().subscribe(
       (response: AutoSemiNuevo[]) => {
-        console.log({ recentCars: response });
         this.recentCars = response;
         this.loaderService.setIsLoading(false);
       },
@@ -197,10 +173,8 @@ export class HomeComponent implements OnInit {
 
   // Cambiar Carroceria
   changeCarType(type: string): void {
-    console.warn(type);
     this.changedCarType = true;
     this.filterFormGroup.controls['carType'].setValue(type);
-    console.log(this.filterFormGroup.get('carType')?.value);
     this.filteredBrands = this.filters
       .filter((elem: Filter) => {
         return (
@@ -217,16 +191,12 @@ export class HomeComponent implements OnInit {
       $('#marcas').selectpicker('refresh');
       $('#modelos').selectpicker('refresh');
     }, 250);
-    console.log(this.filteredBrands);
   }
 
   // Cambiar Usados, Nuevos, Todos
   changeCarSubset(subset: string): void {
     this.filterFormGroup.controls['carSubset'].setValue(subset);
-    console.log(
-      'Car Subset: ',
-      this.filterFormGroup.controls['carSubset'].value
-    );
+
     this.filteredBrands = this.filters
       ?.filter((elem) =>
         this.carType != 'OTRO'
@@ -250,8 +220,6 @@ export class HomeComponent implements OnInit {
   // Cambiar marca
   changeCarBrand(e: any): void {
     const brand: string = e.target.value;
-    console.log('Change Car Brand Event: ', e.target.value);
-    console.log(this.filterFormGroup.get('carBrand')?.value);
     this.filteredModels = this.filters
       .filter((elem) =>
         this.carType != 'OTRO'
@@ -263,8 +231,6 @@ export class HomeComponent implements OnInit {
       )
       .map((elem) => NormalizePipe.prototype.transform(elem.modelo))
       .filter((v, i, a) => a.indexOf(v) == i);
-    console.log('filtered models');
-    console.log(this.filteredModels);
     setTimeout(() => {
       $('#modelos').selectpicker('refresh');
     }, 500);
@@ -308,8 +274,7 @@ export class HomeComponent implements OnInit {
 
   goToCarRegistration(): void {
     if (this.storageService.isLoggedIn()) {
-      // console.log('redirect to car-registration');
-      // this.router.navigateByUrl('/dashboard/registrar-auto');
+
     } else {
       this.router.navigateByUrl('/vende-tu-auto');
     }
@@ -322,6 +287,17 @@ export class HomeComponent implements OnInit {
       },
     });
   }
+  goToCarsSubset(subset: string): void {
+    const body: CarSearchFilter = {
+      carSubset: subset,
+    };
+    this.router
+      .navigateByUrl('/home', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['/inventory-listings'], { queryParams: body });
+      });
+  }
+
 
   getBannerImg(carType: string) {
     switch (carType) {
